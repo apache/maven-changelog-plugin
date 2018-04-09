@@ -146,6 +146,7 @@ under the License.
   </distributionManagement>
 
   <properties>
+    <surefire.version>2.21.0</surefire.version>
     <maven-scm.version>1.9.2</maven-scm.version>
     <doxiaVersion>1.1.4</doxiaVersion>
     <mavenVersion>2.2.1</mavenVersion>
