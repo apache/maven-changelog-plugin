@@ -19,30 +19,32 @@ package org.apache.maven.plugin.changelog;
  * under the License.
  */
 
-import junit.framework.TestCase;
 import org.apache.maven.scm.ChangeFile;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * @author Edwin Punzalan
- * @version $Id$
  */
 public class FileActivityComparatorTest
-    extends TestCase
 {
     private FileActivityComparator comparator;
 
     /**
      * {@inheritDoc}
      */
-    protected void setUp()
-        throws Exception
+    @Before
+    public void setUp()
     {
         comparator = new FileActivityComparator();
     }
 
+    @Test
     public void testCompareByNumberOfCommits()
     {
         List<ChangeFile> list1 = new ArrayList<ChangeFile>();
@@ -62,6 +64,7 @@ public class FileActivityComparatorTest
         assertTrue( "Test compare by commits, greater than", comparator.compare( list1, list2 ) > 0 );
     }
 
+    @Test
     public void testCompareByRevision()
     {
         List<ChangeFile> list1 = new ArrayList<ChangeFile>();
@@ -85,6 +88,7 @@ public class FileActivityComparatorTest
         assertTrue( "Test compare by revision, greater than", comparator.compare( list1, list2 ) > 0 );
     }
 
+    @Test
     public void testCompareByName()
     {
         List<ChangeFile> list1 = new ArrayList<ChangeFile>();
