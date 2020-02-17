@@ -298,13 +298,6 @@ under the License.
       <version>3.0.24</version>
     </dependency>
 
-    <!-- misc -->
-    <dependency>
-      <groupId>xml-apis</groupId>
-      <artifactId>xml-apis</artifactId>
-      <version>1.0.b2</version>
-    </dependency>
-
     <!-- test dependencies -->
     <dependency>
       <groupId>junit</groupId>
@@ -386,5 +379,40 @@ under the License.
       </reporting>
     </profile>
 
+    <profile>
+      <id>jdk9</id>
+      <activation>
+        <jdk>[9,)</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>enforce-bytecode-version</id>
+                <configuration>
+                  <rules>
+                    <enforceBytecodeVersion>
+                      <excludes>
+                        <exclude>javax.xml.bind:jaxb-api</exclude>
+                      </excludes>
+                    </enforceBytecodeVersion>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
+        <dependency>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+          <version>2.3.1</version>
+        </dependency>
+      </dependencies>
+    </profile>
   </profiles>
 </project>
