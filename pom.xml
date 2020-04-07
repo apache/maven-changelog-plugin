@@ -151,6 +151,7 @@ under the License.
     <doxiaVersion>1.1.4</doxiaVersion>
     <mavenVersion>2.2.1</mavenVersion>
     <sitePluginVersion>3.3</sitePluginVersion><!-- used in ITs -->
+    <project.build.outputTimestamp>2020-04-07T21:04:00Z</project.build.outputTimestamp>
   </properties>
 
   <dependencies>
