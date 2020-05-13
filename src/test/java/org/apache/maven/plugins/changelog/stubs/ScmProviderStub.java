@@ -640,7 +640,7 @@ public class ScmProviderStub
     public ChangeLogScmResult changeLog( ChangeLogScmRequest scmRequest )
         throws ScmException
     {
-        return null;
+        return getChangeLogScmResult();
     }
 
     public BlameScmResult blame( BlameScmRequest blameScmRequest )

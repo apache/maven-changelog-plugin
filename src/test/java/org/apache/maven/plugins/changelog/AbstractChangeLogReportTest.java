@@ -60,7 +60,7 @@ public abstract class AbstractChangeLogReportTest
             outputHtml.getParentFile().mkdirs();
             writer = WriterFactory.newXmlWriter( outputHtml );
 
-            mojo.getSiteRenderer().generateDocument( writer, (SiteRendererSink) mojo.getSink(), context );
+            mojo.getSiteRenderer().mergeDocumentIntoSite( writer, (SiteRendererSink) mojo.getSink(), context );
             writer.close();
             writer = null;
         }

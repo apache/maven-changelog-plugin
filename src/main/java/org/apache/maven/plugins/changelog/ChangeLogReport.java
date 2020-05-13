@@ -31,11 +31,11 @@ import org.apache.maven.reporting.AbstractMavenReport;
 import org.apache.maven.reporting.MavenReportException;
 import org.apache.maven.scm.ChangeFile;
 import org.apache.maven.scm.ChangeSet;
-import org.apache.maven.scm.ScmBranch;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
 import org.apache.maven.scm.ScmResult;
 import org.apache.maven.scm.ScmRevision;
+import org.apache.maven.scm.command.changelog.ChangeLogScmRequest;
 import org.apache.maven.scm.command.changelog.ChangeLogScmResult;
 import org.apache.maven.scm.command.changelog.ChangeLogSet;
 import org.apache.maven.scm.command.info.InfoItem;
@@ -82,6 +82,10 @@ import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static org.apache.maven.plugins.changelog.ChangeLogScmRequestFactory.requestForDate;
+import static org.apache.maven.plugins.changelog.ChangeLogScmRequestFactory.requestForRange;
+import static org.apache.maven.plugins.changelog.ChangeLogScmRequestFactory.requestForRevision;
 
 /**
  * Generate a changelog report.
@@ -651,8 +655,8 @@ public class ChangeLogReport
 
             if ( "range".equals( type ) )
             {
-                result = provider.changeLog( repository, new ScmFileSet( basedir ), null, null, range, (ScmBranch) null,
-                                             dateFormat );
+                ChangeLogScmRequest request = requestForRange( repository, basedir, range, dateFormat );
+                result = provider.changeLog( request );
 
                 checkResult( result );
 
@@ -673,9 +677,11 @@ public class ChangeLogReport
                         endTag = tagsIter.next();
                         String endRevision = getRevisionForTag( endTag, repository, provider );
                         String startRevision = getRevisionForTag( startTag, repository, provider );
-                        result = provider.changeLog( repository, new ScmFileSet( basedir ),
-                                                     new ScmRevision( startRevision ),
-                                                     new ScmRevision( endRevision ) );
+                        ChangeLogScmRequest request = requestForRevision(
+                                repository, basedir, startRevision, endRevision
+                        );
+
+                        result = provider.changeLog( request );
 
                         checkResult( result );
                         result.getChangeLog().setStartVersion( new ScmRevision( startTag ) );
@@ -690,9 +696,8 @@ public class ChangeLogReport
                 {
                     String startRevision = getRevisionForTag( startTag, repository, provider );
                     String endRevision = getRevisionForTag( endTag, repository, provider );
-                    result = provider.changeLog( repository, new ScmFileSet( basedir ),
-                                                 new ScmRevision( startRevision ),
-                                                 new ScmRevision( endRevision ) );
+                    ChangeLogScmRequest request = requestForRevision( repository, basedir, startRevision, endRevision );
+                    result = provider.changeLog( request );
 
                     checkResult( result );
                     result.getChangeLog().setStartVersion( new ScmRevision( startTag ) );
@@ -713,8 +718,9 @@ public class ChangeLogReport
                     {
                         endDate = dateIter.next();
 
-                        result = provider.changeLog( repository, new ScmFileSet( basedir ), parseDate( startDate ),
-                                                     parseDate( endDate ), 0, (ScmBranch) null );
+                        result = provider.changeLog(
+                                requestForDate( repository, basedir, parseDate( startDate ), parseDate( endDate ) )
+                        );
 
                         checkResult( result );
 
@@ -725,9 +731,9 @@ public class ChangeLogReport
                 }
                 else
                 {
-                    result = provider.changeLog( repository, new ScmFileSet( basedir ), parseDate( startDate ),
-                                                 parseDate( endDate ), 0, (ScmBranch) null );
-
+                    result = provider.changeLog(
+                            requestForDate( repository, basedir, parseDate( startDate ), parseDate( endDate ) )
+                    );
                     checkResult( result );
 
                     changeSets.add( result.getChangeLog() );
