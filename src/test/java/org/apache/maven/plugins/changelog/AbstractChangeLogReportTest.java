@@ -50,23 +50,15 @@ public abstract class AbstractChangeLogReportTest
     protected void renderer( ChangeLogReport mojo, File outputHtml )
         throws RendererException, IOException
     {
-        Writer writer = null;
         SiteRenderingContext context = new SiteRenderingContext();
         context.setDecoration( new DecorationModel() );
         context.setTemplateName( "org/apache/maven/doxia/siterenderer/resources/default-site.vm" );
 
-        try
+        try (Writer writer = WriterFactory.newXmlWriter( outputHtml ))
         {
             outputHtml.getParentFile().mkdirs();
-            writer = WriterFactory.newXmlWriter( outputHtml );
 
             mojo.getSiteRenderer().mergeDocumentIntoSite( writer, (SiteRendererSink) mojo.getSink(), context );
-            writer.close();
-            writer = null;
-        }
-        finally
-        {
-            IOUtil.close( writer );
         }
     }
 }

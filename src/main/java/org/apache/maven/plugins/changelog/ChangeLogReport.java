@@ -60,6 +60,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -504,8 +505,8 @@ public class ChangeLogReport
      */
     private void initializeDeveloperMaps()
     {
-        developersById = new HashMap<String, Developer>();
-        developersByName = new HashMap<String, Developer>();
+        developersById = new HashMap<>();
+        developersByName = new HashMap<>();
 
         if ( developers != null )
         {
@@ -540,15 +541,11 @@ public class ChangeLogReport
                 && outputXMLExpiration * 60000 > System.currentTimeMillis() - outputXML.lastModified() )
                 // CHECKSTYLE_ON: MagicNumber
             {
-                try
+                try ( Reader reader = ReaderFactory.newReader( outputXML, getOutputEncoding() ) )
                 {
-                    //ReaderFactory.newReader( outputXML, getOutputEncoding() );
-                    //FileInputStream fIn = new FileInputStream( outputXML );
-
                     getLog().info( "Using existing changelog.xml..." );
 
-                    changelogList =
-                        ChangeLog.loadChangedSets( ReaderFactory.newReader( outputXML, getOutputEncoding() ) );
+                    changelogList = ChangeLog.loadChangedSets( reader );
                 }
                 catch ( FileNotFoundException e )
                 {
@@ -576,14 +573,6 @@ public class ChangeLogReport
             try
             {
                 writeChangelogXml( changelogList );
-            }
-            catch ( FileNotFoundException e )
-            {
-                throw new MavenReportException( "Can't create " + outputXML.getAbsolutePath(), e );
-            }
-            catch ( UnsupportedEncodingException e )
-            {
-                throw new MavenReportException( "Can't create " + outputXML.getAbsolutePath(), e );
             }
             catch ( IOException e )
             {
@@ -627,11 +616,11 @@ public class ChangeLogReport
         //pw.flush();
         //pw.close();
         // MCHANGELOG-86
-        Writer writer = WriterFactory.newWriter( new BufferedOutputStream( new FileOutputStream( outputXML ) ),
-                                                 getOutputEncoding() );
-        writer.write( changelogXml.toString() );
-        writer.flush();
-        writer.close();
+        try ( Writer writer = WriterFactory.newWriter(
+                new BufferedOutputStream( new FileOutputStream( outputXML ) ), getOutputEncoding() ) )
+        {
+            writer.write( changelogXml.toString() );
+        }
     }
 
     /**
@@ -645,7 +634,7 @@ public class ChangeLogReport
     {
         try
         {
-            List<ChangeLogSet> changeSets = new ArrayList<ChangeLogSet>();
+            List<ChangeLogSet> changeSets = new ArrayList<>();
 
             ScmRepository repository = getScmRepository();
 
@@ -816,9 +805,9 @@ public class ChangeLogReport
     {
         if ( patternArray == null )
         {
-            return new ArrayList<Pattern>();
+            return new ArrayList<>();
         }
-        List<Pattern> patterns = new ArrayList<Pattern>( patternArray.length );
+        List<Pattern> patterns = new ArrayList<>( patternArray.length );
         for ( String string : patternArray )
         {
             //replaces * with [/\]* (everything but file seperators)
@@ -1313,7 +1302,7 @@ public class ChangeLogReport
             return 0;
         }
 
-        HashMap<String, List<ChangeFile>> fileList = new HashMap<String, List<ChangeFile>>();
+        HashMap<String, List<ChangeFile>> fileList = new HashMap<>();
 
         for ( ChangeSet entry : entries )
         {
@@ -1328,7 +1317,7 @@ public class ChangeLogReport
                 }
                 else
                 {
-                    list = new LinkedList<ChangeFile>();
+                    list = new LinkedList<>();
 
                     list.add( file );
 
@@ -1406,10 +1395,8 @@ public class ChangeLogReport
         //doRevision( entry.getFiles(), bundle, sink );
         doChangedFiles( entry.getFiles(), sink );
         sink.lineBreak();
-        StringReader sr = new StringReader( entry.getComment() );
-        BufferedReader br = new BufferedReader( sr );
         String line;
-        try
+        try ( BufferedReader br = new BufferedReader( new StringReader( entry.getComment() ) ) )
         {
             if ( ( issueIDRegexPattern != null && issueIDRegexPattern.length() > 0 ) && ( issueLinkUrl != null
                 && issueLinkUrl.length() > 0 ) )
@@ -1448,18 +1435,7 @@ public class ChangeLogReport
         {
             getLog().warn( "Unable to read the comment of a ChangeSet as a stream." );
         }
-        finally
-        {
-            try
-            {
-                br.close();
-            }
-            catch ( IOException e )
-            {
-                getLog().warn( "Unable to close a reader." );
-            }
-            sr.close();
-        }
+
         sink.tableCell_();
 
         sink.tableRow_();
