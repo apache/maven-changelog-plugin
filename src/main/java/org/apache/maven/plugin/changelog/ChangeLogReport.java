@@ -178,14 +178,6 @@ public class ChangeLogReport
     private int outputXMLExpiration;
 
     /**
-     * Comment format string used for interrogating
-     * the revision control system.
-     * Currently only used by the ClearcaseChangeLogGenerator.
-     */
-    @Parameter( property = "changelog.commentFormat" )
-    private String commentFormat;
-
-    /**
      * The file encoding when writing non-HTML reports.
      */
     @Parameter( property = "changelog.outputEncoding", defaultValue = "${project.reporting.outputEncoding}" )
