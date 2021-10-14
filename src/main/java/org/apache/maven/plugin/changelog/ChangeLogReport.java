@@ -343,20 +343,17 @@ public class ChangeLogReport
     private String issueLinkUrl;
 
     /**
-     * A template string that is used to create the changeset URL.
-     * <p/>
+     * <p>A template string that is used to create the changeset URL.
      * If not defined no change set link will be created.
-     * <p/>
+     * </p>
      * There is one special token that you can use in your template:
      * <ul>
      * <li><code>%REV%</code> - this is the changeset revision</li>
      * </ul>
-     * <p>
-     * Example:
+     * <p>Example:
      * <code>http://fisheye.sourceforge.net/changelog/a-project/?cs=%REV%</code>
      * </p>
-     * <p>
-     * <strong>Note:</strong> If you don't supply the %REV% token in your template,
+     * <p><strong>Note:</strong> If you don't supply the %REV% token in your template,
      * the revision will simply be appended to your template URL.
      * </p>
      *
@@ -366,27 +363,25 @@ public class ChangeLogReport
     protected String displayChangeSetDetailUrl;
 
     /**
-     * A template string that is used to create the revision aware URL to
+     * <p>A template string that is used to create the revision aware URL to
      * the file details in a similar fashion to the <code>displayFileDetailUrl</code>.
      * When a report contains both file and file revision information, as in the
      * Change Log report, this template string can be used to create a revision
      * aware URL to the file details.
-     * <p/>
-     * If not defined this template string defaults to the same value as the
+     * </p>
+     * <p>If not defined this template string defaults to the same value as the
      * <code>displayFileDetailUrl</code> and thus revision number aware links will
      * not be used.
-     * <p/>
+     * </p>
      * There are two special tokens that you can use in your template:
      * <ul>
      * <li><code>%FILE%</code> - this is the path to a file</li>
      * <li><code>%REV%</code> - this is the revision of the file</li>
      * </ul>
-     * <p>
-     * Example:
+     * <p>Example:
      * <code>http://fisheye.sourceforge.net/browse/a-project/%FILE%?r=%REV%</code>
      * </p>
-     * <p>
-     * <strong>Note:</strong> If you don't supply the %FILE% token in your template,
+     * <p><strong>Note:</strong> If you don't supply the %FILE% token in your template,
      * the path of the file will simply be appended to your template URL.
      * </p>
      *
@@ -514,10 +509,11 @@ public class ChangeLogReport
     }
 
     /**
-     * populates the changedSets field by either connecting to the SCM or using an existing XML generated in a previous
+     * Populates the changedSets field by either connecting to the SCM or using an existing XML generated in a previous
      * run of the report
      *
-     * @throws MavenReportException
+     * @return a List of ChangeLogSets
+     * @throws MavenReportException if any exception occurs
      */
     protected List<ChangeLogSet> getChangedSets()
         throws MavenReportException
@@ -634,7 +630,7 @@ public class ChangeLogReport
      * creates a ChangeLog object and then connects to the SCM to generate the changed sets
      *
      * @return changedlogsets generated from the SCM
-     * @throws MavenReportException
+     * @throws MavenReportException if any exception occurs
      */
     protected List<ChangeLogSet> generateChangeSetsFromSCM()
         throws MavenReportException
@@ -1891,7 +1887,7 @@ public class ChangeLogReport
     }
 
     /**
-     * @param locale
+     * @param locale the locale for the <code>scm-activity</code> resource bundle
      * @return the current bundle
      */
     protected ResourceBundle getBundle( Locale locale )
