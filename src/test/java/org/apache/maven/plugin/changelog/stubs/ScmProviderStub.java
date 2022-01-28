@@ -45,6 +45,7 @@ import org.apache.maven.scm.command.remove.RemoveScmResult;
 import org.apache.maven.scm.command.status.StatusScmResult;
 import org.apache.maven.scm.command.tag.TagScmResult;
 import org.apache.maven.scm.command.unedit.UnEditScmResult;
+import org.apache.maven.scm.command.untag.UntagScmResult;
 import org.apache.maven.scm.command.update.UpdateScmResult;
 import org.apache.maven.scm.log.ScmLogger;
 import org.apache.maven.scm.provider.ScmProvider;
@@ -315,6 +316,16 @@ public class ScmProviderStub
     /**
      * {@inheritDoc}
      */
+    public CheckOutScmResult checkOut( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion version,
+                                       CommandParameters commandParameters )
+        throws ScmException
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public DiffScmResult diff( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1 )
         throws ScmException
     {
@@ -452,6 +463,15 @@ public class ScmProviderStub
      * {@inheritDoc}
      */
     public UnEditScmResult unedit( ScmRepository scmRepository, ScmFileSet scmFileSet )
+        throws ScmException
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public UntagScmResult untag( ScmRepository repository, ScmFileSet fileSet, CommandParameters parameters )
         throws ScmException
     {
         return null;
