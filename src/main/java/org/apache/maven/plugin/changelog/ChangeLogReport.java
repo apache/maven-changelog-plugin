@@ -51,7 +51,6 @@ import org.apache.maven.scm.repository.ScmRepository;
 import org.apache.maven.settings.Server;
 import org.apache.maven.settings.Settings;
 import org.codehaus.plexus.util.ReaderFactory;
-import org.codehaus.plexus.util.StringUtils;
 import org.codehaus.plexus.util.WriterFactory;
 
 import java.io.BufferedOutputStream;
@@ -916,12 +915,12 @@ public class ChangeLogReport
 
             ScmProviderRepository providerRepo = repository.getProviderRepository();
 
-            if ( !StringUtils.isEmpty( username ) )
+            if ( !(username == null || username.isEmpty()) )
             {
                 providerRepo.setUser( username );
             }
 
-            if ( !StringUtils.isEmpty( password ) )
+            if ( !(password == null || password.isEmpty()) )
             {
                 providerRepo.setPassword( password );
             }
@@ -932,28 +931,28 @@ public class ChangeLogReport
 
                 loadInfosFromSettings( repo );
 
-                if ( !StringUtils.isEmpty( username ) )
+                if ( !(username == null || username.isEmpty()) )
                 {
                     repo.setUser( username );
                 }
 
-                if ( !StringUtils.isEmpty( password ) )
+                if ( !(password == null || password.isEmpty()) )
                 {
                     repo.setPassword( password );
                 }
 
-                if ( !StringUtils.isEmpty( privateKey ) )
+                if ( !(privateKey == null || privateKey.isEmpty()) )
                 {
                     repo.setPrivateKey( privateKey );
                 }
 
-                if ( !StringUtils.isEmpty( passphrase ) )
+                if ( !(passphrase == null || passphrase.isEmpty()) )
                 {
                     repo.setPassphrase( passphrase );
                 }
             }
 
-            if ( !StringUtils.isEmpty( tagBase ) && repository.getProvider().equals( "svn" ) )
+            if ( !(tagBase == null || tagBase.isEmpty()) && repository.getProvider().equals( "svn" ) )
             {
                 SvnScmProviderRepository svnRepo = (SvnScmProviderRepository) repository.getProviderRepository();
 
@@ -1050,18 +1049,18 @@ public class ChangeLogReport
         }
 
         String scmConnection = project.getScm().getConnection();
-        if ( StringUtils.isNotEmpty( scmConnection ) && "connection".equals( connectionType.toLowerCase() ) )
+        if ( (scmConnection != null && !scmConnection.isEmpty()) && "connection".equals( connectionType.toLowerCase() ) )
         {
             connection = scmConnection;
         }
 
         String scmDeveloper = project.getScm().getDeveloperConnection();
-        if ( StringUtils.isNotEmpty( scmDeveloper ) && "developerconnection".equals( connectionType.toLowerCase() ) )
+        if ( (scmDeveloper != null && !scmDeveloper.isEmpty()) && "developerconnection".equals( connectionType.toLowerCase() ) )
         {
             connection = scmDeveloper;
         }
 
-        if ( StringUtils.isEmpty( connection ) )
+        if ( connection == null || connection.isEmpty() )
         {
             throw new MavenReportException( "SCM Connection is not set." );
         }
