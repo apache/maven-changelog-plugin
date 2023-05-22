@@ -35,7 +35,6 @@ import org.apache.maven.scm.provider.svn.SvnTagBranchUtils;
 import org.apache.maven.scm.provider.svn.command.SvnCommand;
 import org.apache.maven.scm.provider.svn.repository.SvnScmProviderRepository;
 import org.apache.maven.scm.provider.svn.svnexe.command.SvnCommandLineUtils;
-import org.codehaus.plexus.util.StringUtils;
 import org.codehaus.plexus.util.cli.CommandLineException;
 import org.codehaus.plexus.util.cli.CommandLineUtils;
 import org.codehaus.plexus.util.cli.Commandline;
@@ -122,7 +121,7 @@ public class SvnInfoCommandExpanded
             cl.createArg().setValue( "--recursive" );
         }
 
-        if ( StringUtils.isNotEmpty( revision ) )
+        if ( revision != null && !revision.isEmpty() )
         {
             cl.createArg().setValue( "-r" );
             cl.createArg().setValue( revision );
@@ -160,7 +159,7 @@ public class SvnInfoCommandExpanded
             cl.createArg().setValue( "--recursive" );
         }
 
-        if ( StringUtils.isNotEmpty( revision ) )
+        if ( revision != null && !revision.isEmpty() )
         {
             cl.createArg().setValue( "-r" );
             cl.createArg().setValue( revision );
