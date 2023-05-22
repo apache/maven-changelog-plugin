@@ -915,12 +915,12 @@ public class ChangeLogReport
 
             ScmProviderRepository providerRepo = repository.getProviderRepository();
 
-            if ( !(username == null || username.isEmpty()) )
+            if ( !( username == null || username.isEmpty() ) )
             {
                 providerRepo.setUser( username );
             }
 
-            if ( !(password == null || password.isEmpty()) )
+            if ( !( password == null || password.isEmpty() ) )
             {
                 providerRepo.setPassword( password );
             }
@@ -931,28 +931,28 @@ public class ChangeLogReport
 
                 loadInfosFromSettings( repo );
 
-                if ( !(username == null || username.isEmpty()) )
+                if ( !( username == null || username.isEmpty() ) )
                 {
                     repo.setUser( username );
                 }
 
-                if ( !(password == null || password.isEmpty()) )
+                if ( !( password == null || password.isEmpty() ) )
                 {
                     repo.setPassword( password );
                 }
 
-                if ( !(privateKey == null || privateKey.isEmpty()) )
+                if ( !( privateKey == null || privateKey.isEmpty() ) )
                 {
                     repo.setPrivateKey( privateKey );
                 }
 
-                if ( !(passphrase == null || passphrase.isEmpty()) )
+                if ( !( passphrase == null || passphrase.isEmpty() ) )
                 {
                     repo.setPassphrase( passphrase );
                 }
             }
 
-            if ( !(tagBase == null || tagBase.isEmpty()) && repository.getProvider().equals( "svn" ) )
+            if ( !( tagBase == null || tagBase.isEmpty() ) && repository.getProvider().equals( "svn" ) )
             {
                 SvnScmProviderRepository svnRepo = (SvnScmProviderRepository) repository.getProviderRepository();
 
@@ -1049,13 +1049,15 @@ public class ChangeLogReport
         }
 
         String scmConnection = project.getScm().getConnection();
-        if ( (scmConnection != null && !scmConnection.isEmpty()) && "connection".equals( connectionType.toLowerCase() ) )
+        if ( ( scmConnection != null && !scmConnection.isEmpty() )
+                && "connection".equals( connectionType.toLowerCase() ) )
         {
             connection = scmConnection;
         }
 
         String scmDeveloper = project.getScm().getDeveloperConnection();
-        if ( (scmDeveloper != null && !scmDeveloper.isEmpty()) && "developerconnection".equals( connectionType.toLowerCase() ) )
+        if ( ( scmDeveloper != null && !scmDeveloper.isEmpty() )
+                && "developerconnection".equals( connectionType.toLowerCase() ) )
         {
             connection = scmDeveloper;
         }
