@@ -213,9 +213,9 @@ public class FileActivityReport
      */
     private List<List<ChangeFile>> getOrderedFileList( Collection<ChangeSet> entries )
     {
-        List<List<ChangeFile>> list = new LinkedList<List<ChangeFile>>();
+        List<List<ChangeFile>> list = new LinkedList<>();
 
-        Map<String, List<ChangeFile>> map = new HashMap<String, List<ChangeFile>>();
+        Map<String, List<ChangeFile>> map = new HashMap<>();
 
         for ( ChangeSet entry : entries )
         {
@@ -225,7 +225,7 @@ public class FileActivityReport
 
                 if ( revisions == null )
                 {
-                    revisions = new LinkedList<ChangeFile>();
+                    revisions = new LinkedList<>();
                     map.put( file.getName(), revisions );
                 }
 

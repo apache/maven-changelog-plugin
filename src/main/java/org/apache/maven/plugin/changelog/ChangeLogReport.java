@@ -494,8 +494,8 @@ public class ChangeLogReport
      */
     private void initializeDeveloperMaps()
     {
-        developersById = new HashMap<String, Developer>();
-        developersByName = new HashMap<String, Developer>();
+        developersById = new HashMap<>();
+        developersByName = new HashMap<>();
 
         if ( developers != null )
         {
@@ -636,7 +636,7 @@ public class ChangeLogReport
     {
         try
         {
-            List<ChangeLogSet> changeSets = new ArrayList<ChangeLogSet>();
+            List<ChangeLogSet> changeSets = new ArrayList<>();
 
             ScmRepository repository = getScmRepository();
 
@@ -805,9 +805,9 @@ public class ChangeLogReport
     {
         if ( patternArray == null )
         {
-            return new ArrayList<Pattern>();
+            return new ArrayList<>();
         }
-        List<Pattern> patterns = new ArrayList<Pattern>( patternArray.length );
+        List<Pattern> patterns = new ArrayList<>( patternArray.length );
         for ( String string : patternArray )
         {
             //replaces * with [/\]* (everything but file seperators)
@@ -1304,7 +1304,7 @@ public class ChangeLogReport
             return 0;
         }
 
-        HashMap<String, List<ChangeFile>> fileList = new HashMap<String, List<ChangeFile>>();
+        HashMap<String, List<ChangeFile>> fileList = new HashMap<>();
 
         for ( ChangeSet entry : entries )
         {
@@ -1319,7 +1319,7 @@ public class ChangeLogReport
                 }
                 else
                 {
-                    list = new LinkedList<ChangeFile>();
+                    list = new LinkedList<>();
 
                     list.add( file );
 
@@ -1356,7 +1356,7 @@ public class ChangeLogReport
 
         initReportUrls();
 
-        List<ChangeSet> sortedEntries = new ArrayList<ChangeSet>( entries );
+        List<ChangeSet> sortedEntries = new ArrayList<>( entries );
         Collections.sort( sortedEntries, new Comparator<ChangeSet>()
         {
             public int compare( ChangeSet changeSet0, ChangeSet changeSet1 )

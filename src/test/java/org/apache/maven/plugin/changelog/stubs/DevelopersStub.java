@@ -35,7 +35,7 @@ public class DevelopersStub
     {
         super();
 
-        List<Developer> developers = new ArrayList<Developer>();
+        List<Developer> developers = new ArrayList<>();
 
         Developer developer = new Developer();
         developer.setName( "Edwin Punzalan" );
