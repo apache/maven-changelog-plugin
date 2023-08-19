@@ -196,7 +196,7 @@ public class ChangeLogHandler
         }
         else if ( "changeset".equals( qName ) )
         {
-            bufEntries = new LinkedList<ChangeSet>();
+            bufEntries = new LinkedList<>();
 
             currentPattern = attributes.getValue( "datePattern" );
             if ( currentPattern == null )

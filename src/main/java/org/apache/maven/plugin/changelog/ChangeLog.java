@@ -62,7 +62,7 @@ public class ChangeLog
     {
         SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
 
-        List<ChangeLogSet> changeLogSets = new ArrayList<ChangeLogSet>();
+        List<ChangeLogSet> changeLogSets = new ArrayList<>();
 
         parser.parse( stream, new ChangeLogHandler( changeLogSets ) );
 
@@ -74,7 +74,7 @@ public class ChangeLog
     {
         SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
 
-        List<ChangeLogSet> changeLogSets = new ArrayList<ChangeLogSet>();
+        List<ChangeLogSet> changeLogSets = new ArrayList<>();
 
         // CHECKSTYLE_OFF: MagicNumber
         BufferedReader br = new BufferedReader( reader, 8192 );

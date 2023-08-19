@@ -218,9 +218,9 @@ public class DeveloperActivityReport
      */
     private void initDeveloperDetails( ChangeLogSet set )
     {
-        commits = new HashMap<String, List<ChangeSet>>();
+        commits = new HashMap<>();
 
-        files = new HashMap<String, Map<String, ChangeFile>>();
+        files = new HashMap<>();
 
         countDevCommits( set.getChangeSets() );
 
@@ -242,7 +242,7 @@ public class DeveloperActivityReport
 
             if ( list == null )
             {
-                list = new LinkedList<ChangeSet>();
+                list = new LinkedList<>();
                 commits.put( developer, list );
             }
 
@@ -265,7 +265,7 @@ public class DeveloperActivityReport
 
             if ( filesMap == null )
             {
-                filesMap = new HashMap<String, ChangeFile>();
+                filesMap = new HashMap<>();
                 files.put( developer, filesMap );
             }
 
