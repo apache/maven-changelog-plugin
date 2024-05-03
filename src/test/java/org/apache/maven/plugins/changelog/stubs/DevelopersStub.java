@@ -25,7 +25,6 @@ import org.apache.maven.model.Developer;
 
 /**
  * @author Edwin Punzalan
- * @version $Id$
  */
 public class DevelopersStub extends ArrayList<Developer> {
     public DevelopersStub() {

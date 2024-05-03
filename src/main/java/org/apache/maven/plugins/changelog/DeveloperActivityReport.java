@@ -34,8 +34,6 @@ import org.apache.maven.scm.command.changelog.ChangeLogSet;
 
 /**
  * Generate a developer activity report.
- *
- * @version $Id$
  */
 @Mojo(name = "dev-activity")
 public class DeveloperActivityReport extends ChangeLogReport {

@@ -23,6 +23,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -76,13 +78,9 @@ import org.apache.maven.scm.provider.svn.repository.SvnScmProviderRepository;
 import org.apache.maven.scm.repository.ScmRepository;
 import org.apache.maven.settings.Server;
 import org.apache.maven.settings.Settings;
-import org.codehaus.plexus.util.ReaderFactory;
-import org.codehaus.plexus.util.WriterFactory;
 
 /**
  * Generate a changelog report.
- *
- * @version $Id$
  */
 @Mojo(name = "changelog")
 public class ChangeLogReport extends AbstractMavenReport {
@@ -466,7 +464,7 @@ public class ChangeLogReport extends AbstractMavenReport {
      * or defaulted by the Mojo API.
      */
     private void initializeDefaultConfigurationParameters() {
-        if (displayFileRevDetailUrl == null || displayFileRevDetailUrl.length() == 0) {
+        if (displayFileRevDetailUrl == null || displayFileRevDetailUrl.isEmpty()) {
             displayFileRevDetailUrl = displayFileDetailUrl;
         }
     }
@@ -504,16 +502,13 @@ public class ChangeLogReport extends AbstractMavenReport {
         if (outputXML.exists()) {
             // CHECKSTYLE_OFF: MagicNumber
             if (outputXMLExpiration > 0
-                    && outputXMLExpiration * 60000 > System.currentTimeMillis() - outputXML.lastModified())
+                    && outputXMLExpiration * 60000L > System.currentTimeMillis() - outputXML.lastModified())
             // CHECKSTYLE_ON: MagicNumber
             {
                 try {
-                    // ReaderFactory.newReader( outputXML, getOutputEncoding() );
-                    // FileInputStream fIn = new FileInputStream( outputXML );
-
                     getLog().info("Using existing changelog.xml...");
-
-                    changelogList = ChangeLog.loadChangedSets(ReaderFactory.newReader(outputXML, getOutputEncoding()));
+                    changelogList = ChangeLog.loadChangedSets(
+                            new InputStreamReader(Files.newInputStream(outputXML.toPath()), getOutputEncoding()));
                 } catch (FileNotFoundException e) {
                     // do nothing, just regenerate
                 } catch (Exception e) {
@@ -533,8 +528,6 @@ public class ChangeLogReport extends AbstractMavenReport {
 
             try {
                 writeChangelogXml(changelogList);
-            } catch (UnsupportedEncodingException e) {
-                throw new MavenReportException("Can't create " + outputXML.getAbsolutePath(), e);
             } catch (IOException e) {
                 throw new MavenReportException("Can't create " + outputXML.getAbsolutePath(), e);
             }
@@ -569,13 +562,7 @@ public class ChangeLogReport extends AbstractMavenReport {
         changelogXml.append("\n</changelog>");
 
         outputXML.getParentFile().mkdirs();
-
-        // PrintWriter pw = new PrintWriter( new BufferedOutputStream( new FileOutputStream( outputXML ) ) );
-        // pw.write( changelogXml.toString() );
-        // pw.flush();
-        // pw.close();
-        // MCHANGELOG-86
-        Writer writer = WriterFactory.newWriter(
+        Writer writer = new OutputStreamWriter(
                 new BufferedOutputStream(Files.newOutputStream(outputXML.toPath())), getOutputEncoding());
         writer.write(changelogXml.toString());
         writer.flush();
@@ -814,7 +801,7 @@ public class ChangeLogReport extends AbstractMavenReport {
      * @return A date
      */
     private Date parseDate(String date) throws MojoExecutionException {
-        if (date == null || date.trim().length() == 0) {
+        if (date == null || date.trim().isEmpty()) {
             return null;
         }
 
@@ -1246,8 +1233,8 @@ public class ChangeLogReport extends AbstractMavenReport {
         BufferedReader br = new BufferedReader(sr);
         String line;
         try {
-            if ((issueIDRegexPattern != null && issueIDRegexPattern.length() > 0)
-                    && (issueLinkUrl != null && issueLinkUrl.length() > 0)) {
+            if ((issueIDRegexPattern != null && !issueIDRegexPattern.isEmpty())
+                    && (issueLinkUrl != null && !issueLinkUrl.isEmpty())) {
                 Pattern pattern = Pattern.compile(issueIDRegexPattern);
 
                 line = br.readLine();
@@ -1608,7 +1595,7 @@ public class ChangeLogReport extends AbstractMavenReport {
      * @return The effective reporting output file encoding, never <code>null</code>.
      */
     protected String getOutputEncoding() {
-        return (outputEncoding != null) ? outputEncoding : ReaderFactory.UTF_8;
+        return (outputEncoding != null) ? outputEncoding : "UTF-8";
     }
 
     /**

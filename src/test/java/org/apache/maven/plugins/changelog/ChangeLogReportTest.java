@@ -29,7 +29,6 @@ import org.codehaus.plexus.util.FileUtils;
 
 /**
  * @author Edwin Punzalan
- * @version $Id$
  */
 public class ChangeLogReportTest extends AbstractChangeLogReportTest {
     private ScmManager scmManager;

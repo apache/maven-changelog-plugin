@@ -25,7 +25,6 @@ import org.codehaus.plexus.PlexusTestCase;
 
 /**
  * @author Edwin Punzalan
- * @version $Id$
  */
 public class MavenProjectStub extends org.apache.maven.plugin.testing.stubs.MavenProjectStub {
     public static int testCounter = 0;

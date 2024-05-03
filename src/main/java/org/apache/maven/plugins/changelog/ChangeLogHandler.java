@@ -38,8 +38,6 @@ import org.xml.sax.helpers.DefaultHandler;
 /**
  * Change log generated xml parser.  SAXParser listener for processing a previously generated xml into several
  * change log sets.
- *
- * @version $Id$
  */
 public class ChangeLogHandler extends DefaultHandler {
     // Use the same time zone offset when reading and adding times
@@ -48,7 +46,7 @@ public class ChangeLogHandler extends DefaultHandler {
 
     private static final TimeZone TIMEZONE = TimeZone.getTimeZone(TIMEZONE_STRING);
 
-    private Collection<ChangeLogSet> changeSets;
+    private final Collection<ChangeLogSet> changeSets;
 
     private String bufData = "";
 

@@ -19,19 +19,17 @@
 package org.apache.maven.plugins.changelog.stubs;
 
 import org.apache.maven.scm.command.changelog.ChangeLogScmResult;
-import org.apache.maven.scm.manager.NoSuchScmProviderException;
 import org.apache.maven.scm.provider.ScmProvider;
 import org.apache.maven.scm.repository.ScmRepository;
 
 /**
  * @author Edwin Punzalan
- * @version $Id$
  */
 public class FailedScmManagerStub extends ScmManagerStub {
     /**
      * {@inheritDoc}
      */
-    public ScmProvider getProviderByRepository(ScmRepository scmRepository) throws NoSuchScmProviderException {
+    public ScmProvider getProviderByRepository(ScmRepository scmRepository) {
         return new ScmProviderStub() {
             /** {@inheritDoc} */
             protected ChangeLogScmResult getChangeLogScmResult() {
