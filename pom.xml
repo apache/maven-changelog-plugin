@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -18,15 +17,14 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>maven-plugins</artifactId>
     <groupId>org.apache.maven.plugins</groupId>
-    <version>34</version>
-    <relativePath/>
+    <artifactId>maven-plugins</artifactId>
+    <version>42</version>
+    <relativePath />
   </parent>
 
   <artifactId>maven-changelog-plugin</artifactId>
@@ -127,8 +125,8 @@ under the License.
   <scm>
     <connection>scm:git:https://gitbox.apache.org/repos/asf/maven-changelog-plugin.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/maven-changelog-plugin.git</developerConnection>
-    <url>https://github.com/apache/maven-changelog-plugin/tree/${project.scm.tag}</url>
     <tag>HEAD</tag>
+    <url>https://github.com/apache/maven-changelog-plugin/tree/${project.scm.tag}</url>
   </scm>
   <issueManagement>
     <system>JIRA</system>
@@ -151,7 +149,8 @@ under the License.
     <maven-scm.version>1.9.2</maven-scm.version>
     <doxiaVersion>1.1.4</doxiaVersion>
     <mavenVersion>2.2.1</mavenVersion>
-    <sitePluginVersion>3.3</sitePluginVersion><!-- used in ITs -->
+    <!-- used in ITs -->
+    <sitePluginVersion>3.3</sitePluginVersion>
     <project.build.outputTimestamp>2020-04-07T21:04:00Z</project.build.outputTimestamp>
   </properties>
 
@@ -399,6 +398,13 @@ under the License.
       <activation>
         <jdk>[9,)</jdk>
       </activation>
+      <dependencies>
+        <dependency>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+          <version>2.3.1</version>
+        </dependency>
+      </dependencies>
       <build>
         <plugins>
           <plugin>
@@ -421,13 +427,6 @@ under the License.
           </plugin>
         </plugins>
       </build>
-      <dependencies>
-        <dependency>
-          <groupId>javax.xml.bind</groupId>
-          <artifactId>jaxb-api</artifactId>
-          <version>2.3.1</version>
-        </dependency>
-      </dependencies>
     </profile>
   </profiles>
 </project>
