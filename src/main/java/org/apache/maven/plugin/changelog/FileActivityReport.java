@@ -19,7 +19,6 @@
 package org.apache.maven.plugin.changelog;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -194,27 +193,16 @@ public class FileActivityReport extends ChangeLogReport {
      * @return list of changed files within the SCM with the number of times changed in descending order
      */
     private List<List<ChangeFile>> getOrderedFileList(Collection<ChangeSet> entries) {
-        List<List<ChangeFile>> list = new LinkedList<>();
-
         Map<String, List<ChangeFile>> map = new HashMap<>();
-
         for (ChangeSet entry : entries) {
             for (ChangeFile file : entry.getFiles()) {
-                List<ChangeFile> revisions = map.get(file.getName());
-
-                if (revisions == null) {
-                    revisions = new LinkedList<>();
-                    map.put(file.getName(), revisions);
-                }
-
+                List<ChangeFile> revisions = map.computeIfAbsent(file.getName(), k -> new LinkedList<>());
                 revisions.add(file);
             }
         }
 
-        list.addAll(map.values());
-
-        Collections.sort(list, new FileActivityComparator());
-
+        List<List<ChangeFile>> list = new LinkedList<>(map.values());
+        list.sort(new FileActivityComparator());
         return list;
     }
 }

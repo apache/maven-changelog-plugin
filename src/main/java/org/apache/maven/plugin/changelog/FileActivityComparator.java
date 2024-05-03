@@ -34,7 +34,7 @@ public class FileActivityComparator implements Comparator<List<ChangeFile>> {
      * {@inheritDoc}
      */
     public int compare(List<ChangeFile> list1, List<ChangeFile> list2) throws ClassCastException {
-        int returnValue = sortByCommits(list1, list2);
+        int returnValue = Integer.compare(list2.size(), list1.size());
 
         if (returnValue != 0) {
             return returnValue;
@@ -50,25 +50,6 @@ public class FileActivityComparator implements Comparator<List<ChangeFile>> {
     }
 
     /**
-     * compares list1 and list2 by the number of commits
-     *
-     * @param list1 the first object in a compare statement
-     * @param list2 the object to compare list1 against
-     * @return an integer describing the order comparison of list1 and list2
-     */
-    private int sortByCommits(List<ChangeFile> list1, List<ChangeFile> list2) {
-        if (list1.size() > list2.size()) {
-            return -1;
-        }
-
-        if (list1.size() < list2.size()) {
-            return 1;
-        }
-
-        return 0;
-    }
-
-    /**
      * compares list1 and list2 by comparing their revision code
      *
      * @param list1 the first object in a compare statement
@@ -77,7 +58,6 @@ public class FileActivityComparator implements Comparator<List<ChangeFile>> {
      */
     private int sortByRevision(List<ChangeFile> list1, List<ChangeFile> list2) {
         String revision1 = getLatestRevision(list1);
-
         String revision2 = getLatestRevision(list2);
 
         if (revision1 == null) {

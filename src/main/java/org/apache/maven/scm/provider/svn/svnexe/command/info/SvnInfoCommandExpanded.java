@@ -119,10 +119,7 @@ public class SvnInfoCommandExpanded extends AbstractCommand implements SvnComman
             cl.createArg().setValue(revision);
         }
 
-        Iterator<File> it = fileSet.getFileList().iterator();
-
-        while (it.hasNext()) {
-            File file = it.next();
+        for (File file : fileSet.getFileList()) {
             if (repository == null) {
                 cl.createArg().setValue(file.getPath());
             } else {
