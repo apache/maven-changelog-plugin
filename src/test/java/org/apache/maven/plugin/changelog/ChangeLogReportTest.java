@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,6 +16,9 @@ package org.apache.maven.plugin.changelog;
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.maven.plugin.changelog;
+
+import java.io.File;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.changelog.stubs.FailedScmManagerStub;
@@ -26,23 +27,17 @@ import org.apache.maven.plugin.changelog.stubs.ScmManagerWithHostStub;
 import org.apache.maven.scm.manager.ScmManager;
 import org.codehaus.plexus.util.FileUtils;
 
-import java.io.File;
-
 /**
  * @author Edwin Punzalan
  * @version $Id$
  */
-public class ChangeLogReportTest
-    extends AbstractChangeLogReportTest
-{
+public class ChangeLogReportTest extends AbstractChangeLogReportTest {
     private ScmManager scmManager;
 
     /**
      * {@inheritDoc}
      */
-    protected void setUp()
-        throws Exception
-    {
+    protected void setUp() throws Exception {
         super.setUp();
 
         scmManager = new ScmManagerStub();
@@ -51,186 +46,152 @@ public class ChangeLogReportTest
     /**
      * {@inheritDoc}
      */
-    protected void tearDown()
-        throws Exception
-    {
+    protected void tearDown() throws Exception {
         super.tearDown();
 
         scmManager = null;
     }
 
-    public void testNoSource()
-        throws Exception
-    {
-        File pluginXmlFile = new File( getBasedir(), "src/test/plugin-configs/changelog/no-source-plugin-config.xml" );
+    public void testNoSource() throws Exception {
+        File pluginXmlFile = new File(getBasedir(), "src/test/plugin-configs/changelog/no-source-plugin-config.xml");
 
-        ChangeLogReport mojo = (ChangeLogReport) lookupMojo( "changelog", pluginXmlFile );
+        ChangeLogReport mojo = (ChangeLogReport) lookupMojo("changelog", pluginXmlFile);
 
-        assertNotNull( "Mojo found.", mojo );
+        assertNotNull("Mojo found.", mojo);
 
-        this.setVariableValueToObject( mojo, "manager", scmManager );
+        this.setVariableValueToObject(mojo, "manager", scmManager);
 
         mojo.execute();
 
-        File outputDir = (File) getVariableValueFromObject( mojo, "outputDirectory" );
+        File outputDir = (File) getVariableValueFromObject(mojo, "outputDirectory");
 
-        File outputHtml = new File( outputDir, "changelog.html" );
+        File outputHtml = new File(outputDir, "changelog.html");
 
-        renderer( mojo, outputHtml );
+        renderer(mojo, outputHtml);
 
-        assertTrue( outputHtml.getAbsolutePath() + " not generated!", outputHtml.exists() );
+        assertTrue(outputHtml.getAbsolutePath() + " not generated!", outputHtml.exists());
 
-        assertTrue( outputHtml.getAbsolutePath() + " is empty!", outputHtml.length() > 0 );
+        assertTrue(outputHtml.getAbsolutePath() + " is empty!", outputHtml.length() > 0);
     }
 
-    public void testMinConfig()
-        throws Exception
-    {
-        executeMojo( "min-plugin-config.xml" );
+    public void testMinConfig() throws Exception {
+        executeMojo("min-plugin-config.xml");
     }
 
-    public void testFailedChangelog()
-        throws Exception
-    {
+    public void testFailedChangelog() throws Exception {
         scmManager = new FailedScmManagerStub();
 
-        try
-        {
-            executeMojo( "min-plugin-config.xml" );
-        }
-        catch ( MojoExecutionException e )
-        {
-            assertEquals( "Test thrown exception", "Command failed.", e.getCause().getCause().getMessage() );
-        }
-    }
-
-    public void testUsageOfCachedXml()
-        throws Exception
-    {
-        File cacheFile = new File( getBasedir(), "src/test/changelog-xml/min-changelog.xml" );
-        cacheFile.setLastModified( System.currentTimeMillis() );
-
-        executeMojo( "cached-plugin-config.xml" );
-    }
-
-    public void testTypeException()
-        throws Exception
-    {
-        try
-        {
-            executeMojo( "inv-type-plugin-config.xml" );
-
-            fail( "Test exception on invalid type" );
-        }
-        catch ( MojoExecutionException e )
-        {
-            assertTrue( "Test thrown exception",
-                        e.getCause().getMessage().startsWith( "The type parameter has an invalid value: invalid." ) );
+        try {
+            executeMojo("min-plugin-config.xml");
+        } catch (MojoExecutionException e) {
+            assertEquals(
+                    "Test thrown exception",
+                    "Command failed.",
+                    e.getCause().getCause().getMessage());
         }
     }
 
-    public void testTagType()
-        throws Exception
-    {
-        executeMojo( "tag-plugin-config.xml" );
+    public void testUsageOfCachedXml() throws Exception {
+        File cacheFile = new File(getBasedir(), "src/test/changelog-xml/min-changelog.xml");
+        cacheFile.setLastModified(System.currentTimeMillis());
+
+        executeMojo("cached-plugin-config.xml");
     }
 
-    public void testTagsType()
-        throws Exception
-    {
-        executeMojo( "tags-plugin-config.xml" );
-    }
+    public void testTypeException() throws Exception {
+        try {
+            executeMojo("inv-type-plugin-config.xml");
 
-    public void testDateException()
-        throws Exception
-    {
-        try
-        {
-            executeMojo( "inv-date-plugin-config.xml" );
-        }
-        catch ( MojoExecutionException e )
-        {
-            assertTrue( "Test thrown exception",
-                        e.getCause().getCause().getMessage().startsWith( "Please use this date pattern: " ) );
+            fail("Test exception on invalid type");
+        } catch (MojoExecutionException e) {
+            assertTrue(
+                    "Test thrown exception",
+                    e.getCause().getMessage().startsWith("The type parameter has an invalid value: invalid."));
         }
     }
 
-    public void testDateType()
-        throws Exception
-    {
-        executeMojo( "date-plugin-config.xml" );
+    public void testTagType() throws Exception {
+        executeMojo("tag-plugin-config.xml");
     }
 
-    public void testDatesType()
-        throws Exception
-    {
-        executeMojo( "dates-plugin-config.xml" );
+    public void testTagsType() throws Exception {
+        executeMojo("tags-plugin-config.xml");
     }
 
-    public void testScmRepositoryWithHost()
-        throws Exception
-    {
+    public void testDateException() throws Exception {
+        try {
+            executeMojo("inv-date-plugin-config.xml");
+        } catch (MojoExecutionException e) {
+            assertTrue(
+                    "Test thrown exception",
+                    e.getCause().getCause().getMessage().startsWith("Please use this date pattern: "));
+        }
+    }
+
+    public void testDateType() throws Exception {
+        executeMojo("date-plugin-config.xml");
+    }
+
+    public void testDatesType() throws Exception {
+        executeMojo("dates-plugin-config.xml");
+    }
+
+    public void testScmRepositoryWithHost() throws Exception {
         scmManager = new ScmManagerWithHostStub();
 
-        executeMojo( "hosted-plugin-config.xml" );
+        executeMojo("hosted-plugin-config.xml");
     }
 
-    public void testScmRepositoryWithHostFromSettings()
-        throws Exception
-    {
+    public void testScmRepositoryWithHostFromSettings() throws Exception {
         scmManager = new ScmManagerWithHostStub();
 
-        executeMojo( "hosted-with-settings-plugin-config.xml" );
+        executeMojo("hosted-with-settings-plugin-config.xml");
     }
 
-    public void testNoScmConnection()
-        throws Exception
-    {
-        try
-        {
-            executeMojo( "no-scm-plugin-config.xml" );
-        }
-        catch ( MojoExecutionException e )
-        {
-            assertEquals( "Test thrown exception", "SCM Connection is not set.",
-                          e.getCause().getCause().getCause().getMessage() );
+    public void testNoScmConnection() throws Exception {
+        try {
+            executeMojo("no-scm-plugin-config.xml");
+        } catch (MojoExecutionException e) {
+            assertEquals(
+                    "Test thrown exception",
+                    "SCM Connection is not set.",
+                    e.getCause().getCause().getCause().getMessage());
         }
     }
 
-    private void executeMojo( String pluginXml )
-        throws Exception
-    {
-        File pluginXmlFile = new File( getBasedir(), "src/test/plugin-configs/changelog/" + pluginXml );
+    private void executeMojo(String pluginXml) throws Exception {
+        File pluginXmlFile = new File(getBasedir(), "src/test/plugin-configs/changelog/" + pluginXml);
 
-        ChangeLogReport mojo = (ChangeLogReport) lookupMojo( "changelog", pluginXmlFile );
+        ChangeLogReport mojo = (ChangeLogReport) lookupMojo("changelog", pluginXmlFile);
 
-        assertNotNull( "Mojo found.", mojo );
+        assertNotNull("Mojo found.", mojo);
 
-        this.setVariableValueToObject( mojo, "manager", scmManager );
+        this.setVariableValueToObject(mojo, "manager", scmManager);
 
         mojo.execute();
 
-        File outputXML = (File) getVariableValueFromObject( mojo, "outputXML" );
+        File outputXML = (File) getVariableValueFromObject(mojo, "outputXML");
 
-        String encoding = (String) getVariableValueFromObject( mojo, "outputEncoding" );
+        String encoding = (String) getVariableValueFromObject(mojo, "outputEncoding");
 
-        assertTrue( "Test if changelog.xml is created", outputXML.exists() );
+        assertTrue("Test if changelog.xml is created", outputXML.exists());
 
-        String changelogXml = FileUtils.fileRead( outputXML );
+        String changelogXml = FileUtils.fileRead(outputXML);
 
-        assertTrue( "Test for xml header", changelogXml.startsWith( "<?xml version=\"1.0\" encoding=\"" +
-                                                                        encoding + "\"?>" ) );
+        assertTrue(
+                "Test for xml header",
+                changelogXml.startsWith("<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>"));
 
-        assertTrue( "Test for xml footer", changelogXml.endsWith( "</changelog>" ) );
+        assertTrue("Test for xml footer", changelogXml.endsWith("</changelog>"));
 
-        File outputDir = (File) getVariableValueFromObject( mojo, "outputDirectory" );
+        File outputDir = (File) getVariableValueFromObject(mojo, "outputDirectory");
 
-        File outputHtml = new File( outputDir, "changelog.html" );
+        File outputHtml = new File(outputDir, "changelog.html");
 
-        renderer( mojo, outputHtml );
+        renderer(mojo, outputHtml);
 
-        assertTrue( outputHtml.getAbsolutePath() + " not generated!", outputHtml.exists() );
+        assertTrue(outputHtml.getAbsolutePath() + " not generated!", outputHtml.exists());
 
-        assertTrue( outputHtml.getAbsolutePath() + " is empty!", outputHtml.length() > 0 );
+        assertTrue(outputHtml.getAbsolutePath() + " is empty!", outputHtml.length() > 0);
     }
 }

@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog.stubs;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,6 +16,7 @@ package org.apache.maven.plugin.changelog.stubs;
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.maven.plugin.changelog.stubs;
 
 import org.apache.maven.settings.Server;
 import org.apache.maven.settings.Settings;
@@ -26,37 +25,29 @@ import org.apache.maven.settings.Settings;
  * @author Edwin Punzalan
  * @version $Id$
  */
-public class SettingsStub
-    extends Settings
-{
+public class SettingsStub extends Settings {
     /**
      * {@inheritDoc}
      */
-    public Server getServer( String serverId )
-    {
-        return new Server()
-        {
+    public Server getServer(String serverId) {
+        return new Server() {
             /** {@inheritDoc} */
-            public String getUsername()
-            {
+            public String getUsername() {
                 return "anonymous";
             }
 
             /** {@inheritDoc} */
-            public String getPassword()
-            {
+            public String getPassword() {
                 return "password";
             }
 
             /** {@inheritDoc} */
-            public String getPassphrase()
-            {
+            public String getPassphrase() {
                 return "passphrase";
             }
 
             /** {@inheritDoc} */
-            public String getPrivateKey()
-            {
+            public String getPrivateKey() {
                 return "private-key";
             }
         };

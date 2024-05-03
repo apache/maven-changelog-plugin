@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,12 +16,7 @@ package org.apache.maven.plugin.changelog;
  * specific language governing permissions and limitations
  * under the License.
  */
-
-import org.apache.maven.doxia.sink.Sink;
-import org.apache.maven.plugins.annotations.Mojo;
-import org.apache.maven.scm.ChangeFile;
-import org.apache.maven.scm.ChangeSet;
-import org.apache.maven.scm.command.changelog.ChangeLogSet;
+package org.apache.maven.plugin.changelog;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -33,15 +26,19 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import org.apache.maven.doxia.sink.Sink;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.scm.ChangeFile;
+import org.apache.maven.scm.ChangeSet;
+import org.apache.maven.scm.command.changelog.ChangeLogSet;
+
 /**
  * Generate a developer activity report.
  *
  * @version $Id$
  */
-@Mojo( name = "dev-activity" )
-public class DeveloperActivityReport
-    extends ChangeLogReport
-{
+@Mojo(name = "dev-activity")
+public class DeveloperActivityReport extends ChangeLogReport {
     /**
      * Used to hold data while creating the report
      */
@@ -52,35 +49,31 @@ public class DeveloperActivityReport
     /**
      * {@inheritDoc}
      */
-    public String getDescription( Locale locale )
-    {
-        return getBundle( locale ).getString( "report.dev-activity.description" );
+    public String getDescription(Locale locale) {
+        return getBundle(locale).getString("report.dev-activity.description");
     }
 
     /**
      * {@inheritDoc}
      */
-    public String getName( Locale locale )
-    {
-        return getBundle( locale ).getString( "report.dev-activity.name" );
+    public String getName(Locale locale) {
+        return getBundle(locale).getString("report.dev-activity.name");
     }
 
     /**
      * {@inheritDoc}
      */
-    public String getOutputName()
-    {
+    public String getOutputName() {
         return "dev-activity";
     }
 
     /**
      * {@inheritDoc}
      */
-    protected void doGenerateEmptyReport( ResourceBundle bundle, Sink sink )
-    {
+    protected void doGenerateEmptyReport(ResourceBundle bundle, Sink sink) {
         sink.head();
         sink.title();
-        sink.text( bundle.getString( "report.dev-activity.header" ) );
+        sink.text(bundle.getString("report.dev-activity.header"));
         sink.title_();
         sink.head_();
 
@@ -88,11 +81,11 @@ public class DeveloperActivityReport
         sink.section1();
 
         sink.sectionTitle1();
-        sink.text( bundle.getString( "report.dev-activity.mainTitle" ) );
+        sink.text(bundle.getString("report.dev-activity.mainTitle"));
         sink.sectionTitle1_();
 
         sink.paragraph();
-        sink.text( "No sources found to create a report." );
+        sink.text("No sources found to create a report.");
         sink.paragraph_();
 
         sink.section1_();
@@ -105,31 +98,26 @@ public class DeveloperActivityReport
     /**
      * {@inheritDoc}
      */
-    protected void doGenerateReport( List<ChangeLogSet> changeLogSets, ResourceBundle bundle, Sink sink )
-    {
+    protected void doGenerateReport(List<ChangeLogSet> changeLogSets, ResourceBundle bundle, Sink sink) {
         sink.head();
         sink.title();
-        sink.text( bundle.getString( "report.dev-activity.header" ) );
+        sink.text(bundle.getString("report.dev-activity.header"));
         sink.title_();
         sink.head_();
 
         sink.body();
         sink.section1();
         sink.sectionTitle1();
-        sink.text( bundle.getString( "report.dev-activity.mainTitle" ) );
+        sink.text(bundle.getString("report.dev-activity.mainTitle"));
         sink.sectionTitle1_();
 
-        if ( developers.isEmpty() )
-        {
+        if (developers.isEmpty()) {
             sink.paragraph();
-            sink.text( bundle.getString( "report.dev-activity.noDevelopers" ) );
+            sink.text(bundle.getString("report.dev-activity.noDevelopers"));
             sink.paragraph_();
-        }
-        else
-        {
-            for ( ChangeLogSet set : changeLogSets )
-            {
-                doChangedSets( set, bundle, sink );
+        } else {
+            for (ChangeLogSet set : changeLogSets) {
+                doChangedSets(set, bundle, sink);
             }
         }
 
@@ -146,29 +134,28 @@ public class DeveloperActivityReport
      * @param bundle the resource bundle to retrieve report phrases from
      * @param sink   the report formatting tool
      */
-    private void doChangedSets( ChangeLogSet set, ResourceBundle bundle, Sink sink )
-    {
+    private void doChangedSets(ChangeLogSet set, ResourceBundle bundle, Sink sink) {
         sink.section2();
 
-        doChangeSetTitle( set, bundle, sink );
+        doChangeSetTitle(set, bundle, sink);
 
-        doSummary( set, bundle, sink );
+        doSummary(set, bundle, sink);
 
         sink.table();
 
         sink.tableRow();
         sink.tableHeaderCell();
-        sink.text( bundle.getString( "report.dev-activity.developer" ) );
+        sink.text(bundle.getString("report.dev-activity.developer"));
         sink.tableHeaderCell_();
         sink.tableHeaderCell();
-        sink.text( bundle.getString( "report.TotalCommits" ) );
+        sink.text(bundle.getString("report.TotalCommits"));
         sink.tableHeaderCell_();
         sink.tableHeaderCell();
-        sink.text( bundle.getString( "report.dev-activity.filesChanged" ) );
+        sink.text(bundle.getString("report.dev-activity.filesChanged"));
         sink.tableHeaderCell_();
         sink.tableRow_();
 
-        doDeveloperRows( set, sink );
+        doDeveloperRows(set, sink);
 
         sink.table_();
 
@@ -181,30 +168,28 @@ public class DeveloperActivityReport
      * @param set  change log set generate the developer activity
      * @param sink the report formatting tool
      */
-    private void doDeveloperRows( ChangeLogSet set, Sink sink )
-    {
-        initDeveloperDetails( set );
+    private void doDeveloperRows(ChangeLogSet set, Sink sink) {
+        initDeveloperDetails(set);
 
-        for ( Map.Entry<String, List<ChangeSet>> commit : commits.entrySet() )
-        {
+        for (Map.Entry<String, List<ChangeSet>> commit : commits.entrySet()) {
             String author = commit.getKey();
 
             List<ChangeSet> devCommits = commit.getValue();
-            Map<String, ChangeFile> devFiles = files.get( author );
+            Map<String, ChangeFile> devFiles = files.get(author);
 
             sink.tableRow();
             sink.tableCell();
 
-            sinkAuthorDetails( sink, author );
+            sinkAuthorDetails(sink, author);
 
             sink.tableCell_();
 
             sink.tableCell();
-            sink.text( String.valueOf( devCommits.size() ) );
+            sink.text(String.valueOf(devCommits.size()));
             sink.tableCell_();
 
             sink.tableCell();
-            sink.text( String.valueOf( devFiles.size() ) );
+            sink.text(String.valueOf(devFiles.size()));
             sink.tableCell_();
 
             sink.tableRow_();
@@ -216,15 +201,14 @@ public class DeveloperActivityReport
      *
      * @param set the change log set to generate the developer details from
      */
-    private void initDeveloperDetails( ChangeLogSet set )
-    {
+    private void initDeveloperDetails(ChangeLogSet set) {
         commits = new HashMap<>();
 
         files = new HashMap<>();
 
-        countDevCommits( set.getChangeSets() );
+        countDevCommits(set.getChangeSets());
 
-        countDevFiles( set.getChangeSets() );
+        countDevFiles(set.getChangeSets());
     }
 
     /**
@@ -232,21 +216,18 @@ public class DeveloperActivityReport
      *
      * @param entries the change log entries used to search and count developer commits
      */
-    private void countDevCommits( Collection<ChangeSet> entries )
-    {
-        for ( ChangeSet entry : entries )
-        {
+    private void countDevCommits(Collection<ChangeSet> entries) {
+        for (ChangeSet entry : entries) {
             String developer = entry.getAuthor();
 
-            List<ChangeSet> list = commits.get( developer );
+            List<ChangeSet> list = commits.get(developer);
 
-            if ( list == null )
-            {
+            if (list == null) {
                 list = new LinkedList<>();
-                commits.put( developer, list );
+                commits.put(developer, list);
             }
 
-            list.add( entry );
+            list.add(entry);
         }
     }
 
@@ -255,23 +236,19 @@ public class DeveloperActivityReport
      *
      * @param entries the change log entries used to search and count file changes
      */
-    private void countDevFiles( Collection<ChangeSet> entries )
-    {
-        for ( ChangeSet entry : entries )
-        {
+    private void countDevFiles(Collection<ChangeSet> entries) {
+        for (ChangeSet entry : entries) {
             String developer = entry.getAuthor();
 
-            Map<String, ChangeFile> filesMap = files.get( developer );
+            Map<String, ChangeFile> filesMap = files.get(developer);
 
-            if ( filesMap == null )
-            {
+            if (filesMap == null) {
                 filesMap = new HashMap<>();
-                files.put( developer, filesMap );
+                files.put(developer, filesMap);
             }
 
-            for ( ChangeFile file : entry.getFiles() )
-            {
-                filesMap.put( file.getName(), file );
+            for (ChangeFile file : entry.getFiles()) {
+                filesMap.put(file.getName(), file);
             }
         }
     }

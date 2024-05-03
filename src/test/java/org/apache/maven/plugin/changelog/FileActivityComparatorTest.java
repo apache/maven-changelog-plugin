@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,97 +16,93 @@ package org.apache.maven.plugin.changelog;
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.maven.plugin.changelog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.maven.scm.ChangeFile;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
 /**
  * @author Edwin Punzalan
  */
-public class FileActivityComparatorTest
-{
+public class FileActivityComparatorTest {
     private FileActivityComparator comparator;
 
     /**
      * {@inheritDoc}
      */
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         comparator = new FileActivityComparator();
     }
 
     @Test
-    public void testCompareByNumberOfCommits()
-    {
+    public void testCompareByNumberOfCommits() {
         List<ChangeFile> list1 = new ArrayList<>();
-        list1.add( new ChangeFile( "anything" ) );
+        list1.add(new ChangeFile("anything"));
 
         List<ChangeFile> list2 = new ArrayList<>();
 
-        assertTrue( "Test compare by commits, less than", comparator.compare( list1, list2 ) < 0 );
+        assertTrue("Test compare by commits, less than", comparator.compare(list1, list2) < 0);
 
         list1 = new ArrayList<>();
-        list1.add( new ChangeFile( "anything" ) );
+        list1.add(new ChangeFile("anything"));
 
         list2 = new ArrayList<>();
-        list2.add( new ChangeFile( "one thing" ) );
-        list2.add( new ChangeFile( "something" ) );
+        list2.add(new ChangeFile("one thing"));
+        list2.add(new ChangeFile("something"));
 
-        assertTrue( "Test compare by commits, greater than", comparator.compare( list1, list2 ) > 0 );
+        assertTrue("Test compare by commits, greater than", comparator.compare(list1, list2) > 0);
     }
 
     @Test
-    public void testCompareByRevision()
-    {
+    public void testCompareByRevision() {
         List<ChangeFile> list1 = new ArrayList<>();
-        list1.add( new ChangeFile( "changefile-1", "123" ) );
-        list1.add( new ChangeFile( "changefile-1", "234" ) );
+        list1.add(new ChangeFile("changefile-1", "123"));
+        list1.add(new ChangeFile("changefile-1", "234"));
 
         List<ChangeFile> list2 = new ArrayList<>();
-        list2.add( new ChangeFile( "changefile-2", "246" ) );
-        list2.add( new ChangeFile( "changefile-2", "468" ) );
+        list2.add(new ChangeFile("changefile-2", "246"));
+        list2.add(new ChangeFile("changefile-2", "468"));
 
-        assertTrue( "Test compare by revision, less than", comparator.compare( list1, list2 ) < 0 );
+        assertTrue("Test compare by revision, less than", comparator.compare(list1, list2) < 0);
 
         list1 = new ArrayList<>();
-        list1.add( new ChangeFile( "changefile-1", "246" ) );
-        list1.add( new ChangeFile( "changefile-1", "468" ) );
+        list1.add(new ChangeFile("changefile-1", "246"));
+        list1.add(new ChangeFile("changefile-1", "468"));
 
         list2 = new ArrayList<>();
-        list2.add( new ChangeFile( "changefile-2", "123" ) );
-        list2.add( new ChangeFile( "changefile-2", "234" ) );
+        list2.add(new ChangeFile("changefile-2", "123"));
+        list2.add(new ChangeFile("changefile-2", "234"));
 
-        assertTrue( "Test compare by revision, greater than", comparator.compare( list1, list2 ) > 0 );
+        assertTrue("Test compare by revision, greater than", comparator.compare(list1, list2) > 0);
     }
 
     @Test
-    public void testCompareByName()
-    {
+    public void testCompareByName() {
         List<ChangeFile> list1 = new ArrayList<>();
-        list1.add( new ChangeFile( "changefile-1", "123" ) );
-        list1.add( new ChangeFile( "changefile-1", "468" ) );
+        list1.add(new ChangeFile("changefile-1", "123"));
+        list1.add(new ChangeFile("changefile-1", "468"));
 
         List<ChangeFile> list2 = new ArrayList<>();
-        list2.add( new ChangeFile( "changefile-2", "246" ) );
-        list2.add( new ChangeFile( "changefile-2", "468" ) );
+        list2.add(new ChangeFile("changefile-2", "246"));
+        list2.add(new ChangeFile("changefile-2", "468"));
 
-        assertTrue( "Test compare by name, less than", comparator.compare( list1, list2 ) < 0 );
+        assertTrue("Test compare by name, less than", comparator.compare(list1, list2) < 0);
 
         list1 = new ArrayList<>();
-        list1.add( new ChangeFile( "changefile-1", "246" ) );
-        list1.add( new ChangeFile( "changefile-1", "468" ) );
+        list1.add(new ChangeFile("changefile-1", "246"));
+        list1.add(new ChangeFile("changefile-1", "468"));
 
         list2 = new ArrayList<>();
-        list2.add( new ChangeFile( "changefile-2", "123" ) );
-        list2.add( new ChangeFile( "changefile-2", "234" ) );
+        list2.add(new ChangeFile("changefile-2", "123"));
+        list2.add(new ChangeFile("changefile-2", "234"));
 
-        assertTrue( "Test compare by name, greater than", comparator.compare( list1, list2 ) > 0 );
+        assertTrue("Test compare by name, greater than", comparator.compare(list1, list2) > 0);
     }
 }

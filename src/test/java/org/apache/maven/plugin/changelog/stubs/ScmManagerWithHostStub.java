@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog.stubs;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,6 +16,7 @@ package org.apache.maven.plugin.changelog.stubs;
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.maven.plugin.changelog.stubs;
 
 import org.apache.maven.scm.manager.NoSuchScmProviderException;
 import org.apache.maven.scm.provider.ScmProviderRepositoryWithHost;
@@ -28,30 +27,23 @@ import org.apache.maven.scm.repository.ScmRepositoryException;
  * @author Edwin Punzalan
  * @version $Id$
  */
-public class ScmManagerWithHostStub
-    extends ScmManagerStub
-{
+public class ScmManagerWithHostStub extends ScmManagerStub {
     /**
      * {@inheritDoc}
      */
-    public ScmRepository makeScmRepository( String string )
-        throws ScmRepositoryException, NoSuchScmProviderException
-    {
-        ScmProviderRepositoryWithHost scmRepository = new ScmProviderRepositoryWithHost()
-        {
+    public ScmRepository makeScmRepository(String string) throws ScmRepositoryException, NoSuchScmProviderException {
+        ScmProviderRepositoryWithHost scmRepository = new ScmProviderRepositoryWithHost() {
             /** {@inheritDoc} */
-            public String getHost()
-            {
+            public String getHost() {
                 return "scmHost";
             }
 
             /** {@inheritDoc} */
-            public int getPort()
-            {
+            public int getPort() {
                 return 7777;
             }
         };
 
-        return new ScmRepositoryStub( "ScmRepositoryStubWithHost", scmRepository );
+        return new ScmRepositoryStub("ScmRepositoryStubWithHost", scmRepository);
     }
 }
