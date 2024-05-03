@@ -30,7 +30,7 @@ under the License.
   </parent>
 
   <artifactId>maven-changelog-plugin</artifactId>
-  <version>2.4-SNAPSHOT</version>
+  <version>3.0.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <name>Apache Maven Changelog Plugin</name>
@@ -136,7 +136,7 @@ under the License.
   </issueManagement>
   <ciManagement>
     <system>Jenkins</system>
-    <url>https://ci-builds.apache.org/job/Maven/job/maven-box/job/maven-changelog-plugin/</url>
+    <url>https://ci-maven.apache.org/job/Maven/job/maven-box/job/maven-changelog-plugin/</url>
   </ciManagement>
   <distributionManagement>
     <site>
@@ -146,6 +146,7 @@ under the License.
   </distributionManagement>
 
   <properties>
+    <javaVersion>8</javaVersion>
     <surefire.version>2.21.0</surefire.version>
     <maven-scm.version>1.9.2</maven-scm.version>
     <doxiaVersion>1.1.4</doxiaVersion>
@@ -319,6 +320,19 @@ under the License.
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>3.6.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
   <reporting>
     <plugins>
       <plugin>
