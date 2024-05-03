@@ -19,8 +19,8 @@
 package org.apache.maven.plugin.changelog;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -149,7 +149,7 @@ public class ChangeLogTest {
 
     private List<ChangeLogSet> readChangeLogXml(String filename) throws Exception {
         File inputFile = new File(getBasedir(), "src/test/changelog-xml/" + filename);
-        InputStream in = new FileInputStream(inputFile);
+        InputStream in = Files.newInputStream(inputFile.toPath());
 
         return ChangeLog.loadChangedSets(in);
     }

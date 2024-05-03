@@ -22,18 +22,16 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.URLEncoder;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -448,10 +446,9 @@ public class ChangeLogReport extends AbstractMavenReport {
 
         if (systemProperties != null) {
             // Add all system properties configured by the user
-            Iterator<?> iter = systemProperties.keySet().iterator();
 
-            while (iter.hasNext()) {
-                String key = (String) iter.next();
+            for (Object o : systemProperties.keySet()) {
+                String key = (String) o;
 
                 String value = systemProperties.getProperty(key);
 
@@ -536,8 +533,6 @@ public class ChangeLogReport extends AbstractMavenReport {
 
             try {
                 writeChangelogXml(changelogList);
-            } catch (FileNotFoundException e) {
-                throw new MavenReportException("Can't create " + outputXML.getAbsolutePath(), e);
             } catch (UnsupportedEncodingException e) {
                 throw new MavenReportException("Can't create " + outputXML.getAbsolutePath(), e);
             } catch (IOException e) {
@@ -580,8 +575,8 @@ public class ChangeLogReport extends AbstractMavenReport {
         // pw.flush();
         // pw.close();
         // MCHANGELOG-86
-        Writer writer =
-                WriterFactory.newWriter(new BufferedOutputStream(new FileOutputStream(outputXML)), getOutputEncoding());
+        Writer writer = WriterFactory.newWriter(
+                new BufferedOutputStream(Files.newOutputStream(outputXML.toPath())), getOutputEncoding());
         writer.write(changelogXml.toString());
         writer.flush();
         writer.close();
@@ -725,7 +720,7 @@ public class ChangeLogReport extends AbstractMavenReport {
                     null,
                     false,
                     null);
-            if (infoScmResult.getInfoItems().size() == 0) {
+            if (infoScmResult.getInfoItems().isEmpty()) {
                 throw new ScmException("There is no tag named '" + tag + "' in the Subversion repository.");
             }
             InfoItem infoItem = infoScmResult.getInfoItems().get(0);
@@ -950,13 +945,13 @@ public class ChangeLogReport extends AbstractMavenReport {
         }
 
         String scmConnection = project.getScm().getConnection();
-        if ((scmConnection != null && !scmConnection.isEmpty()) && "connection".equals(connectionType.toLowerCase())) {
+        if ((scmConnection != null && !scmConnection.isEmpty()) && "connection".equalsIgnoreCase(connectionType)) {
             connection = scmConnection;
         }
 
         String scmDeveloper = project.getScm().getDeveloperConnection();
         if ((scmDeveloper != null && !scmDeveloper.isEmpty())
-                && "developerconnection".equals(connectionType.toLowerCase())) {
+                && "developerconnection".equalsIgnoreCase(connectionType)) {
             connection = scmDeveloper;
         }
 
@@ -1215,11 +1210,7 @@ public class ChangeLogReport extends AbstractMavenReport {
         initReportUrls();
 
         List<ChangeSet> sortedEntries = new ArrayList<>(entries);
-        Collections.sort(sortedEntries, new Comparator<ChangeSet>() {
-            public int compare(ChangeSet changeSet0, ChangeSet changeSet1) {
-                return changeSet1.getDate().compareTo(changeSet0.getDate());
-            }
-        });
+        sortedEntries.sort((changeSet0, changeSet1) -> changeSet1.getDate().compareTo(changeSet0.getDate()));
 
         for (ChangeSet entry : sortedEntries) {
             doChangedSetDetail(entry, sink);
@@ -1561,7 +1552,7 @@ public class ChangeLogReport extends AbstractMavenReport {
      * @param target target file to create the absolute path to
      */
     private String getAbsolutePath(final String base, final String target) {
-        String absPath = "";
+        StringBuilder absPath = new StringBuilder();
 
         StringTokenizer baseTokens =
                 new StringTokenizer(sinkFileNamePattern.matcher(base).replaceAll("/"), "/", true);
@@ -1578,11 +1569,11 @@ public class ChangeLogReport extends AbstractMavenReport {
                 break;
             }
 
-            absPath += baseToken;
+            absPath.append(baseToken);
         }
 
-        if (!absPath.endsWith("/")) {
-            absPath += "/";
+        if (!absPath.toString().endsWith("/")) {
+            absPath.append("/");
         }
 
         String newTarget = target;

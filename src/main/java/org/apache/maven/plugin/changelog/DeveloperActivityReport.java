@@ -218,15 +218,7 @@ public class DeveloperActivityReport extends ChangeLogReport {
      */
     private void countDevCommits(Collection<ChangeSet> entries) {
         for (ChangeSet entry : entries) {
-            String developer = entry.getAuthor();
-
-            List<ChangeSet> list = commits.get(developer);
-
-            if (list == null) {
-                list = new LinkedList<>();
-                commits.put(developer, list);
-            }
-
+            List<ChangeSet> list = commits.computeIfAbsent(entry.getAuthor(), k -> new LinkedList<>());
             list.add(entry);
         }
     }
@@ -239,14 +231,7 @@ public class DeveloperActivityReport extends ChangeLogReport {
     private void countDevFiles(Collection<ChangeSet> entries) {
         for (ChangeSet entry : entries) {
             String developer = entry.getAuthor();
-
-            Map<String, ChangeFile> filesMap = files.get(developer);
-
-            if (filesMap == null) {
-                filesMap = new HashMap<>();
-                files.put(developer, filesMap);
-            }
-
+            Map<String, ChangeFile> filesMap = files.computeIfAbsent(developer, k -> new HashMap<>());
             for (ChangeFile file : entry.getFiles()) {
                 filesMap.put(file.getName(), file);
             }
