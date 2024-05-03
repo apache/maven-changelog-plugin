@@ -18,20 +18,17 @@
  */
 package org.apache.maven.plugins.changelog.stubs;
 
-import org.apache.maven.scm.manager.NoSuchScmProviderException;
 import org.apache.maven.scm.provider.ScmProviderRepositoryWithHost;
 import org.apache.maven.scm.repository.ScmRepository;
-import org.apache.maven.scm.repository.ScmRepositoryException;
 
 /**
  * @author Edwin Punzalan
- * @version $Id$
  */
 public class ScmManagerWithHostStub extends ScmManagerStub {
     /**
      * {@inheritDoc}
      */
-    public ScmRepository makeScmRepository(String string) throws ScmRepositoryException, NoSuchScmProviderException {
+    public ScmRepository makeScmRepository(String string) {
         ScmProviderRepositoryWithHost scmRepository = new ScmProviderRepositoryWithHost() {
             /** {@inheritDoc} */
             public String getHost() {

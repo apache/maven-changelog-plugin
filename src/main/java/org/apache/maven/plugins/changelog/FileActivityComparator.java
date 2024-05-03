@@ -26,8 +26,6 @@ import org.apache.maven.scm.ChangeFile;
 
 /**
  * Object used to sort the file-activity report into descending order.
- *
- * @version $Id$
  */
 public class FileActivityComparator implements Comparator<List<ChangeFile>> {
     /**

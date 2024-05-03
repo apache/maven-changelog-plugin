@@ -23,7 +23,6 @@ import org.apache.maven.scm.repository.ScmRepository;
 
 /**
  * @author Edwin Punzalan
- * @version $Id$
  */
 public class ScmRepositoryStub extends ScmRepository {
     public ScmRepositoryStub() {

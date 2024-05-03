@@ -21,12 +21,10 @@ package org.apache.maven.plugins.changelog.stubs;
 import java.util.Collections;
 import java.util.Date;
 
-import org.apache.maven.scm.ChangeSet;
 import org.apache.maven.scm.command.changelog.ChangeLogSet;
 
 /**
  * @author Edwin Punzalan
- * @version $Id$
  */
 public class ChangeLogScmResultStub extends org.apache.maven.scm.command.changelog.ChangeLogScmResult {
     public ChangeLogScmResultStub() {
@@ -41,6 +39,6 @@ public class ChangeLogScmResultStub extends org.apache.maven.scm.command.changel
      * {@inheritDoc}
      */
     public ChangeLogSet getChangeLog() {
-        return new ChangeLogSet(Collections.<ChangeSet>emptyList(), new Date(360), new Date(720));
+        return new ChangeLogSet(Collections.emptyList(), new Date(360), new Date(720));
     }
 }

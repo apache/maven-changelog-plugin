@@ -34,8 +34,6 @@ import org.apache.maven.scm.command.changelog.ChangeLogSet;
 
 /**
  * Generate a file activity report.
- *
- * @version $Id$
  */
 @Mojo(name = "file-activity")
 public class FileActivityReport extends ChangeLogReport {

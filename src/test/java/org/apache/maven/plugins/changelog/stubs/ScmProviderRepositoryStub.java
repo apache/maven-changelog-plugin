@@ -22,6 +22,5 @@ import org.apache.maven.scm.provider.ScmProviderRepository;
 
 /**
  * @author Edwin Punzalan
- * @version $Id$
  */
 public class ScmProviderRepositoryStub extends ScmProviderRepository {}

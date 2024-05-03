@@ -44,16 +44,12 @@ import org.apache.maven.scm.command.status.StatusScmResult;
 import org.apache.maven.scm.command.tag.TagScmResult;
 import org.apache.maven.scm.command.unedit.UnEditScmResult;
 import org.apache.maven.scm.command.update.UpdateScmResult;
-import org.apache.maven.scm.manager.NoSuchScmProviderException;
 import org.apache.maven.scm.manager.ScmManager;
 import org.apache.maven.scm.provider.ScmProvider;
 import org.apache.maven.scm.repository.ScmRepository;
-import org.apache.maven.scm.repository.ScmRepositoryException;
-import org.apache.maven.scm.repository.UnknownRepositoryStructure;
 
 /**
  * @author Edwin Punzalan
- * @version $Id$
  */
 public class ScmManagerStub implements ScmManager {
     private ScmProvider scmProvider;
@@ -61,29 +57,28 @@ public class ScmManagerStub implements ScmManager {
     /**
      * {@inheritDoc}
      */
-    public ScmProvider getProviderByType(String string) throws NoSuchScmProviderException {
+    public ScmProvider getProviderByType(String string) {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public ScmProvider getProviderByUrl(String string) throws ScmRepositoryException, NoSuchScmProviderException {
+    public ScmProvider getProviderByUrl(String string) {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public ScmRepository makeProviderScmRepository(String string, File file)
-            throws ScmRepositoryException, UnknownRepositoryStructure, NoSuchScmProviderException {
+    public ScmRepository makeProviderScmRepository(String string, File file) {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public ScmRepository makeScmRepository(String string) throws ScmRepositoryException, NoSuchScmProviderException {
+    public ScmRepository makeScmRepository(String string) {
         return new ScmRepositoryStub();
     }
 
@@ -97,7 +92,7 @@ public class ScmManagerStub implements ScmManager {
     /**
      * {@inheritDoc}
      */
-    public ScmProvider getProviderByRepository(ScmRepository scmRepository) throws NoSuchScmProviderException {
+    public ScmProvider getProviderByRepository(ScmRepository scmRepository) {
         return new ScmProviderStub();
     }
 
@@ -274,8 +269,7 @@ public class ScmManagerStub implements ScmManager {
     /**
      * {@inheritDoc}
      */
-    public ExportScmResult export(ScmRepository repository, ScmFileSet fileSet, String outputDirectory)
-            throws ScmException {
+    public ExportScmResult export(ScmRepository repository, ScmFileSet fileSet, String outputDirectory) {
         return this.export(repository, fileSet, outputDirectory);
     }
 
@@ -436,11 +430,11 @@ public class ScmManagerStub implements ScmManager {
         return this.getProviderByRepository(arg0).mkdir(arg0, arg1, arg2, arg3);
     }
 
-    public ChangeLogScmResult changeLog(ChangeLogScmRequest scmRequest) throws ScmException {
+    public ChangeLogScmResult changeLog(ChangeLogScmRequest scmRequest) {
         return null;
     }
 
-    public BlameScmResult blame(BlameScmRequest blameScmRequest) throws ScmException {
+    public BlameScmResult blame(BlameScmRequest blameScmRequest) {
         return null;
     }
 }
