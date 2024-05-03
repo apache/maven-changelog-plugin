@@ -146,6 +146,7 @@ under the License.
   <properties>
     <javaVersion>8</javaVersion>
     <maven-scm.version>1.13.0</maven-scm.version>
+    <doxiaVersion>1.11.1</doxiaVersion>
     <mavenVersion>3.9.6</mavenVersion>
     <!-- used in ITs -->
     <sitePluginVersion>${version.maven-site-plugin}</sitePluginVersion>
@@ -200,12 +201,12 @@ under the License.
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-api</artifactId>
-      <version>3.1.1</version>
+      <version>3.1.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-impl</artifactId>
-      <version>3.2.0</version>
+      <version>3.1.0</version>
       <exclusions>
         <exclusion>
           <groupId>org.codehaus.plexus</groupId>
@@ -218,7 +219,7 @@ under the License.
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-sink-api</artifactId>
-      <version>1.12.0</version>
+      <version>${doxiaVersion}</version>
       <exclusions>
         <exclusion>
           <groupId>org.codehaus.plexus</groupId>
@@ -229,7 +230,7 @@ under the License.
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-site-renderer</artifactId>
-      <version>1.11.1</version>
+      <version>${doxiaVersion}</version>
       <exclusions>
         <exclusion>
           <groupId>org.codehaus.plexus</groupId>
@@ -240,7 +241,7 @@ under the License.
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-decoration-model</artifactId>
-      <version>1.11.1</version>
+      <version>${doxiaVersion}</version>
     </dependency>
 
     <!-- scm -->
@@ -335,10 +336,7 @@ under the License.
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-xml</artifactId>
+      <version>3.3.1</version>
     </dependency>
 
     <!-- test dependencies -->
@@ -363,6 +361,7 @@ under the License.
     <dependency>
       <groupId>org.eclipse.sisu</groupId>
       <artifactId>org.eclipse.sisu.plexus</artifactId>
+      <version>0.3.5</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -414,7 +413,7 @@ under the License.
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>l10n-maven-plugin</artifactId>
-            <version>1.0.0</version>
+            <version>1.0-alpha-2</version>
             <configuration>
               <locales>
                 <locale>de</locale>
