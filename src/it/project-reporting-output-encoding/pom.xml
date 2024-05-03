@@ -31,10 +31,10 @@
   <url>http://maven.apache.org/</url>
 
   <scm>
-    <connection>scm:svn:http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-changelog-plugin/</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-changelog-plugin/
-    </developerConnection>
-    <url>http://svn.apache.org/viewvc/maven/plugins/trunk/maven-changelog-plugin/</url>
+    <connection>scm:git:https://gitbox.apache.org/repos/asf/maven-changelog-plugin.git</connection>
+    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/maven-changelog-plugin.git</developerConnection>
+    <url>https://github.com/apache/maven-changelog-plugin/tree/${project.scm.tag}</url>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
