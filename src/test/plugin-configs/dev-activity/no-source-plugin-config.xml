@@ -34,9 +34,9 @@ under the License.
           <outputDirectory>site</outputDirectory>
           <offline>false</offline>
           <connectionType>connection</connectionType>
-          <project implementation="org.apache.maven.plugin.changelog.stubs.MavenProjectStub"/>
-          <settings implementation="org.apache.maven.plugin.changelog.stubs.SettingsStub"/>
-          <developers implementation="org.apache.maven.plugin.changelog.stubs.DevelopersStub"/>
+          <project implementation="org.apache.maven.plugins.changelog.stubs.MavenProjectStub"/>
+          <settings implementation="org.apache.maven.plugins.changelog.stubs.SettingsStub"/>
+          <developers implementation="org.apache.maven.plugins.changelog.stubs.DevelopersStub"/>
         </configuration>
       </plugin>
     </plugins>
