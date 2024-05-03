@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog.stubs;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,6 +16,7 @@ package org.apache.maven.plugin.changelog.stubs;
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.maven.plugin.changelog.stubs;
 
 import org.apache.maven.scm.provider.ScmProviderRepository;
 import org.apache.maven.scm.repository.ScmRepository;
@@ -26,16 +25,12 @@ import org.apache.maven.scm.repository.ScmRepository;
  * @author Edwin Punzalan
  * @version $Id$
  */
-public class ScmRepositoryStub
-    extends ScmRepository
-{
-    public ScmRepositoryStub()
-    {
-        this( "ScmProviderStub", new ScmProviderRepositoryStub() );
+public class ScmRepositoryStub extends ScmRepository {
+    public ScmRepositoryStub() {
+        this("ScmProviderStub", new ScmProviderRepositoryStub());
     }
 
-    public ScmRepositoryStub( String string, ScmProviderRepository repository )
-    {
-        super( string, repository );
+    public ScmRepositoryStub(String string, ScmProviderRepository repository) {
+        super(string, repository);
     }
 }

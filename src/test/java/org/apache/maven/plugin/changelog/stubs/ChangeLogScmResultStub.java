@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog.stubs;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,35 +16,31 @@ package org.apache.maven.plugin.changelog.stubs;
  * specific language governing permissions and limitations
  * under the License.
  */
-
-import org.apache.maven.scm.ChangeSet;
-import org.apache.maven.scm.command.changelog.ChangeLogSet;
+package org.apache.maven.plugin.changelog.stubs;
 
 import java.util.Collections;
 import java.util.Date;
+
+import org.apache.maven.scm.ChangeSet;
+import org.apache.maven.scm.command.changelog.ChangeLogSet;
 
 /**
  * @author Edwin Punzalan
  * @version $Id$
  */
-public class ChangeLogScmResultStub
-    extends org.apache.maven.scm.command.changelog.ChangeLogScmResult
-{
-    public ChangeLogScmResultStub()
-    {
-        this( "", "", "", true );
+public class ChangeLogScmResultStub extends org.apache.maven.scm.command.changelog.ChangeLogScmResult {
+    public ChangeLogScmResultStub() {
+        this("", "", "", true);
     }
 
-    public ChangeLogScmResultStub( String string, String string1, String string2, boolean b )
-    {
-        super( "", "", "", true );
+    public ChangeLogScmResultStub(String string, String string1, String string2, boolean b) {
+        super("", "", "", true);
     }
 
     /**
      * {@inheritDoc}
      */
-    public ChangeLogSet getChangeLog()
-    {
-        return new ChangeLogSet( Collections.<ChangeSet>emptyList(), new Date( 360 ), new Date( 720 ) );
+    public ChangeLogSet getChangeLog() {
+        return new ChangeLogSet(Collections.<ChangeSet>emptyList(), new Date(360), new Date(720));
     }
 }

@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,6 +16,11 @@ package org.apache.maven.plugin.changelog;
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.maven.plugin.changelog;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.Writer;
 
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.doxia.siterenderer.RendererException;
@@ -27,18 +30,12 @@ import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.codehaus.plexus.util.IOUtil;
 import org.codehaus.plexus.util.WriterFactory;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Writer;
-
 /**
  * @author <a href="mailto:vincent.siveton@gmail.com">Vincent Siveton</a>
  * @version $Id$
  * @since 2.2
  */
-public abstract class AbstractChangeLogReportTest
-    extends AbstractMojoTestCase
-{
+public abstract class AbstractChangeLogReportTest extends AbstractMojoTestCase {
     /**
      * Renderer the sink from the report mojo.
      *
@@ -47,26 +44,21 @@ public abstract class AbstractChangeLogReportTest
      * @throws RendererException if any
      * @throws IOException       if any
      */
-    protected void renderer( ChangeLogReport mojo, File outputHtml )
-        throws RendererException, IOException
-    {
+    protected void renderer(ChangeLogReport mojo, File outputHtml) throws RendererException, IOException {
         Writer writer = null;
         SiteRenderingContext context = new SiteRenderingContext();
-        context.setDecoration( new DecorationModel() );
-        context.setTemplateName( "org/apache/maven/doxia/siterenderer/resources/default-site.vm" );
+        context.setDecoration(new DecorationModel());
+        context.setTemplateName("org/apache/maven/doxia/siterenderer/resources/default-site.vm");
 
-        try
-        {
+        try {
             outputHtml.getParentFile().mkdirs();
-            writer = WriterFactory.newXmlWriter( outputHtml );
+            writer = WriterFactory.newXmlWriter(outputHtml);
 
-            mojo.getSiteRenderer().generateDocument( writer, (SiteRendererSink) mojo.getSink(), context );
+            mojo.getSiteRenderer().generateDocument(writer, (SiteRendererSink) mojo.getSink(), context);
             writer.close();
             writer = null;
-        }
-        finally
-        {
-            IOUtil.close( writer );
+        } finally {
+            IOUtil.close(writer);
         }
     }
 }

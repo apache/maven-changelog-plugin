@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog.stubs;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,6 +16,11 @@ package org.apache.maven.plugin.changelog.stubs;
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.maven.plugin.changelog.stubs;
+
+import java.io.File;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.maven.scm.CommandParameters;
 import org.apache.maven.scm.ScmBranch;
@@ -53,599 +56,522 @@ import org.apache.maven.scm.repository.ScmRepository;
 import org.apache.maven.scm.repository.ScmRepositoryException;
 import org.apache.maven.scm.repository.UnknownRepositoryStructure;
 
-import java.io.File;
-import java.util.Date;
-import java.util.List;
-
 /**
  * @author Edwin Punzalan
  * @version $Id$
  */
-public class ScmProviderStub
-    implements ScmProvider
-{
+public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
-    public AddScmResult add( ScmRepository scmRepository, ScmFileSet scmFileSet )
-        throws ScmException
-    {
+    public AddScmResult add(ScmRepository scmRepository, ScmFileSet scmFileSet) throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void addListener( ScmLogger scmLogger )
-    {
-    }
+    public void addListener(ScmLogger scmLogger) {}
 
     /**
      * {@inheritDoc}
      */
-    public String getScmSpecificFilename()
-    {
+    public String getScmSpecificFilename() {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public String getScmType()
-    {
+    public String getScmType() {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public ScmProviderRepository makeProviderScmRepository( File file )
-        throws ScmRepositoryException, UnknownRepositoryStructure
-    {
+    public ScmProviderRepository makeProviderScmRepository(File file)
+            throws ScmRepositoryException, UnknownRepositoryStructure {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public ScmProviderRepository makeProviderScmRepository( String string, char c )
-        throws ScmRepositoryException
-    {
+    public ScmProviderRepository makeProviderScmRepository(String string, char c) throws ScmRepositoryException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public AddScmResult add( ScmRepository scmRepository, ScmFileSet scmFileSet, String message )
-        throws ScmException
-    {
+    public AddScmResult add(ScmRepository scmRepository, ScmFileSet scmFileSet, String message) throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public BranchScmResult branch( ScmRepository scmRepository, ScmFileSet scmFileSet, String string )
-        throws ScmException
-    {
+    public BranchScmResult branch(ScmRepository scmRepository, ScmFileSet scmFileSet, String string)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public BranchScmResult branch( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1 )
-        throws ScmException
-    {
+    public BranchScmResult branch(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    protected ChangeLogScmResult getChangeLogScmResult()
-    {
+    protected ChangeLogScmResult getChangeLogScmResult() {
         return new ChangeLogScmResultStub();
     }
 
     /**
      * {@inheritDoc}
      */
-    public ChangeLogScmResult changeLog( ScmRepository scmRepository, ScmFileSet scmFileSet, Date date, Date date1,
-                                         int i, String string )
-        throws ScmException
-    {
+    public ChangeLogScmResult changeLog(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, Date date, Date date1, int i, String string)
+            throws ScmException {
         return getChangeLogScmResult();
     }
 
     /**
      * {@inheritDoc}
      */
-    public ChangeLogScmResult changeLog( ScmRepository scmRepository, ScmFileSet scmFileSet, Date date, Date date1,
-                                         int i, String string, String string1 )
-        throws ScmException
-    {
+    public ChangeLogScmResult changeLog(
+            ScmRepository scmRepository,
+            ScmFileSet scmFileSet,
+            Date date,
+            Date date1,
+            int i,
+            String string,
+            String string1)
+            throws ScmException {
         return getChangeLogScmResult();
     }
 
     /**
      * {@inheritDoc}
      */
-    public ChangeLogScmResult changeLog( ScmRepository scmRepository, ScmFileSet scmFileSet, String string,
-                                         String string1 )
-        throws ScmException
-    {
+    public ChangeLogScmResult changeLog(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1) throws ScmException {
         return getChangeLogScmResult();
     }
 
     /**
      * {@inheritDoc}
      */
-    public ChangeLogScmResult changeLog( ScmRepository scmRepository, ScmFileSet scmFileSet, String string,
-                                         String string1, String string2 )
-        throws ScmException
-    {
+    public ChangeLogScmResult changeLog(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1, String string2)
+            throws ScmException {
         return getChangeLogScmResult();
     }
 
     /**
      * {@inheritDoc}
      */
-    public ChangeLogScmResult changeLog( ScmRepository scmRepository, ScmFileSet scmFileSet, Date date, Date date1,
-                                         int i, ScmBranch scmBranch )
-        throws ScmException
-    {
+    public ChangeLogScmResult changeLog(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, Date date, Date date1, int i, ScmBranch scmBranch)
+            throws ScmException {
         return getChangeLogScmResult();
     }
 
     /**
      * {@inheritDoc}
      */
-    public ChangeLogScmResult changeLog( ScmRepository scmRepository, ScmFileSet scmFileSet, Date date, Date date1,
-                                         int i, ScmBranch scmBranch, String string )
-        throws ScmException
-    {
+    public ChangeLogScmResult changeLog(
+            ScmRepository scmRepository,
+            ScmFileSet scmFileSet,
+            Date date,
+            Date date1,
+            int i,
+            ScmBranch scmBranch,
+            String string)
+            throws ScmException {
         return getChangeLogScmResult();
     }
 
     /**
      * {@inheritDoc}
      */
-    public ChangeLogScmResult changeLog( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion,
-                                         ScmVersion scmVersion1 )
-        throws ScmException
-    {
+    public ChangeLogScmResult changeLog(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, ScmVersion scmVersion1)
+            throws ScmException {
         return getChangeLogScmResult();
     }
 
     /**
      * {@inheritDoc}
      */
-    public ChangeLogScmResult changeLog( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion,
-                                         ScmVersion scmVersion1, String string )
-        throws ScmException
-    {
+    public ChangeLogScmResult changeLog(
+            ScmRepository scmRepository,
+            ScmFileSet scmFileSet,
+            ScmVersion scmVersion,
+            ScmVersion scmVersion1,
+            String string)
+            throws ScmException {
         return getChangeLogScmResult();
     }
 
     /**
      * {@inheritDoc}
      */
-    public CheckInScmResult checkIn( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1 )
-        throws ScmException
-    {
+    public CheckInScmResult checkIn(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public CheckInScmResult checkIn( ScmRepository scmRepository, ScmFileSet scmFileSet, String string )
-        throws ScmException
-    {
+    public CheckInScmResult checkIn(ScmRepository scmRepository, ScmFileSet scmFileSet, String string)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public CheckInScmResult checkIn( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion,
-                                     String string )
-        throws ScmException
-    {
+    public CheckInScmResult checkIn(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, String string)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public CheckOutScmResult checkOut( ScmRepository scmRepository, ScmFileSet scmFileSet, String string )
-        throws ScmException
-    {
+    public CheckOutScmResult checkOut(ScmRepository scmRepository, ScmFileSet scmFileSet, String string)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public CheckOutScmResult checkOut( ScmRepository scmRepository, ScmFileSet scmFileSet )
-        throws ScmException
-    {
+    public CheckOutScmResult checkOut(ScmRepository scmRepository, ScmFileSet scmFileSet) throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public CheckOutScmResult checkOut( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion )
-        throws ScmException
-    {
+    public CheckOutScmResult checkOut(ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public CheckOutScmResult checkOut( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, boolean b )
-        throws ScmException
-    {
+    public CheckOutScmResult checkOut(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, boolean b)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public CheckOutScmResult checkOut( ScmRepository scmRepository, ScmFileSet scmFileSet, boolean b )
-        throws ScmException
-    {
+    public CheckOutScmResult checkOut(ScmRepository scmRepository, ScmFileSet scmFileSet, boolean b)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public CheckOutScmResult checkOut( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion,
-                                       boolean b )
-        throws ScmException
-    {
+    public CheckOutScmResult checkOut(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, boolean b) throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public DiffScmResult diff( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1 )
-        throws ScmException
-    {
+    public DiffScmResult diff(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public DiffScmResult diff( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion,
-                               ScmVersion scmVersion1 )
-        throws ScmException
-    {
+    public DiffScmResult diff(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, ScmVersion scmVersion1)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public EditScmResult edit( ScmRepository scmRepository, ScmFileSet scmFileSet )
-        throws ScmException
-    {
+    public EditScmResult edit(ScmRepository scmRepository, ScmFileSet scmFileSet) throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public ExportScmResult export( ScmRepository scmRepository, ScmFileSet scmFileSet, String string )
-        throws ScmException
-    {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public ExportScmResult export(ScmRepository scmRepository, ScmFileSet scmFileSet, String string)
+            throws ScmException {
+        return null; // To change body of implemented methods use File | Settings | File Templates.
     }
 
     /**
      * {@inheritDoc}
      */
-    public ExportScmResult export( ScmRepository scmRepository, ScmFileSet scmFileSet )
-        throws ScmException
-    {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public ExportScmResult export(ScmRepository scmRepository, ScmFileSet scmFileSet) throws ScmException {
+        return null; // To change body of implemented methods use File | Settings | File Templates.
     }
 
     /**
      * {@inheritDoc}
      */
-    public ExportScmResult export( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion )
-        throws ScmException
-    {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public ExportScmResult export(ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion)
+            throws ScmException {
+        return null; // To change body of implemented methods use File | Settings | File Templates.
     }
 
     /**
      * {@inheritDoc}
      */
-    public ExportScmResult export( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1 )
-        throws ScmException
-    {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public ExportScmResult export(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1)
+            throws ScmException {
+        return null; // To change body of implemented methods use File | Settings | File Templates.
     }
 
     /**
      * {@inheritDoc}
      */
-    public ExportScmResult export( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion,
-                                   String string )
-        throws ScmException
-    {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public ExportScmResult export(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, String string)
+            throws ScmException {
+        return null; // To change body of implemented methods use File | Settings | File Templates.
     }
 
     /**
      * {@inheritDoc}
      */
-    public ListScmResult list( ScmRepository repository, ScmFileSet fileSet, boolean recursive, String tag )
-        throws ScmException
-    {
+    public ListScmResult list(ScmRepository repository, ScmFileSet fileSet, boolean recursive, String tag)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public ListScmResult list( ScmRepository scmRepository, ScmFileSet scmFileSet, boolean b, ScmVersion scmVersion )
-        throws ScmException
-    {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public ListScmResult list(ScmRepository scmRepository, ScmFileSet scmFileSet, boolean b, ScmVersion scmVersion)
+            throws ScmException {
+        return null; // To change body of implemented methods use File | Settings | File Templates.
     }
 
     /**
      * {@inheritDoc}
      */
-    public RemoveScmResult remove( ScmRepository scmRepository, ScmFileSet scmFileSet, String string )
-        throws ScmException
-    {
+    public RemoveScmResult remove(ScmRepository scmRepository, ScmFileSet scmFileSet, String string)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean requiresEditMode()
-    {
+    public boolean requiresEditMode() {
         return false;
     }
 
     /**
      * {@inheritDoc}
      */
-    public StatusScmResult status( ScmRepository scmRepository, ScmFileSet scmFileSet )
-        throws ScmException
-    {
+    public StatusScmResult status(ScmRepository scmRepository, ScmFileSet scmFileSet) throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public TagScmResult tag( ScmRepository scmRepository, ScmFileSet scmFileSet, String string )
-        throws ScmException
-    {
+    public TagScmResult tag(ScmRepository scmRepository, ScmFileSet scmFileSet, String string) throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public TagScmResult tag( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1 )
-        throws ScmException
-    {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public TagScmResult tag(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1)
+            throws ScmException {
+        return null; // To change body of implemented methods use File | Settings | File Templates.
     }
 
     /**
      * {@inheritDoc}
      */
-    public UnEditScmResult unedit( ScmRepository scmRepository, ScmFileSet scmFileSet )
-        throws ScmException
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, String string )
-        throws ScmException
-    {
+    public UnEditScmResult unedit(ScmRepository scmRepository, ScmFileSet scmFileSet) throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, Date date )
-        throws ScmException
-    {
+    public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, String string)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, Date date,
-                                   String string1 )
-        throws ScmException
-    {
+    public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, Date date)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1 )
-        throws ScmException
-    {
+    public UpdateScmResult update(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, String string, Date date, String string1)
+            throws ScmException {
         return null;
     }
 
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet )
-        throws ScmException
-    {
+    /**
+     * {@inheritDoc}
+     */
+    public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1)
+            throws ScmException {
         return null;
     }
 
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion )
-        throws ScmException
-    {
+    public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet) throws ScmException {
+        return null;
+    }
+
+    public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion)
+            throws ScmException {
         return null;
     }
 
     /**
      * @deprecated
      */
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, String string, boolean b )
-        throws ScmException
-    {
+    public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, boolean b)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, boolean b )
-        throws ScmException
-    {
+    public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, boolean b) throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion,
-                                   boolean b )
-        throws ScmException
-    {
+    public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, boolean b)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion,
-                                   String string )
-        throws ScmException
-    {
+    public UpdateScmResult update(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, String string)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion,
-                                   Date date )
-        throws ScmException
-    {
+    public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, Date date)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public UpdateScmResult update( ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, Date date,
-                                   String string )
-        throws ScmException
-    {
+    public UpdateScmResult update(
+            ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, Date date, String string)
+            throws ScmException {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public List<String> validateScmUrl( String string, char c )
-    {
+    public List<String> validateScmUrl(String string, char c) {
         return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public String sanitizeTagName( String tag )
-    {
+    public String sanitizeTagName(String tag) {
         return tag;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean validateTagName( String tag )
-    {
+    public boolean validateTagName(String tag) {
         return true;
     }
 
     /**
      * {@inheritDoc}
      */
-    public TagScmResult tag( ScmRepository arg0, ScmFileSet arg1, String arg2, ScmTagParameters arg3 )
-        throws ScmException
-    {
+    public TagScmResult tag(ScmRepository arg0, ScmFileSet arg1, String arg2, ScmTagParameters arg3)
+            throws ScmException {
         return null;
     }
 
-    public BranchScmResult branch( ScmRepository arg0, ScmFileSet arg1, String arg2, ScmBranchParameters arg3 )
-        throws ScmException
-    {
+    public BranchScmResult branch(ScmRepository arg0, ScmFileSet arg1, String arg2, ScmBranchParameters arg3)
+            throws ScmException {
         return null;
     }
 
-    public BlameScmResult blame( ScmRepository arg0, ScmFileSet arg1, String arg2 )
-        throws ScmException
-    {
+    public BlameScmResult blame(ScmRepository arg0, ScmFileSet arg1, String arg2) throws ScmException {
 
         return null;
     }
 
-    public MkdirScmResult mkdir( ScmRepository arg0, ScmFileSet arg1, String arg2, boolean arg3 )
-        throws ScmException
-    {
+    public MkdirScmResult mkdir(ScmRepository arg0, ScmFileSet arg1, String arg2, boolean arg3) throws ScmException {
 
         return null;
     }
 
-    public InfoScmResult info( ScmProviderRepository scmProviderRepository, ScmFileSet scmFileSet,
-                               CommandParameters commandParameters )
-        throws ScmException
-    {
+    public InfoScmResult info(
+            ScmProviderRepository scmProviderRepository, ScmFileSet scmFileSet, CommandParameters commandParameters)
+            throws ScmException {
         return null;
     }
 
-    public AddScmResult add( ScmRepository scmRepository, ScmFileSet scmFileSet, CommandParameters commandParameters )
-        throws ScmException
-    {
+    public AddScmResult add(ScmRepository scmRepository, ScmFileSet scmFileSet, CommandParameters commandParameters)
+            throws ScmException {
         return null;
     }
 
-    public RemoteInfoScmResult remoteInfo( ScmProviderRepository scmProviderRepository, ScmFileSet scmFileSet,
-                                           CommandParameters commandParameters )
-        throws ScmException
-    {
+    public RemoteInfoScmResult remoteInfo(
+            ScmProviderRepository scmProviderRepository, ScmFileSet scmFileSet, CommandParameters commandParameters)
+            throws ScmException {
         return null;
     }
 
-    public ChangeLogScmResult changeLog( ChangeLogScmRequest scmRequest )
-        throws ScmException
-    {
+    public ChangeLogScmResult changeLog(ChangeLogScmRequest scmRequest) throws ScmException {
         return null;
     }
 
-    public BlameScmResult blame( BlameScmRequest blameScmRequest )
-        throws ScmException
-    {
+    public BlameScmResult blame(BlameScmRequest blameScmRequest) throws ScmException {
         return null;
     }
 }

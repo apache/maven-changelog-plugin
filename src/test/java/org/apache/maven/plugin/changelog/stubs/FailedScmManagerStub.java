@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog.stubs;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,6 +16,7 @@ package org.apache.maven.plugin.changelog.stubs;
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.maven.plugin.changelog.stubs;
 
 import org.apache.maven.scm.command.changelog.ChangeLogScmResult;
 import org.apache.maven.scm.manager.NoSuchScmProviderException;
@@ -28,37 +27,27 @@ import org.apache.maven.scm.repository.ScmRepository;
  * @author Edwin Punzalan
  * @version $Id$
  */
-public class FailedScmManagerStub
-    extends ScmManagerStub
-{
+public class FailedScmManagerStub extends ScmManagerStub {
     /**
      * {@inheritDoc}
      */
-    public ScmProvider getProviderByRepository( ScmRepository scmRepository )
-        throws NoSuchScmProviderException
-    {
-        return new ScmProviderStub()
-        {
+    public ScmProvider getProviderByRepository(ScmRepository scmRepository) throws NoSuchScmProviderException {
+        return new ScmProviderStub() {
             /** {@inheritDoc} */
-            protected ChangeLogScmResult getChangeLogScmResult()
-            {
-                return new ChangeLogScmResultStub()
-                {
+            protected ChangeLogScmResult getChangeLogScmResult() {
+                return new ChangeLogScmResultStub() {
                     /** {@inheritDoc} */
-                    public String getCommandOutput()
-                    {
+                    public String getCommandOutput() {
                         return "Provider Stub Commandline";
                     }
 
                     /** {@inheritDoc} */
-                    public String getProviderMessage()
-                    {
+                    public String getProviderMessage() {
                         return "Provider Stub Error Message";
                     }
 
                     /** {@inheritDoc} */
-                    public boolean isSuccess()
-                    {
+                    public boolean isSuccess() {
                         return false;
                     }
                 };

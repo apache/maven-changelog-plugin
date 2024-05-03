@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog.stubs;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,35 +16,33 @@ package org.apache.maven.plugin.changelog.stubs;
  * specific language governing permissions and limitations
  * under the License.
  */
-
-import org.apache.maven.model.Developer;
+package org.apache.maven.plugin.changelog.stubs;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.maven.model.Developer;
 
 /**
  * @author Edwin Punzalan
  * @version $Id$
  */
-public class DevelopersStub
-    extends ArrayList<Developer>
-{
-    public DevelopersStub()
-    {
+public class DevelopersStub extends ArrayList<Developer> {
+    public DevelopersStub() {
         super();
 
         List<Developer> developers = new ArrayList<>();
 
         Developer developer = new Developer();
-        developer.setName( "Edwin Punzalan" );
-        developer.setId( "edwin" );
-        developers.add( developer );
+        developer.setName("Edwin Punzalan");
+        developer.setId("edwin");
+        developers.add(developer);
 
         developer = new Developer();
-        developer.setName( "Keogh Edrich Punzalan" );
-        developer.setId( "keogh" );
-        developers.add( developer );
+        developer.setName("Keogh Edrich Punzalan");
+        developer.setId("keogh");
+        developers.add(developer);
 
-        super.addAll( developers );
+        super.addAll(developers);
     }
 }

@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog.stubs;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,23 +16,21 @@ package org.apache.maven.plugin.changelog.stubs;
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.maven.plugin.changelog.stubs;
+
+import java.io.File;
 
 import org.apache.maven.model.Scm;
 import org.codehaus.plexus.PlexusTestCase;
-
-import java.io.File;
 
 /**
  * @author Edwin Punzalan
  * @version $Id$
  */
-public class MavenProjectStub
-    extends org.apache.maven.plugin.testing.stubs.MavenProjectStub
-{
+public class MavenProjectStub extends org.apache.maven.plugin.testing.stubs.MavenProjectStub {
     public static int testCounter = 0;
 
-    public MavenProjectStub()
-    {
+    public MavenProjectStub() {
         super();
 
         testCounter++;
@@ -43,11 +39,10 @@ public class MavenProjectStub
     /**
      * {@inheritDoc}
      */
-    public Scm getScm()
-    {
+    public Scm getScm() {
         Scm scm = new Scm();
 
-        scm.setConnection( "scm://" );
+        scm.setConnection("scm://");
 
         return scm;
     }
@@ -55,8 +50,7 @@ public class MavenProjectStub
     /**
      * {@inheritDoc}
      */
-    public File getBasedir()
-    {
-        return new File( PlexusTestCase.getBasedir(), "target/test-harness/" + testCounter );
+    public File getBasedir() {
+        return new File(PlexusTestCase.getBasedir(), "target/test-harness/" + testCounter);
     }
 }

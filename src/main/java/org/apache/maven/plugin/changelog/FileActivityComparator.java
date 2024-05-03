@@ -1,5 +1,3 @@
-package org.apache.maven.plugin.changelog;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,42 +16,37 @@ package org.apache.maven.plugin.changelog;
  * specific language governing permissions and limitations
  * under the License.
  */
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.maven.scm.ChangeFile;
+package org.apache.maven.plugin.changelog;
 
 import java.util.Comparator;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.maven.scm.ChangeFile;
 
 /**
  * Object used to sort the file-activity report into descending order.
  *
  * @version $Id$
  */
-public class FileActivityComparator
-    implements Comparator<List<ChangeFile>>
-{
+public class FileActivityComparator implements Comparator<List<ChangeFile>> {
     /**
      * {@inheritDoc}
      */
-    public int compare( List<ChangeFile> list1, List<ChangeFile> list2 )
-        throws ClassCastException
-    {
-        int returnValue = sortByCommits( list1, list2 );
+    public int compare(List<ChangeFile> list1, List<ChangeFile> list2) throws ClassCastException {
+        int returnValue = sortByCommits(list1, list2);
 
-        if ( returnValue != 0 )
-        {
+        if (returnValue != 0) {
             return returnValue;
         }
 
-        returnValue = sortByRevision( list1, list2 );
+        returnValue = sortByRevision(list1, list2);
 
-        if ( returnValue != 0 )
-        {
+        if (returnValue != 0) {
             return returnValue;
         }
 
-        return sortByName( list1, list2 );
+        return sortByName(list1, list2);
     }
 
     /**
@@ -63,15 +56,12 @@ public class FileActivityComparator
      * @param list2 the object to compare list1 against
      * @return an integer describing the order comparison of list1 and list2
      */
-    private int sortByCommits( List<ChangeFile> list1, List<ChangeFile> list2 )
-    {
-        if ( list1.size() > list2.size() )
-        {
+    private int sortByCommits(List<ChangeFile> list1, List<ChangeFile> list2) {
+        if (list1.size() > list2.size()) {
             return -1;
         }
 
-        if ( list1.size() < list2.size() )
-        {
+        if (list1.size() < list2.size()) {
             return 1;
         }
 
@@ -85,23 +75,20 @@ public class FileActivityComparator
      * @param list2 the object to compare list1 against
      * @return an integer describing the order comparison of list1 and list2
      */
-    private int sortByRevision( List<ChangeFile> list1, List<ChangeFile> list2 )
-    {
-        String revision1 = getLatestRevision( list1 );
+    private int sortByRevision(List<ChangeFile> list1, List<ChangeFile> list2) {
+        String revision1 = getLatestRevision(list1);
 
-        String revision2 = getLatestRevision( list2 );
+        String revision2 = getLatestRevision(list2);
 
-        if ( revision1 == null )
-        {
+        if (revision1 == null) {
             return -1;
         }
 
-        if ( revision2 == null )
-        {
+        if (revision2 == null) {
             return 1;
         }
 
-        return revision1.compareTo( revision2 );
+        return revision1.compareTo(revision2);
     }
 
     /**
@@ -110,18 +97,13 @@ public class FileActivityComparator
      * @param list The list of revisions from the file
      * @return the latest revision code
      */
-    private String getLatestRevision( List<ChangeFile> list )
-    {
+    private String getLatestRevision(List<ChangeFile> list) {
         String latest = "";
 
-        for ( ChangeFile file : list )
-        {
-            if ( StringUtils.isNotBlank( latest ) )
-            {
+        for (ChangeFile file : list) {
+            if (StringUtils.isNotBlank(latest)) {
                 latest = file.getRevision();
-            }
-            else if ( latest.compareTo( file.getRevision() ) < 0 )
-            {
+            } else if (latest.compareTo(file.getRevision()) < 0) {
                 latest = file.getRevision();
             }
         }
@@ -137,12 +119,11 @@ public class FileActivityComparator
      * @param list2 the object to compare list1 against
      * @return an integer describing the order comparison of list1 and list2
      */
-    private int sortByName( List<ChangeFile> list1, List<ChangeFile> list2 )
-    {
-        ChangeFile file1 = list1.get( 0 );
+    private int sortByName(List<ChangeFile> list1, List<ChangeFile> list2) {
+        ChangeFile file1 = list1.get(0);
 
-        ChangeFile file2 = list2.get( 0 );
+        ChangeFile file2 = list2.get(0);
 
-        return file1.getName().compareTo( file2.getName() );
+        return file1.getName().compareTo(file2.getName());
     }
 }
