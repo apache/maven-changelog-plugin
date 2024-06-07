@@ -19,6 +19,7 @@
 package org.apache.maven.plugins.changelog;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.changelog.stubs.FailedScmManagerStub;
@@ -26,6 +27,10 @@ import org.apache.maven.plugins.changelog.stubs.ScmManagerStub;
 import org.apache.maven.plugins.changelog.stubs.ScmManagerWithHostStub;
 import org.apache.maven.scm.manager.ScmManager;
 import org.codehaus.plexus.util.FileUtils;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author Edwin Punzalan
@@ -158,7 +163,39 @@ public class ChangeLogReportTest extends AbstractChangeLogReportTest {
         }
     }
 
+    public void testDontDisplayFileAndRevInfo() throws Exception {
+        File cacheFile = new File(getBasedir(), "src/test/changelog-xml/min-changelog.xml");
+        cacheFile.setLastModified(System.currentTimeMillis());
+
+        String html = executeMojo("dont-display-file-and-rev-info-plugin-config.xml", true);
+
+        assertThat(html, not(containsString("file.extension")));
+        assertThat(html, not(containsString("file2.extension")));
+        assertThat(html, not(containsString(" v 1")));
+        assertThat(html, not(containsString(" v 2")));
+        assertThat(html, not(containsString(" v 3")));
+        assertThat(html, not(containsString(" v 4")));
+    }
+
+    public void testDisplayFileAndRevInfoExplicitly() throws Exception {
+        File cacheFile = new File(getBasedir(), "src/test/changelog-xml/min-changelog.xml");
+        cacheFile.setLastModified(System.currentTimeMillis());
+
+        String html = executeMojo("display-file-and-rev-info-explicitly-plugin-config.xml", true);
+
+        assertThat(html, containsString("file.extension"));
+        assertThat(html, containsString("file2.extension"));
+        assertThat(html, containsString(" v 1"));
+        assertThat(html, containsString(" v 2"));
+        assertThat(html, containsString(" v 3"));
+        assertThat(html, containsString(" v 4"));
+    }
+
     private void executeMojo(String pluginXml) throws Exception {
+        executeMojo(pluginXml, false);
+    }
+
+    private String executeMojo(String pluginXml, boolean withOutput) throws Exception {
         File pluginXmlFile = new File(getBasedir(), "src/test/plugin-configs/changelog/" + pluginXml);
 
         ChangeLogReport mojo = (ChangeLogReport) lookupMojo("changelog", pluginXmlFile);
@@ -192,5 +229,11 @@ public class ChangeLogReportTest extends AbstractChangeLogReportTest {
         assertTrue(outputHtml.getAbsolutePath() + " not generated!", outputHtml.exists());
 
         assertTrue(outputHtml.getAbsolutePath() + " is empty!", outputHtml.length() > 0);
+
+        if (!withOutput) {
+            return null;
+        }
+
+        return new String(Files.readAllBytes(outputHtml.toPath()));
     }
 }

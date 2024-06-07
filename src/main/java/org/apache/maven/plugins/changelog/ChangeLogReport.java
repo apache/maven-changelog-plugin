@@ -284,6 +284,12 @@ public class ChangeLogReport extends AbstractMavenReport {
     private String connectionType;
 
     /**
+     * If true, file and file revision information is displayed for each SCM entry.
+     */
+    @Parameter(property = "displayFileAndRevInfo", defaultValue = "true")
+    private boolean displayFileAndRevInfo = true;
+
+    /**
      * A template string that is used to create the URL to the file details.
      * There is a special token that you can use in your template:
      * <ul>
@@ -1218,9 +1224,13 @@ public class ChangeLogReport extends AbstractMavenReport {
         sink.tableCell_();
 
         sink.tableCell();
-        // doRevision( entry.getFiles(), bundle, sink );
-        doChangedFiles(entry.getFiles(), sink);
-        sink.lineBreak();
+
+        if (displayFileAndRevInfo) {
+            // doRevision( entry.getFiles(), bundle, sink );
+            doChangedFiles(entry.getFiles(), sink);
+            sink.lineBreak();
+        }
+
         StringReader sr = new StringReader(entry.getComment());
         BufferedReader br = new BufferedReader(sr);
         String line;
