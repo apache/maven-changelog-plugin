@@ -21,7 +21,6 @@ package org.apache.maven.plugins.changelog;
 import java.util.Comparator;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.maven.scm.ChangeFile;
 
 /**
@@ -79,7 +78,7 @@ public class FileActivityComparator implements Comparator<List<ChangeFile>> {
         String latest = "";
 
         for (ChangeFile file : list) {
-            if (StringUtils.isNotBlank(latest)) {
+            if (latest != null && !latest.trim().isEmpty()) {
                 latest = file.getRevision();
             } else if (latest.compareTo(file.getRevision()) < 0) {
                 latest = file.getRevision();
@@ -91,7 +90,7 @@ public class FileActivityComparator implements Comparator<List<ChangeFile>> {
 
     /**
      * compares list1 and list2 by comparing their filenames. Least priority sorting when both number of commits and
-     * and revision are the same
+     * revision are the same
      *
      * @param list1 the first object in a compare statement
      * @param list2 the object to compare list1 against
