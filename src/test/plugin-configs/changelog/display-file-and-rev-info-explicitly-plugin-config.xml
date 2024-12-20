@@ -23,7 +23,7 @@ under the License.
             <plugin>
                 <artifactId>maven-changelog-plugin</artifactId>
                 <configuration>
-                    <displayFileAndRevInfo>true</displayFileAndRevInfo>
+                    <hideFileAndRevInfo>false</hideFileAndRevInfo>
                     <type>range</type>
                     <range>-1</range>
                     <dateFormat>yyyy-MM-dd</dateFormat>
