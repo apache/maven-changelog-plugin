@@ -284,10 +284,10 @@ public class ChangeLogReport extends AbstractMavenReport {
     private String connectionType;
 
     /**
-     * If true, file and file revision information is hidden for each SCM entry.
+     * If true, file and revision information is omitted for each SCM entry.
      */
-    @Parameter(property = "hideFileAndRevInfo", defaultValue = "false")
-    private boolean hideFileAndRevInfo;
+    @Parameter(property = "omitFileAndRevision", defaultValue = "false")
+    private boolean omitFileAndRevision;
 
     /**
      * A template string that is used to create the URL to the file details.
@@ -1225,7 +1225,7 @@ public class ChangeLogReport extends AbstractMavenReport {
 
         sink.tableCell();
 
-        if (!hideFileAndRevInfo) {
+        if (!omitFileAndRevision) {
             doChangedFiles(entry.getFiles(), sink);
             sink.lineBreak();
         }
