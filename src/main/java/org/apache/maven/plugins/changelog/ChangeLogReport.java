@@ -284,7 +284,7 @@ public class ChangeLogReport extends AbstractMavenReport {
     private String connectionType;
 
     /**
-     * If false, file and file revision information is hidden for each SCM entry.
+     * If true, file and file revision information is hidden for each SCM entry.
      */
     @Parameter(property = "hideFileAndRevInfo", defaultValue = "false")
     private boolean hideFileAndRevInfo;
