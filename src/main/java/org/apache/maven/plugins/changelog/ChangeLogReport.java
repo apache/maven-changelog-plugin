@@ -287,7 +287,7 @@ public class ChangeLogReport extends AbstractMavenReport {
      * If false, file and file revision information is hidden for each SCM entry.
      */
     @Parameter(property = "hideFileAndRevInfo", defaultValue = "false")
-    private boolean hideFileAndRevInfo = false;
+    private boolean hideFileAndRevInfo;
 
     /**
      * A template string that is used to create the URL to the file details.
