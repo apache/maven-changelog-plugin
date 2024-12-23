@@ -69,7 +69,6 @@ import org.apache.maven.scm.command.changelog.ChangeLogScmResult;
 import org.apache.maven.scm.command.changelog.ChangeLogSet;
 import org.apache.maven.scm.command.info.InfoItem;
 import org.apache.maven.scm.command.info.InfoScmResult;
-import org.apache.maven.scm.log.DefaultLog;
 import org.apache.maven.scm.manager.ScmManager;
 import org.apache.maven.scm.provider.ScmProvider;
 import org.apache.maven.scm.provider.ScmProviderRepository;
@@ -679,7 +678,6 @@ public class ChangeLogReport extends AbstractMavenReport {
                 return "HEAD";
             }
             SvnInfoCommandExpanded infoCommand = new SvnInfoCommandExpanded();
-            infoCommand.setLogger(new DefaultLog());
 
             InfoScmResult infoScmResult = infoCommand.executeInfoTagCommand(
                     (SvnScmProviderRepository) repository.getProviderRepository(),
