@@ -128,6 +128,7 @@ public class FileActivityReport extends ChangeLogReport {
         doSummary(set, bundle, sink);
 
         sink.table();
+        sink.tableRows(new int[] {Sink.JUSTIFY_LEFT}, false);
 
         sink.tableRow();
         sink.tableHeaderCell();
@@ -140,6 +141,7 @@ public class FileActivityReport extends ChangeLogReport {
 
         doRows(set, sink);
 
+        sink.tableRows_();
         sink.table_();
 
         sink.section2_();

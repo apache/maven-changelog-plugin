@@ -251,17 +251,6 @@ public class ChangeLogReport extends AbstractMavenReport {
     private MavenProject project;
 
     /**
-     * The directory where the report will be generated
-     */
-    @Parameter(property = "project.reporting.outputDirectory", required = true, readonly = true)
-    private File outputDirectory;
-
-    /**
-     */
-    @Component
-    private Renderer siteRenderer;
-
-    /**
      */
     @Parameter(property = "settings.offline", required = true, readonly = true)
     private boolean offline;
@@ -1173,6 +1162,7 @@ public class ChangeLogReport extends AbstractMavenReport {
      */
     private void doChangedSetTable(Collection<ChangeSet> entries, ResourceBundle bundle, Sink sink) {
         sink.table();
+        sink.tableRows(new int[] {Sink.JUSTIFY_LEFT}, false);
 
         sink.tableRow();
         sink.tableHeaderCell();
@@ -1195,6 +1185,7 @@ public class ChangeLogReport extends AbstractMavenReport {
             doChangedSetDetail(entry, sink);
         }
 
+        sink.tableRows_();
         sink.table_();
     }
 
