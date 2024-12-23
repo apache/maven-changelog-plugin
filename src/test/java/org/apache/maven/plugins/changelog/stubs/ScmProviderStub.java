@@ -49,7 +49,6 @@ import org.apache.maven.scm.command.tag.TagScmResult;
 import org.apache.maven.scm.command.unedit.UnEditScmResult;
 import org.apache.maven.scm.command.untag.UntagScmResult;
 import org.apache.maven.scm.command.update.UpdateScmResult;
-import org.apache.maven.scm.log.ScmLogger;
 import org.apache.maven.scm.provider.ScmProvider;
 import org.apache.maven.scm.provider.ScmProviderRepository;
 import org.apache.maven.scm.repository.ScmRepository;
@@ -64,11 +63,6 @@ public class ScmProviderStub implements ScmProvider {
     public AddScmResult add(ScmRepository scmRepository, ScmFileSet scmFileSet) {
         return null;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void addListener(ScmLogger scmLogger) {}
 
     /**
      * {@inheritDoc}

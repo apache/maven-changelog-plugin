@@ -82,14 +82,14 @@ public class SvnInfoCommandExpanded extends AbstractCommand implements SvnComman
         SvnInfoConsumer consumer = new SvnInfoConsumer();
 
         CommandLineUtils.StringStreamConsumer stderr = new CommandLineUtils.StringStreamConsumer();
-        if (getLogger().isInfoEnabled()) {
-            getLogger().info("Executing: " + SvnCommandLineUtils.cryptPassword(cl));
-            getLogger().info("Working directory: " + cl.getWorkingDirectory().getAbsolutePath());
+        if (logger.isInfoEnabled()) {
+            logger.info("Executing: " + SvnCommandLineUtils.cryptPassword(cl));
+            logger.info("Working directory: " + cl.getWorkingDirectory().getAbsolutePath());
         }
 
         int exitCode;
         try {
-            exitCode = SvnCommandLineUtils.execute(cl, consumer, stderr, getLogger());
+            exitCode = SvnCommandLineUtils.execute(cl, consumer, stderr);
         } catch (CommandLineException ex) {
             throw new ScmException("Error while executing command.", ex);
         }
