@@ -272,6 +272,12 @@ public class ChangeLogReport extends AbstractMavenReport {
     private String connectionType;
 
     /**
+     * If true, file and revision information is omitted for each SCM entry.
+     */
+    @Parameter(property = "omitFileAndRevision", defaultValue = "false")
+    private boolean omitFileAndRevision;
+
+    /**
      * A template string that is used to create the URL to the file details.
      * There is a special token that you can use in your template:
      * <ul>
@@ -1207,9 +1213,12 @@ public class ChangeLogReport extends AbstractMavenReport {
         sink.tableCell_();
 
         sink.tableCell();
-        // doRevision( entry.getFiles(), bundle, sink );
-        doChangedFiles(entry.getFiles(), sink);
-        sink.lineBreak();
+
+        if (!omitFileAndRevision) {
+            doChangedFiles(entry.getFiles(), sink);
+            sink.lineBreak();
+        }
+
         StringReader sr = new StringReader(entry.getComment());
         BufferedReader br = new BufferedReader(sr);
         String line;
