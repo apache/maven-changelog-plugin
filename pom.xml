@@ -28,7 +28,7 @@ under the License.
   </parent>
 
   <artifactId>maven-changelog-plugin</artifactId>
-  <version>3.0.0-SNAPSHOT</version>
+  <version>3.0.0-M1</version>
   <packaging>maven-plugin</packaging>
 
   <name>Apache Maven Changelog Plugin</name>
@@ -125,7 +125,7 @@ under the License.
   <scm>
     <connection>scm:git:https://gitbox.apache.org/repos/asf/maven-changelog-plugin.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/maven-changelog-plugin.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>maven-changelog-plugin-3.0.0-M1</tag>
     <url>https://github.com/apache/maven-changelog-plugin/tree/${project.scm.tag}</url>
   </scm>
   <issueManagement>
@@ -150,7 +150,7 @@ under the License.
     <mavenVersion>3.9.9</mavenVersion>
     <!-- used in ITs -->
     <sitePluginVersion>${version.maven-site-plugin}</sitePluginVersion>
-    <project.build.outputTimestamp>2020-04-07T21:04:00Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2024-12-30T15:52:04Z</project.build.outputTimestamp>
   </properties>
 
   <dependencies>
