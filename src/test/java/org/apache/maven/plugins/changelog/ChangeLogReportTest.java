@@ -28,10 +28,6 @@ import org.apache.maven.plugins.changelog.stubs.ScmManagerWithHostStub;
 import org.apache.maven.scm.manager.ScmManager;
 import org.codehaus.plexus.util.FileUtils;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 /**
  * @author Edwin Punzalan
  */
@@ -169,12 +165,12 @@ public class ChangeLogReportTest extends AbstractChangeLogReportTest {
 
         String html = executeMojo("dont-display-file-and-rev-info-plugin-config.xml", true);
 
-        assertThat(html, not(containsString("file.extension")));
-        assertThat(html, not(containsString("file2.extension")));
-        assertThat(html, not(containsString(" v 1")));
-        assertThat(html, not(containsString(" v 2")));
-        assertThat(html, not(containsString(" v 3")));
-        assertThat(html, not(containsString(" v 4")));
+        assertFalse(html.contains("file.extension"));
+        assertFalse(html.contains("file2.extension"));
+        assertFalse(html.contains(" v 1"));
+        assertFalse(html.contains(" v 2"));
+        assertFalse(html.contains(" v 3"));
+        assertFalse(html.contains(" v 4"));
     }
 
     public void testDisplayFileAndRevInfoExplicitly() throws Exception {
@@ -183,12 +179,12 @@ public class ChangeLogReportTest extends AbstractChangeLogReportTest {
 
         String html = executeMojo("display-file-and-rev-info-explicitly-plugin-config.xml", true);
 
-        assertThat(html, containsString("file.extension"));
-        assertThat(html, containsString("file2.extension"));
-        assertThat(html, containsString(" v 1"));
-        assertThat(html, containsString(" v 2"));
-        assertThat(html, containsString(" v 3"));
-        assertThat(html, containsString(" v 4"));
+        assertTrue(html.contains("file.extension"));
+        assertTrue(html.contains("file2.extension"));
+        assertTrue(html.contains(" v 1"));
+        assertTrue(html.contains(" v 2"));
+        assertTrue(html.contains(" v 3"));
+        assertTrue(html.contains(" v 4"));
     }
 
     private void executeMojo(String pluginXml) throws Exception {
