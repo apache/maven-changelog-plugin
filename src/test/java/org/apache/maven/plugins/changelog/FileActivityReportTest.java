@@ -28,25 +28,7 @@ import org.codehaus.plexus.util.FileUtils;
  * @author Edwin Punzalan
  */
 public class FileActivityReportTest extends AbstractChangeLogReportTest {
-    private ScmManager scmManager;
-
-    /**
-     * {@inheritDoc}
-     */
-    protected void setUp() throws Exception {
-        super.setUp();
-
-        scmManager = new ScmManagerStub();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected void tearDown() throws Exception {
-        super.tearDown();
-
-        scmManager = null;
-    }
+    private ScmManager scmManager = new ScmManagerStub();
 
     public void testNoSource() throws Exception {
         File pluginXmlFile =
