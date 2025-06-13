@@ -28,6 +28,8 @@ github:
     squash: true
     merge: false
     rebase: true
+  autolink_jira:
+    - MCHANGELOG
   del_branch_on_merge: true
   features:
     issues: true
