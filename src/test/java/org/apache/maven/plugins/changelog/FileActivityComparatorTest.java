@@ -22,10 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.maven.scm.ChangeFile;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Edwin Punzalan
@@ -36,7 +36,7 @@ public class FileActivityComparatorTest {
     /**
      * {@inheritDoc}
      */
-    @Before
+    @BeforeEach
     public void setUp() {
         comparator = new FileActivityComparator();
     }
@@ -48,7 +48,7 @@ public class FileActivityComparatorTest {
 
         List<ChangeFile> list2 = new ArrayList<>();
 
-        assertTrue("Test compare by commits, less than", comparator.compare(list1, list2) < 0);
+        assertTrue(comparator.compare(list1, list2) < 0, "Test compare by commits, less than");
 
         list1 = new ArrayList<>();
         list1.add(new ChangeFile("anything"));
@@ -57,7 +57,7 @@ public class FileActivityComparatorTest {
         list2.add(new ChangeFile("one thing"));
         list2.add(new ChangeFile("something"));
 
-        assertTrue("Test compare by commits, greater than", comparator.compare(list1, list2) > 0);
+        assertTrue(comparator.compare(list1, list2) > 0, "Test compare by commits, greater than");
     }
 
     @Test
@@ -70,7 +70,7 @@ public class FileActivityComparatorTest {
         list2.add(new ChangeFile("changefile-2", "246"));
         list2.add(new ChangeFile("changefile-2", "468"));
 
-        assertTrue("Test compare by revision, less than", comparator.compare(list1, list2) < 0);
+        assertTrue(comparator.compare(list1, list2) < 0, "Test compare by revision, less than");
 
         list1 = new ArrayList<>();
         list1.add(new ChangeFile("changefile-1", "246"));
@@ -80,7 +80,7 @@ public class FileActivityComparatorTest {
         list2.add(new ChangeFile("changefile-2", "123"));
         list2.add(new ChangeFile("changefile-2", "234"));
 
-        assertTrue("Test compare by revision, greater than", comparator.compare(list1, list2) > 0);
+        assertTrue(comparator.compare(list1, list2) > 0, "Test compare by revision, greater than");
     }
 
     @Test
@@ -93,7 +93,7 @@ public class FileActivityComparatorTest {
         list2.add(new ChangeFile("changefile-2", "246"));
         list2.add(new ChangeFile("changefile-2", "468"));
 
-        assertTrue("Test compare by name, less than", comparator.compare(list1, list2) < 0);
+        assertTrue(comparator.compare(list1, list2) < 0, "Test compare by name, less than");
 
         list1 = new ArrayList<>();
         list1.add(new ChangeFile("changefile-1", "246"));
@@ -103,6 +103,6 @@ public class FileActivityComparatorTest {
         list2.add(new ChangeFile("changefile-2", "123"));
         list2.add(new ChangeFile("changefile-2", "234"));
 
-        assertTrue("Test compare by name, greater than", comparator.compare(list1, list2) > 0);
+        assertTrue(comparator.compare(list1, list2) > 0, "Test compare by name, greater than");
     }
 }

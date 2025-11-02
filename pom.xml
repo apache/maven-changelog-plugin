@@ -294,14 +294,6 @@ under the License.
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
     </dependency>
-
-    <!-- test dependencies -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.2</version>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-testing</groupId>
       <artifactId>maven-plugin-testing-harness</artifactId>
@@ -317,6 +309,11 @@ under the License.
     <dependency>
       <groupId>org.eclipse.sisu</groupId>
       <artifactId>org.eclipse.sisu.plexus</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

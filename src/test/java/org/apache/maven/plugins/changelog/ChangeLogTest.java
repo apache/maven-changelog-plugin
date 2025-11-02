@@ -27,10 +27,10 @@ import java.util.List;
 import org.apache.maven.scm.ChangeFile;
 import org.apache.maven.scm.ChangeSet;
 import org.apache.maven.scm.command.changelog.ChangeLogSet;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * @author Edwin Punzalan
@@ -40,111 +40,111 @@ public class ChangeLogTest {
     public void testReadFile() throws Exception {
         List<ChangeLogSet> changedLogs = readChangeLogXml("min-changelog.xml");
 
-        assertNotNull("Test changedSets were parsed", changedLogs);
+        assertNotNull(changedLogs, "Test changedSets were parsed");
 
-        assertEquals("Test number of changelog entries", 2, changedLogs.size());
+        assertEquals(2, changedLogs.size(), "Test number of changelog entries");
 
         ChangeLogSet changelogSets = changedLogs.get(0);
 
         assertEquals(
-                "Test number of revisions on changelog 1",
                 2,
-                changelogSets.getChangeSets().size());
+                changelogSets.getChangeSets().size(),
+                "Test number of revisions on changelog 1");
 
         ChangeSet changeSet = changelogSets.getChangeSets().get(0);
 
         assertEquals(
-                "Test changelog 1 set 1 date/time",
                 "1977-08-06 05:30:00",
-                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(changeSet.getDate()));
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(changeSet.getDate()),
+                "Test changelog 1 set 1 date/time");
 
-        assertEquals("Test changelog 1 set 1 author", "Edwin Punzalan", changeSet.getAuthor());
+        assertEquals("Edwin Punzalan", changeSet.getAuthor(), "Test changelog 1 set 1 author");
 
-        assertEquals("Test changelog 1 set 1 msg", "First commit msg", changeSet.getComment());
+        assertEquals("First commit msg", changeSet.getComment(), "Test changelog 1 set 1 msg");
 
-        assertEquals("Test changelog 1 set 1 files", 1, changeSet.getFiles().size());
+        assertEquals(1, changeSet.getFiles().size(), "Test changelog 1 set 1 files");
 
         ChangeFile changeFile = changeSet.getFiles().get(0);
 
-        assertEquals("Test changelog 1 set 1 file 1 filename", "/path/to/file.extension", changeFile.getName());
+        assertEquals("/path/to/file.extension", changeFile.getName(), "Test changelog 1 set 1 file 1 filename");
 
-        assertEquals("Test changelog 1 set 1 file 1 revision", "1", changeFile.getRevision());
+        assertEquals("1", changeFile.getRevision(), "Test changelog 1 set 1 file 1 revision");
 
         changeSet = changelogSets.getChangeSets().get(1);
 
         assertEquals(
-                "Test changelog 1 set 2 date/time",
                 "2005-02-24 21:30:00",
-                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(changeSet.getDate()));
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(changeSet.getDate()),
+                "Test changelog 1 set 2 date/time");
 
-        assertEquals("Test changelog 1 set 2 author", "Edwin Punzalan", changeSet.getAuthor());
+        assertEquals("Edwin Punzalan", changeSet.getAuthor(), "Test changelog 1 set 2 author");
 
-        assertEquals("Test changelog 1 set 2 msg", "Second commit msg", changeSet.getComment());
+        assertEquals("Second commit msg", changeSet.getComment(), "Test changelog 1 set 2 msg");
 
-        assertEquals("Test changelog 1 set 2 files", 2, changeSet.getFiles().size());
+        assertEquals(2, changeSet.getFiles().size(), "Test changelog 1 set 2 files");
 
         changeFile = changeSet.getFiles().get(0);
 
-        assertEquals("Test changelog 1 set 2 file 1 filename", "/path/to/file.extension", changeFile.getName());
+        assertEquals("/path/to/file.extension", changeFile.getName(), "Test changelog 1 set 2 file 1 filename");
 
-        assertEquals("Test changelog 1 set 2 file 1 revision", "2", changeFile.getRevision());
+        assertEquals("2", changeFile.getRevision(), "Test changelog 1 set 2 file 1 revision");
 
         changeFile = changeSet.getFiles().get(1);
 
-        assertEquals("Test changelog 1 set 2 file 2 filename", "/path/to/file2.extension", changeFile.getName());
+        assertEquals("/path/to/file2.extension", changeFile.getName(), "Test changelog 1 set 2 file 2 filename");
 
-        assertEquals("Test changelog 1 set 2 file 2 revision", "2", changeFile.getRevision());
+        assertEquals("2", changeFile.getRevision(), "Test changelog 1 set 2 file 2 revision");
 
         changelogSets = changedLogs.get(1);
 
         assertEquals(
-                "Test number of revisions on changelog 2",
                 2,
-                changelogSets.getChangeSets().size());
+                changelogSets.getChangeSets().size(),
+                "Test number of revisions on changelog 2");
 
         changeSet = changelogSets.getChangeSets().get(0);
 
         assertEquals(
-                "Test changelog 2 set 1 date/time",
                 "2005-02-25 22:45:00",
-                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(changeSet.getDate()));
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(changeSet.getDate()),
+                "Test changelog 2 set 1 date/time");
 
-        assertEquals("Test changelog 2 set 1 author", "Keogh Edrich Punzalan", changeSet.getAuthor());
+        assertEquals("Keogh Edrich Punzalan", changeSet.getAuthor(), "Test changelog 2 set 1 author");
 
-        assertEquals("Test changelog 2 set 1 msg", "Third commit msg", changeSet.getComment());
+        assertEquals("Third commit msg", changeSet.getComment(), "Test changelog 2 set 1 msg");
 
-        assertEquals("Test changelog 2 set 1 files", 1, changeSet.getFiles().size());
+        assertEquals(1, changeSet.getFiles().size(), "Test changelog 2 set 1 files");
 
         changeFile = changeSet.getFiles().get(0);
 
-        assertEquals("Test changelog 2 set 1 file 1 filename", "/path/to/file.extension", changeFile.getName());
+        assertEquals("/path/to/file.extension", changeFile.getName(), "Test changelog 2 set 1 file 1 filename");
 
-        assertEquals("Test changelog 2 set 1 file 1 revision", "3", changeFile.getRevision());
+        assertEquals("3", changeFile.getRevision(), "Test changelog 2 set 1 file 1 revision");
 
         changeSet = changelogSets.getChangeSets().get(1);
 
         assertEquals(
-                "Test changelog 2 set 2 date/time",
                 "2100-02-25 05:30:00",
-                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(changeSet.getDate()));
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(changeSet.getDate()),
+                "Test changelog 2 set 2 date/time");
 
-        assertEquals("Test changelog 2 set 2 author", "Keogh Edrich Punzalan", changeSet.getAuthor());
+        assertEquals("Keogh Edrich Punzalan", changeSet.getAuthor(), "Test changelog 2 set 2 author");
 
-        assertEquals("Test changelog 2 set 2 msg", "Last commit msg", changeSet.getComment());
+        assertEquals("Last commit msg", changeSet.getComment(), "Test changelog 2 set 2 msg");
 
-        assertEquals("Test changelog 2 set 2 files", 2, changeSet.getFiles().size());
+        assertEquals(2, changeSet.getFiles().size(), "Test changelog 2 set 2 files");
 
         changeFile = changeSet.getFiles().get(0);
 
-        assertEquals("Test changelog 2 set 2 file 1 filename", "/path/to/file.extension", changeFile.getName());
+        assertEquals("/path/to/file.extension", changeFile.getName(), "Test changelog 2 set 2 file 1 filename");
 
-        assertEquals("Test changelog 2 set 2 file 1 revision", "4", changeFile.getRevision());
+        assertEquals("4", changeFile.getRevision(), "Test changelog 2 set 2 file 1 revision");
 
         changeFile = changeSet.getFiles().get(1);
 
-        assertEquals("Test changelog 2 set 2 file 2 filename", "/path/to/file2.extension", changeFile.getName());
+        assertEquals("/path/to/file2.extension", changeFile.getName(), "Test changelog 2 set 2 file 2 filename");
 
-        assertEquals("Test changelog 2 set 2 file 2 revision", "4", changeFile.getRevision());
+        assertEquals("4", changeFile.getRevision(), "Test changelog 2 set 2 file 2 revision");
     }
 
     private List<ChangeLogSet> readChangeLogXml(String filename) throws Exception {

@@ -23,6 +23,10 @@ import java.io.File;
 import org.apache.maven.plugins.changelog.stubs.ScmManagerStub;
 import org.apache.maven.scm.manager.ScmManager;
 import org.codehaus.plexus.util.FileUtils;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Edwin Punzalan
@@ -30,13 +34,14 @@ import org.codehaus.plexus.util.FileUtils;
 public class FileActivityReportTest extends AbstractChangeLogReportTest {
     private ScmManager scmManager = new ScmManagerStub();
 
+    @Test
     public void testNoSource() throws Exception {
         File pluginXmlFile =
                 new File(getBasedir(), "src/test/plugin-configs/file-activity/no-source-plugin-config.xml");
 
         FileActivityReport mojo = (FileActivityReport) lookupMojo("file-activity", pluginXmlFile);
 
-        assertNotNull("Mojo found.", mojo);
+        assertNotNull(mojo, "Mojo found.");
 
         this.setVariableValueToObject(mojo, "manager", scmManager);
 
@@ -48,11 +53,12 @@ public class FileActivityReportTest extends AbstractChangeLogReportTest {
 
         renderer(mojo, outputHtml);
 
-        assertTrue(outputHtml.getAbsolutePath() + " not generated!", outputHtml.exists());
+        assertTrue(outputHtml.exists(), outputHtml.getAbsolutePath() + " not generated!");
 
-        assertTrue(outputHtml.getAbsolutePath() + " is empty!", outputHtml.length() > 0);
+        assertTrue(outputHtml.length() > 0, outputHtml.getAbsolutePath() + " is empty!");
     }
 
+    @Test
     public void testMinConfig() throws Exception {
         File outputXML = new File(getBasedir(), "src/test/changelog-xml/min-changelog.xml");
 
@@ -67,7 +73,7 @@ public class FileActivityReportTest extends AbstractChangeLogReportTest {
 
         FileActivityReport mojo = (FileActivityReport) lookupMojo("file-activity", pluginXmlFile);
 
-        assertNotNull("Mojo found.", mojo);
+        assertNotNull(mojo, "Mojo found.");
 
         this.setVariableValueToObject(mojo, "manager", scmManager);
 
@@ -77,15 +83,15 @@ public class FileActivityReportTest extends AbstractChangeLogReportTest {
 
         String encoding = (String) getVariableValueFromObject(mojo, "outputEncoding");
 
-        assertTrue("Test if changelog.xml is created", outputXML.exists());
+        assertTrue(outputXML.exists(), "Test if changelog.xml is created");
 
         String changelogXml = FileUtils.fileRead(outputXML);
 
         assertTrue(
-                "Test for xml header",
-                changelogXml.startsWith("<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>"));
+                changelogXml.startsWith("<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>"),
+                "Test for xml header");
 
-        assertTrue("Test for xml footer", changelogXml.endsWith("</changelog>"));
+        assertTrue(changelogXml.endsWith("</changelog>"), "Test for xml footer");
 
         File outputDir = (File) getVariableValueFromObject(mojo, "outputDirectory");
 
@@ -93,8 +99,8 @@ public class FileActivityReportTest extends AbstractChangeLogReportTest {
 
         renderer(mojo, outputHtml);
 
-        assertTrue(outputHtml.getAbsolutePath() + " not generated!", outputHtml.exists());
+        assertTrue(outputHtml.exists(), outputHtml.getAbsolutePath() + " not generated!");
 
-        assertTrue(outputHtml.getAbsolutePath() + " is empty!", outputHtml.length() > 0);
+        assertTrue(outputHtml.length() > 0, outputHtml.getAbsolutePath() + " is empty!");
     }
 }
