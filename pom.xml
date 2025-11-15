@@ -151,6 +151,8 @@ under the License.
     <!-- used in ITs -->
     <sitePluginVersion>${version.maven-site-plugin}</sitePluginVersion>
     <project.build.outputTimestamp>2024-12-30T15:52:19Z</project.build.outputTimestamp>
+
+    <version.maven-invoker-plugin>3.9.1</version.maven-invoker-plugin>
   </properties>
 
   <dependencies>
