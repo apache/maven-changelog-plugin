@@ -21,7 +21,9 @@ package org.apache.maven.plugins.changelog.stubs;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
+import org.apache.maven.scm.CommandParameters;
 import org.apache.maven.scm.ScmBranch;
 import org.apache.maven.scm.ScmException;
 import org.apache.maven.scm.ScmFileSet;
@@ -73,6 +75,11 @@ public class ScmManagerStub implements ScmManager {
      */
     public ScmRepository makeProviderScmRepository(String string, File file) {
         return null;
+    }
+
+    @Override
+    public Optional<ScmRepository> makeProviderScmRepository(File file) {
+        return Optional.empty();
     }
 
     /**
@@ -194,6 +201,12 @@ public class ScmManagerStub implements ScmManager {
      */
     public CheckInScmResult checkIn(ScmRepository repository, ScmFileSet fileSet, String message) throws ScmException {
         return this.getProviderByRepository(repository).checkIn(repository, fileSet, message);
+    }
+
+    @Override
+    public CheckInScmResult checkIn(ScmRepository repository, ScmFileSet fileSet, CommandParameters commandParameters)
+            throws ScmException {
+        return this.getProviderByRepository(repository).checkIn(repository, fileSet, commandParameters);
     }
 
     /**
