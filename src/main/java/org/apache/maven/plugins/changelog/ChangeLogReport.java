@@ -32,6 +32,8 @@ import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -572,8 +574,14 @@ public class ChangeLogReport extends AbstractMavenReport {
             ChangeLogScmResult result;
 
             if ("range".equals(type)) {
+                // Calculate start and end dates based on the range (number of days)
+                Instant endInstant = Instant.now();
+                Instant startInstant = endInstant.minus(range, ChronoUnit.DAYS);
+                Date endDate = Date.from(endInstant);
+                Date startDate = Date.from(startInstant);
+
                 result = provider.changeLog(
-                        repository, new ScmFileSet(basedir), null, null, range, (ScmBranch) null, dateFormat);
+                        repository, new ScmFileSet(basedir), startDate, endDate, 0, (ScmBranch) null, dateFormat);
 
                 checkResult(result);
 
