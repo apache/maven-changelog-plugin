@@ -576,7 +576,7 @@ public class ChangeLogReport extends AbstractMavenReport {
             if ("range".equals(type)) {
                 // Calculate start and end dates based on the range (number of days)
                 Instant endInstant = Instant.now();
-                Instant startInstant = endInstant.minus(range, ChronoUnit.DAYS);
+                Instant startInstant = endInstant.plus(range, ChronoUnit.DAYS);
                 Date endDate = Date.from(endInstant);
                 Date startDate = Date.from(startInstant);
 
