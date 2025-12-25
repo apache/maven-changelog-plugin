@@ -107,7 +107,7 @@ public class SvnInfoCommandExpanded extends AbstractCommand implements SvnComman
             final ScmFileSet fileSet,
             final boolean recursive,
             final String revision) {
-        Commandline cl = SvnCommandLineUtils.getBaseSvnCommandLine(fileSet.getBasedir(), repository);
+        Commandline cl = SvnCommandLineUtils.getBaseSvnCommandLine(fileSet.getBasedir(), repository, false);
 
         cl.createArg().setValue("info");
 
@@ -139,7 +139,7 @@ public class SvnInfoCommandExpanded extends AbstractCommand implements SvnComman
             final String tag,
             final boolean recursive,
             final String revision) {
-        Commandline cl = SvnCommandLineUtils.getBaseSvnCommandLine(fileSet.getBasedir(), repository);
+        Commandline cl = SvnCommandLineUtils.getBaseSvnCommandLine(fileSet.getBasedir(), repository, false);
 
         cl.createArg().setValue("info");
 

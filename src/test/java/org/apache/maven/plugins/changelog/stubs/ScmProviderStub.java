@@ -214,6 +214,11 @@ public class ScmProviderStub implements ScmProvider {
         return null;
     }
 
+    @Override
+    public CheckInScmResult checkIn(ScmRepository scmRepository, ScmFileSet scmFileSet, CommandParameters parameters) {
+        return null;
+    }
+
     /**
      * {@inheritDoc}
      */
