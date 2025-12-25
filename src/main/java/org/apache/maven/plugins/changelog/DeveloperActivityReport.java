@@ -27,10 +27,12 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.apache.maven.doxia.sink.Sink;
+import org.apache.maven.doxia.tools.SiteTool;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.scm.ChangeFile;
 import org.apache.maven.scm.ChangeSet;
 import org.apache.maven.scm.command.changelog.ChangeLogSet;
+import org.apache.maven.scm.manager.ScmManager;
 
 /**
  * Generate a developer activity report.
@@ -43,6 +45,16 @@ public class DeveloperActivityReport extends ChangeLogReport {
     private Map<String, List<ChangeSet>> commits;
 
     private Map<String, Map<String, ChangeFile>> files;
+
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param manager  the SCM manager
+     * @param siteTool the site tool
+     */
+    public DeveloperActivityReport(ScmManager manager, SiteTool siteTool) {
+        super(manager, siteTool);
+    }
 
     /**
      * {@inheritDoc}

@@ -20,13 +20,13 @@ package org.apache.maven.plugins.changelog;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
 
-import org.apache.maven.doxia.site.decoration.DecorationModel;
-import org.apache.maven.doxia.siterenderer.RendererException;
-import org.apache.maven.doxia.siterenderer.SiteRenderingContext;
-import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+import org.apache.maven.doxia.module.xhtml5.Xhtml5SinkFactory;
+import org.apache.maven.doxia.sink.Sink;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
-import org.codehaus.plexus.util.xml.XmlStreamWriter;
+import org.apache.maven.reporting.MavenReportException;
 
 /**
  * @author <a href="mailto:vincent.siveton@gmail.com">Vincent Siveton</a>
@@ -38,17 +38,17 @@ public abstract class AbstractChangeLogReportTest extends AbstractMojoTestCase {
      *
      * @param mojo       not null
      * @param outputHtml not null
-     * @throws RendererException if any
-     * @throws IOException       if any
+     * @throws IOException if any
+     * @throws MavenReportException if any
      */
-    protected void renderer(ChangeLogReport mojo, File outputHtml) throws RendererException, IOException {
-        SiteRenderingContext context = new SiteRenderingContext();
-        context.setDecoration(new DecorationModel());
-        context.setTemplateName("org/apache/maven/doxia/siterenderer/resources/default-site.vm");
-
+    protected void renderer(ChangeLogReport mojo, File outputHtml) throws IOException, MavenReportException {
         outputHtml.getParentFile().mkdirs();
-        try (XmlStreamWriter writer = new XmlStreamWriter(outputHtml)) {
-            mojo.getSiteRenderer().generateDocument(writer, (SiteRendererSink) mojo.getSink(), context);
+        try (OutputStream out = Files.newOutputStream(outputHtml.toPath())) {
+            Xhtml5SinkFactory sinkFactory = new Xhtml5SinkFactory();
+            Sink sink = sinkFactory.createSink(out, "UTF-8");
+            mojo.generate(sink, null, null);
+            sink.flush();
+            sink.close();
         }
     }
 }

@@ -48,10 +48,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.maven.doxia.sink.Sink;
-import org.apache.maven.doxia.siterenderer.Renderer;
+import org.apache.maven.doxia.tools.SiteTool;
 import org.apache.maven.model.Developer;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.changelog.scm.provider.svn.svnexe.command.info.SvnInfoCommandExpanded;
@@ -255,9 +254,14 @@ public class ChangeLogReport extends AbstractMavenReport {
     private boolean offline;
 
     /**
+     * SCM Manager.
      */
-    @Component
-    private ScmManager manager;
+    private final ScmManager manager;
+
+    /**
+     * Site Tool.
+     */
+    private final SiteTool siteTool;
 
     /**
      */
@@ -400,6 +404,17 @@ public class ChangeLogReport extends AbstractMavenReport {
     private Properties systemProperties;
 
     private final Pattern sinkFileNamePattern = Pattern.compile("\\\\");
+
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param manager  the SCM manager
+     * @param siteTool the site tool
+     */
+    public ChangeLogReport(ScmManager manager, SiteTool siteTool) {
+        this.manager = manager;
+        this.siteTool = siteTool;
+    }
 
     /**
      * {@inheritDoc}
@@ -1591,8 +1606,8 @@ public class ChangeLogReport extends AbstractMavenReport {
     /**
      * {@inheritDoc}
      */
-    protected Renderer getSiteRenderer() {
-        return siteRenderer;
+    protected SiteTool getSiteTool() {
+        return siteTool;
     }
 
     /**
