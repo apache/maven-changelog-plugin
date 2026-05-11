@@ -151,8 +151,6 @@ under the License.
     <!-- used in ITs -->
     <sitePluginVersion>${version.maven-site-plugin}</sitePluginVersion>
     <project.build.outputTimestamp>2024-12-30T15:52:19Z</project.build.outputTimestamp>
-
-    <version.maven-invoker-plugin>3.9.1</version.maven-invoker-plugin>
   </properties>
 
   <dependencies>
@@ -258,12 +256,6 @@ under the License.
       <groupId>org.apache.maven.scm</groupId>
       <artifactId>maven-scm-manager-plexus</artifactId>
       <version>${maven-scm.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.codehaus.plexus</groupId>
-          <artifactId>plexus-container-default</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.scm</groupId>
@@ -296,6 +288,11 @@ under the License.
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.36</version>
+    </dependency>
 
     <!-- test dependencies -->
     <dependency>
@@ -309,12 +306,6 @@ under the License.
       <artifactId>maven-plugin-testing-harness</artifactId>
       <version>3.5.1</version>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.codehaus.plexus</groupId>
-          <artifactId>plexus-container-default</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.eclipse.sisu</groupId>
