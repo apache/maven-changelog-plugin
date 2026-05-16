@@ -175,7 +175,7 @@ mvn scm:changelog
             description of what happens and what you expected to happen.
           </li>
           <li>
-            Create an issue in <a href="issue-tracking.html">JIRA</a>.
+            Create an issue in <a href="issue-management.html">issue tracker</a>.
           </li>
         </ol>
       </answer>
