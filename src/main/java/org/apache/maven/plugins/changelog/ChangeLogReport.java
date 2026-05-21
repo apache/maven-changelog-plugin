@@ -310,7 +310,7 @@ public class ChangeLogReport extends AbstractMavenReport {
 
     /**
      * The issue tracker URL used when replacing any matched <code>issueIDRegexPattern</code>
-     * found in the SCM commit messages. The default is URL is the codehaus JIRA
+     * found in the SCM commit messages. The default is the ASF JIRA
      * URL. If %ISSUE% is found in the URL it is replaced with the matched issue ID,
      * otherwise the matched issue ID is appended to the URL.
      *
