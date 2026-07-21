@@ -20,13 +20,15 @@ package org.apache.maven.plugins.changelog.stubs;
 
 import java.io.File;
 
+import org.apache.maven.api.plugin.testing.MojoExtension;
+import org.apache.maven.model.Build;
 import org.apache.maven.model.Scm;
-import org.codehaus.plexus.PlexusTestCase;
+import org.apache.maven.project.MavenProject;
 
 /**
  * @author Edwin Punzalan
  */
-public class MavenProjectStub extends org.apache.maven.plugin.testing.stubs.MavenProjectStub {
+public class MavenProjectStub extends MavenProject {
     private static int testCounter = 0;
 
     public MavenProjectStub() {
@@ -42,6 +44,7 @@ public class MavenProjectStub extends org.apache.maven.plugin.testing.stubs.Mave
         Scm scm = new Scm();
 
         scm.setConnection("scm://");
+        scm.setUrl("scm://");
 
         return scm;
     }
@@ -50,6 +53,13 @@ public class MavenProjectStub extends org.apache.maven.plugin.testing.stubs.Mave
      * {@inheritDoc}
      */
     public File getBasedir() {
-        return new File(PlexusTestCase.getBasedir(), "target/test-harness/" + testCounter);
+        return new File(MojoExtension.getBasedir(), "target/test-harness/" + testCounter);
+    }
+
+    @Override
+    public Build getBuild() {
+        Build build = super.getBuild();
+        build.setDirectory(new File(getBasedir(), "target").getAbsolutePath());
+        return build;
     }
 }

@@ -23,19 +23,10 @@ under the License.
       <plugin>
         <artifactId>maven-changelog-plugin</artifactId>
         <configuration>
-          <type>range</type>
-          <range>-1</range>
           <dateFormat>yyyy-MM-dd</dateFormat>
-          <basedir>${basedir}/src/main/java</basedir>
-          <outputXML>${basedir}/src/test/changelog-xml/min-changelog.xml</outputXML>
-          <outputXMLExpiration>60</outputXMLExpiration>
           <outputEncoding>ISO-8859-1</outputEncoding>
-          <scmUrl>scm://</scmUrl>
           <outputDirectory>site</outputDirectory>
           <offline>false</offline>
-          <connectionType>connection</connectionType>
-          <project implementation="org.apache.maven.plugins.changelog.stubs.MavenProjectStub"/>
-          <settings implementation="org.apache.maven.plugins.changelog.stubs.SettingsStub"/>
         </configuration>
       </plugin>
     </plugins>
