@@ -46,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  * @author Edwin Punzalan
  */
 @MojoTest
-class ChangeLogReportTest {
+class ChangeLogReportTest extends AbstractChangeLogReportTest {
     private ScmManager scmManager = new ScmManagerStub();
 
     @Provides
@@ -60,7 +60,7 @@ class ChangeLogReportTest {
     void testNoSource(ChangeLogReport mojo) throws Exception {
         setVariableValueToObject(mojo, "manager", scmManager);
 
-        mojo.execute();
+        executeReport(mojo);
 
         File outputDir = getVariableValueFromObject(mojo, "outputDirectory");
 
@@ -225,7 +225,7 @@ class ChangeLogReportTest {
         // use current directory project as basedir
         setVariableValueToObject(mojo, "basedir", new File(getBasedir(), "src/main/java"));
 
-        mojo.execute();
+        executeReport(mojo);
 
         File outputXML = getVariableValueFromObject(mojo, "outputXML");
 

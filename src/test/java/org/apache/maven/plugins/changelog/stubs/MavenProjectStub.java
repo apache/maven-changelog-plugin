@@ -19,11 +19,14 @@
 package org.apache.maven.plugins.changelog.stubs;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.maven.api.plugin.testing.MojoExtension;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Scm;
 import org.apache.maven.project.MavenProject;
+import org.eclipse.aether.repository.RemoteRepository;
 
 /**
  * @author Edwin Punzalan
@@ -54,6 +57,15 @@ public class MavenProjectStub extends MavenProject {
      */
     public File getBasedir() {
         return new File(MojoExtension.getBasedir(), "target/test-harness/" + testCounter);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<RemoteRepository> getRemoteProjectRepositories() {
+        return Collections.singletonList(
+                new RemoteRepository.Builder("central", "default", "https://repo.maven.apache.org/maven2").build());
     }
 
     @Override
