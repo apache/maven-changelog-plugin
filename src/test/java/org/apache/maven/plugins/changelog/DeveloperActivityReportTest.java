@@ -40,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Edwin Punzalan
  */
 @MojoTest
-class DeveloperActivityReportTest {
+class DeveloperActivityReportTest extends AbstractChangeLogReportTest {
 
     @Provides
     @SuppressWarnings("unused")
@@ -66,7 +66,7 @@ class DeveloperActivityReportTest {
     @Test
     @InjectMojo(goal = "dev-activity", pom = "src/test/plugin-configs/dev-activity/no-source-plugin-config.xml")
     void testNoSource(DeveloperActivityReport mojo) throws Exception {
-        mojo.execute();
+        executeReport(mojo);
 
         File outputDir = getVariableValueFromObject(mojo, "outputDirectory");
 
@@ -89,7 +89,7 @@ class DeveloperActivityReportTest {
         setVariableValueToObject(mojo, "basedir", new File(getBasedir(), "src/main/java"));
         setVariableValueToObject(mojo, "outputXML", outputXML);
 
-        mojo.execute();
+        executeReport(mojo);
 
         String encoding = getVariableValueFromObject(mojo, "outputEncoding");
 

@@ -146,12 +146,44 @@ under the License.
   <properties>
     <javaVersion>8</javaVersion>
     <maven-scm.version>2.2.1</maven-scm.version>
-    <doxiaVersion>1.11.1</doxiaVersion>
+    <doxiaVersion>2.1.0</doxiaVersion>
     <mavenVersion>3.9.16</mavenVersion>
+    <resolverVersion>1.9.27</resolverVersion>
     <!-- used in ITs -->
     <sitePluginVersion>${version.maven-site-plugin}</sitePluginVersion>
     <project.build.outputTimestamp>2026-05-19T18:54:53Z</project.build.outputTimestamp>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- keep the whole Doxia stack, mostly inherited from maven-reporting-impl, on the same version -->
+      <dependency>
+        <groupId>org.apache.maven.doxia</groupId>
+        <artifactId>doxia-core</artifactId>
+        <version>${doxiaVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.doxia</groupId>
+        <artifactId>doxia-module-apt</artifactId>
+        <version>${doxiaVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.doxia</groupId>
+        <artifactId>doxia-module-xdoc</artifactId>
+        <version>${doxiaVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.doxia</groupId>
+        <artifactId>doxia-site-model</artifactId>
+        <version>${doxiaVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.doxia</groupId>
+        <artifactId>doxia-integration-tools</artifactId>
+        <version>${doxiaVersion}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <!-- maven -->
@@ -196,13 +228,7 @@ under the License.
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-impl</artifactId>
-      <version>3.1.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.codehaus.plexus</groupId>
-          <artifactId>plexus-container-default</artifactId>
-        </exclusion>
-      </exclusions>
+      <version>4.0.0</version>
     </dependency>
 
     <!-- doxia -->
@@ -210,22 +236,12 @@ under the License.
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-sink-api</artifactId>
       <version>${doxiaVersion}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.codehaus.plexus</groupId>
-          <artifactId>plexus-container-default</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-site-renderer</artifactId>
       <version>${doxiaVersion}</version>
       <exclusions>
-        <exclusion>
-          <groupId>org.codehaus.plexus</groupId>
-          <artifactId>plexus-container-default</artifactId>
-        </exclusion>
         <exclusion>
           <!-- exclude to not add maven-artifact in compile scope -->
           <groupId>org.apache.maven</groupId>
@@ -294,6 +310,43 @@ under the License.
       <artifactId>junit-jupiter-api</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <version>1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+      <version>${mavenVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.resolver</groupId>
+      <artifactId>maven-resolver-api</artifactId>
+      <version>${resolverVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>4.11.0</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- needed to let the report mojos resolve the site skin when executed as standalone goal in tests -->
+    <dependency>
+      <groupId>org.apache.maven.resolver</groupId>
+      <artifactId>maven-resolver-connector-basic</artifactId>
+      <version>${resolverVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.resolver</groupId>
+      <artifactId>maven-resolver-transport-http</artifactId>
+      <version>${resolverVersion}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -311,6 +364,9 @@ under the License.
                 <ignoredUnusedDeclaredDependency>org.apache.maven.scm:*</ignoredUnusedDeclaredDependency>
                 <!-- runtime dependencies -->
                 <ignoredUnusedDeclaredDependency>javax.xml.bind:jaxb-api</ignoredUnusedDeclaredDependency>
+                <!-- test runtime only: repository transport used to resolve the site skin -->
+                <ignoredUnusedDeclaredDependency>org.apache.maven.resolver:maven-resolver-connector-basic</ignoredUnusedDeclaredDependency>
+                <ignoredUnusedDeclaredDependency>org.apache.maven.resolver:maven-resolver-transport-http</ignoredUnusedDeclaredDependency>
               </ignoredUnusedDeclaredDependencies>
             </configuration>
           </execution>

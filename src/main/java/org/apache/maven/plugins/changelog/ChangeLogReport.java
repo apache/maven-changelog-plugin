@@ -55,7 +55,6 @@ import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.changelog.scm.provider.svn.svnexe.command.info.SvnInfoCommandExpanded;
-import org.apache.maven.project.MavenProject;
 import org.apache.maven.reporting.AbstractMavenReport;
 import org.apache.maven.reporting.MavenReportException;
 import org.apache.maven.scm.ChangeFile;
@@ -242,12 +241,6 @@ public class ChangeLogReport extends AbstractMavenReport {
      */
     @Parameter
     private String[] excludes;
-
-    /**
-     * The Maven Project Object
-     */
-    @Parameter(defaultValue = "${project}", readonly = true, required = true)
-    private MavenProject project;
 
     /**
      */
@@ -1559,13 +1552,6 @@ public class ChangeLogReport extends AbstractMavenReport {
         }
 
         return absPath + newTarget;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected MavenProject getProject() {
-        return project;
     }
 
     /**
