@@ -52,9 +52,19 @@ public class FileActivityReport extends ChangeLogReport {
     }
 
     /**
+     * @deprecated use {@link #getOutputPath()} instead
+     */
+    @Override
+    @Deprecated
+    public String getOutputName() {
+        return getOutputPath();
+    }
+
+    /**
      * {@inheritDoc}
      */
-    public String getOutputName() {
+    @Override
+    public String getOutputPath() {
         return "file-activity";
     }
 
