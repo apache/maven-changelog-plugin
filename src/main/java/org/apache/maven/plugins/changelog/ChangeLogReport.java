@@ -1596,9 +1596,19 @@ public class ChangeLogReport extends AbstractMavenReport {
     }
 
     /**
+     * @deprecated use {@link #getOutputPath()} instead
+     */
+    @Override
+    @Deprecated
+    public String getOutputName() {
+        return getOutputPath();
+    }
+
+    /**
      * {@inheritDoc}
      */
-    public String getOutputName() {
+    @Override
+    public String getOutputPath() {
         return "changelog";
     }
 
