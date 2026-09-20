@@ -48,7 +48,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.maven.doxia.sink.Sink;
-import org.apache.maven.doxia.siterenderer.Renderer;
 import org.apache.maven.model.Developer;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Component;
@@ -1572,13 +1571,6 @@ public class ChangeLogReport extends AbstractMavenReport {
      */
     protected String getOutputEncoding() {
         return (outputEncoding != null) ? outputEncoding : "UTF-8";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected Renderer getSiteRenderer() {
-        return siteRenderer;
     }
 
     /**
