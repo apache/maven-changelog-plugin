@@ -41,7 +41,7 @@ try
         return false;
     }
 
-    String[] reports = { "changelog", "dev-activity", "file-activity" };
+    String[] reports = [ "changelog", "dev-activity", "file-activity" ];
     for ( String report : reports )
     {
         File reportFile = new File( siteDir, report + ".html" );
