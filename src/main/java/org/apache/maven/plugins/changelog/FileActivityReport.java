@@ -18,6 +18,8 @@
  */
 package org.apache.maven.plugins.changelog;
 
+import javax.inject.Inject;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -31,12 +33,18 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.scm.ChangeFile;
 import org.apache.maven.scm.ChangeSet;
 import org.apache.maven.scm.command.changelog.ChangeLogSet;
+import org.apache.maven.scm.manager.ScmManager;
 
 /**
  * Generate a file activity report.
  */
 @Mojo(name = "file-activity")
 public class FileActivityReport extends ChangeLogReport {
+    @Inject
+    public FileActivityReport(ScmManager manager) {
+        super(manager);
+    }
+
     /**
      * {@inheritDoc}
      */
