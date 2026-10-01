@@ -18,6 +18,8 @@
  */
 package org.apache.maven.plugins.changelog;
 
+import javax.inject.Inject;
+
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -50,7 +52,6 @@ import java.util.regex.Pattern;
 import org.apache.maven.doxia.sink.Sink;
 import org.apache.maven.model.Developer;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.changelog.scm.provider.svn.svnexe.command.info.SvnInfoCommandExpanded;
@@ -225,6 +226,11 @@ public class ChangeLogReport extends AbstractMavenReport {
     @Parameter(property = "encodeFileUri", defaultValue = "false")
     protected boolean encodeFileUri;
 
+    @Inject
+    public ChangeLogReport(ScmManager manager) {
+        this.manager = manager;
+    }
+
     /**
      * List of files to include. Specified as fileset patterns of files to include in the report
      *
@@ -247,8 +253,8 @@ public class ChangeLogReport extends AbstractMavenReport {
     private boolean offline;
 
     /**
+     * The SCM manager.
      */
-    @Component
     private ScmManager manager;
 
     /**
