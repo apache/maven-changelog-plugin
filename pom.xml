@@ -147,7 +147,7 @@ under the License.
     <javaVersion>8</javaVersion>
     <maven-scm.version>2.2.1</maven-scm.version>
     <doxiaVersion>2.1.0</doxiaVersion>
-    <mavenVersion>3.9.16</mavenVersion>
+    <mavenVersion>3.10.0</mavenVersion>
     <resolverVersion>1.9.27</resolverVersion>
     <!-- used in ITs -->
     <sitePluginVersion>${version.maven-site-plugin}</sitePluginVersion>
