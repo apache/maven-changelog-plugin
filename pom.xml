@@ -147,8 +147,8 @@ under the License.
     <javaVersion>8</javaVersion>
     <maven-scm.version>2.2.1</maven-scm.version>
     <doxiaVersion>2.1.0</doxiaVersion>
-    <mavenVersion>3.9.16</mavenVersion>
-    <resolverVersion>1.9.27</resolverVersion>
+    <mavenVersion>3.10.0</mavenVersion>
+    <resolverVersion>2.0.24</resolverVersion>
     <!-- used in ITs -->
     <sitePluginVersion>${version.maven-site-plugin}</sitePluginVersion>
     <project.build.outputTimestamp>2026-05-19T18:54:53Z</project.build.outputTimestamp>
@@ -329,7 +329,7 @@ under the License.
     </dependency>
     <dependency>
       <groupId>org.apache.maven.resolver</groupId>
-      <artifactId>maven-resolver-transport-http</artifactId>
+      <artifactId>maven-resolver-transport-apache</artifactId>
       <version>${resolverVersion}</version>
       <scope>test</scope>
     </dependency>
@@ -352,7 +352,7 @@ under the License.
                 <ignoredUnusedDeclaredDependency>javax.xml.bind:jaxb-api</ignoredUnusedDeclaredDependency>
                 <!-- test runtime only: repository transport used to resolve the site skin -->
                 <ignoredUnusedDeclaredDependency>org.apache.maven.resolver:maven-resolver-connector-basic</ignoredUnusedDeclaredDependency>
-                <ignoredUnusedDeclaredDependency>org.apache.maven.resolver:maven-resolver-transport-http</ignoredUnusedDeclaredDependency>
+                <ignoredUnusedDeclaredDependency>org.apache.maven.resolver:maven-resolver-transport-apache</ignoredUnusedDeclaredDependency>
               </ignoredUnusedDeclaredDependencies>
             </configuration>
           </execution>
