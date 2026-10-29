@@ -144,7 +144,6 @@ under the License.
   </distributionManagement>
 
   <properties>
-    <javaVersion>8</javaVersion>
     <maven-scm.version>2.2.1</maven-scm.version>
     <doxiaVersion>2.1.0</doxiaVersion>
     <mavenVersion>3.9.16</mavenVersion>
