@@ -1275,7 +1275,7 @@ public class ChangeLogReport extends AbstractMavenReport {
 
             String link;
 
-            if (issueLinkUrl.indexOf(ISSUE_TOKEN) >= 1) {
+            if (issueLinkUrl.indexOf(ISSUE_TOKEN) > 0) {
                 link = issueLinkUrl.replaceAll(ISSUE_TOKEN, match);
             } else {
                 if (issueLinkUrl.endsWith("/")) {
@@ -1429,7 +1429,7 @@ public class ChangeLogReport extends AbstractMavenReport {
 
                 // Use the given URL to create links to the files
 
-                if (linkFile.indexOf(FILE_TOKEN) >= 1) {
+                if (linkFile.indexOf(FILE_TOKEN) > 0) {
                     linkFile = linkFile.replaceAll(FILE_TOKEN, linkName);
                 } else {
                     // This is here so that we are backwards compatible with the
@@ -1440,7 +1440,7 @@ public class ChangeLogReport extends AbstractMavenReport {
 
                 // Use the given URL to create links to the files
 
-                if (revision != null && linkFile.indexOf(REV_TOKEN) >= 1) {
+                if (revision != null && linkFile.indexOf(REV_TOKEN) > 0) {
                     linkFile = linkFile.replaceAll(REV_TOKEN, revision);
                 }
             } else if (connection.startsWith("scm:perforce")) {
@@ -1452,7 +1452,7 @@ public class ChangeLogReport extends AbstractMavenReport {
             } else if (connection.startsWith("scm:clearcase")) {
                 String path = getAbsolutePath(displayFileDetailUrl, name);
                 linkFile = path + rptOneRepoParam;
-            } else if (connection.indexOf("cvsmonitor.pl") >= 1) {
+            } else if (connection.indexOf("cvsmonitor.pl") > 0) {
                 Pattern cvsMonitorRegex = Pattern.compile("^.*(&amp;module=.*?(?:&amp;|$)).*$");
                 String module = cvsMonitorRegex.matcher(rptOneRepoParam).replaceAll("$1");
                 linkFile = displayFileDetailUrl + "?cmd=viewBrowseFile" + module + "&file=" + name;
@@ -1480,7 +1480,7 @@ public class ChangeLogReport extends AbstractMavenReport {
         sink.text(" ");
 
         if (linkRev == null && revision != null && displayChangeSetDetailUrl != null) {
-            if (displayChangeSetDetailUrl.indexOf(REV_TOKEN) >= 1) {
+            if (displayChangeSetDetailUrl.indexOf(REV_TOKEN) > 0) {
                 linkRev = displayChangeSetDetailUrl.replaceAll(REV_TOKEN, revision);
             } else {
                 linkRev = displayChangeSetDetailUrl + revision;
