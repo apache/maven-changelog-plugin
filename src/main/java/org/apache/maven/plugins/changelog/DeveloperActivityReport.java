@@ -55,6 +55,7 @@ public class DeveloperActivityReport extends ChangeLogReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getDescription(Locale locale) {
         return getBundle(locale).getString("report.dev-activity.description");
     }
@@ -62,6 +63,7 @@ public class DeveloperActivityReport extends ChangeLogReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getName(Locale locale) {
         return getBundle(locale).getString("report.dev-activity.name");
     }
@@ -86,6 +88,7 @@ public class DeveloperActivityReport extends ChangeLogReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     protected void doGenerateEmptyReport(ResourceBundle bundle, Sink sink) {
         sink.head();
         sink.title();
@@ -114,6 +117,7 @@ public class DeveloperActivityReport extends ChangeLogReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     protected void doGenerateReport(List<ChangeLogSet> changeLogSets, ResourceBundle bundle, Sink sink) {
         sink.head();
         sink.title();

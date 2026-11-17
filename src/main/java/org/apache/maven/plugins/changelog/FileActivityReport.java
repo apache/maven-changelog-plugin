@@ -48,6 +48,7 @@ public class FileActivityReport extends ChangeLogReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getDescription(Locale locale) {
         return getBundle(locale).getString("report.file-activity.description");
     }
@@ -55,6 +56,7 @@ public class FileActivityReport extends ChangeLogReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getName(Locale locale) {
         return getBundle(locale).getString("report.file-activity.name");
     }
@@ -79,6 +81,7 @@ public class FileActivityReport extends ChangeLogReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     protected void doGenerateEmptyReport(ResourceBundle bundle, Sink sink) {
         sink.head();
         sink.title();
@@ -107,6 +110,7 @@ public class FileActivityReport extends ChangeLogReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     protected void doGenerateReport(List<ChangeLogSet> changeLogSets, ResourceBundle bundle, Sink sink) {
         sink.head();
         sink.title();

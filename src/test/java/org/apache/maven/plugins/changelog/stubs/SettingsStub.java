@@ -28,24 +28,29 @@ public class SettingsStub extends Settings {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Server getServer(String serverId) {
         return new Server() {
             /** {@inheritDoc} */
+            @Override
             public String getUsername() {
                 return "anonymous";
             }
 
             /** {@inheritDoc} */
+            @Override
             public String getPassword() {
                 return "password";
             }
 
             /** {@inheritDoc} */
+            @Override
             public String getPassphrase() {
                 return "passphrase";
             }
 
             /** {@inheritDoc} */
+            @Override
             public String getPrivateKey() {
                 return "private-key";
             }

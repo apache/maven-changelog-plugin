@@ -28,14 +28,17 @@ public class ScmManagerWithHostStub extends ScmManagerStub {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ScmRepository makeScmRepository(String string) {
         ScmProviderRepositoryWithHost scmRepository = new ScmProviderRepositoryWithHost() {
             /** {@inheritDoc} */
+            @Override
             public String getHost() {
                 return "scmHost";
             }
 
             /** {@inheritDoc} */
+            @Override
             public int getPort() {
                 return 7777;
             }

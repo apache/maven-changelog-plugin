@@ -1584,6 +1584,7 @@ public class ChangeLogReport extends AbstractMavenReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getDescription(Locale locale) {
         return getBundle(locale).getString("report.changelog.description");
     }
@@ -1591,6 +1592,7 @@ public class ChangeLogReport extends AbstractMavenReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getName(Locale locale) {
         return getBundle(locale).getString("report.changelog.name");
     }
@@ -1623,6 +1625,7 @@ public class ChangeLogReport extends AbstractMavenReport {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean canGenerateReport() {
         if (offline && !outputXML.exists()) {
             return false;

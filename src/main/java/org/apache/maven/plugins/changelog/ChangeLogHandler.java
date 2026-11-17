@@ -74,6 +74,7 @@ public class ChangeLogHandler extends DefaultHandler {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         bufData += new String(ch, start, length);
     }
@@ -81,6 +82,7 @@ public class ChangeLogHandler extends DefaultHandler {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if ("changeset".equals(qName)) {
             changeSets.add(bufSet);
@@ -133,6 +135,7 @@ public class ChangeLogHandler extends DefaultHandler {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         bufData = "";
 

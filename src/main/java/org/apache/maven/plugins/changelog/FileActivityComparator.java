@@ -30,6 +30,7 @@ public class FileActivityComparator implements Comparator<List<ChangeFile>> {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int compare(List<ChangeFile> list1, List<ChangeFile> list2) throws ClassCastException {
         int returnValue = Integer.compare(list2.size(), list1.size());
 

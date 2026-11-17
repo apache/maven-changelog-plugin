@@ -38,6 +38,7 @@ public class ChangeLogScmResultStub extends org.apache.maven.scm.command.changel
     /**
      * {@inheritDoc}
      */
+    @Override
     public ChangeLogSet getChangeLog() {
         return new ChangeLogSet(Collections.emptyList(), new Date(360), new Date(720));
     }
