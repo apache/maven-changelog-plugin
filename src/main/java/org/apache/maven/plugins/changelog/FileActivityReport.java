@@ -196,7 +196,7 @@ public class FileActivityReport extends ChangeLogReport {
             sink.tableCell_();
 
             sink.tableCell();
-            sink.text("" + revision.size());
+            sink.text(String.valueOf(revision.size()));
 
             sink.tableCell_();
             sink.tableRow_();
