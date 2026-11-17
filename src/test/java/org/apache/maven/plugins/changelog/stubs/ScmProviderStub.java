@@ -60,6 +60,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public AddScmResult add(ScmRepository scmRepository, ScmFileSet scmFileSet) {
         return null;
     }
@@ -67,6 +68,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getScmSpecificFilename() {
         return null;
     }
@@ -74,6 +76,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getScmType() {
         return null;
     }
@@ -81,6 +84,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ScmProviderRepository makeProviderScmRepository(File file) {
         return null;
     }
@@ -88,6 +92,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ScmProviderRepository makeProviderScmRepository(String string, char c) {
         return null;
     }
@@ -95,6 +100,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public AddScmResult add(ScmRepository scmRepository, ScmFileSet scmFileSet, String message) {
         return null;
     }
@@ -102,6 +108,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public BranchScmResult branch(ScmRepository scmRepository, ScmFileSet scmFileSet, String string) {
         return null;
     }
@@ -109,6 +116,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public BranchScmResult branch(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1) {
         return null;
     }
@@ -123,6 +131,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ChangeLogScmResult changeLog(
             ScmRepository scmRepository, ScmFileSet scmFileSet, Date date, Date date1, int i, String string) {
         return getChangeLogScmResult();
@@ -131,6 +140,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ChangeLogScmResult changeLog(
             ScmRepository scmRepository,
             ScmFileSet scmFileSet,
@@ -145,6 +155,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ChangeLogScmResult changeLog(
             ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1) {
         return getChangeLogScmResult();
@@ -153,6 +164,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ChangeLogScmResult changeLog(
             ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1, String string2) {
         return getChangeLogScmResult();
@@ -161,6 +173,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ChangeLogScmResult changeLog(
             ScmRepository scmRepository, ScmFileSet scmFileSet, Date date, Date date1, int i, ScmBranch scmBranch) {
         return getChangeLogScmResult();
@@ -169,6 +182,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ChangeLogScmResult changeLog(
             ScmRepository scmRepository,
             ScmFileSet scmFileSet,
@@ -183,6 +197,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ChangeLogScmResult changeLog(
             ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, ScmVersion scmVersion1) {
         return getChangeLogScmResult();
@@ -191,6 +206,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ChangeLogScmResult changeLog(
             ScmRepository scmRepository,
             ScmFileSet scmFileSet,
@@ -203,6 +219,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public CheckInScmResult checkIn(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1) {
         return null;
     }
@@ -210,6 +227,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public CheckInScmResult checkIn(ScmRepository scmRepository, ScmFileSet scmFileSet, String string) {
         return null;
     }
@@ -222,6 +240,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public CheckInScmResult checkIn(
             ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, String string) {
         return null;
@@ -230,6 +249,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public CheckOutScmResult checkOut(ScmRepository scmRepository, ScmFileSet scmFileSet, String string) {
         return null;
     }
@@ -237,6 +257,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public CheckOutScmResult checkOut(ScmRepository scmRepository, ScmFileSet scmFileSet) {
         return null;
     }
@@ -244,6 +265,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public CheckOutScmResult checkOut(ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion) {
         return null;
     }
@@ -251,6 +273,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public CheckOutScmResult checkOut(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, boolean b) {
         return null;
     }
@@ -258,6 +281,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public CheckOutScmResult checkOut(ScmRepository scmRepository, ScmFileSet scmFileSet, boolean b) {
         return null;
     }
@@ -265,6 +289,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public CheckOutScmResult checkOut(
             ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, boolean b) {
         return null;
@@ -285,6 +310,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public DiffScmResult diff(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1) {
         return null;
     }
@@ -292,6 +318,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public DiffScmResult diff(
             ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, ScmVersion scmVersion1) {
         return null;
@@ -300,6 +327,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public EditScmResult edit(ScmRepository scmRepository, ScmFileSet scmFileSet) {
         return null;
     }
@@ -307,6 +335,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ExportScmResult export(ScmRepository scmRepository, ScmFileSet scmFileSet, String string) {
         return null; // To change body of implemented methods use File | Settings | File Templates.
     }
@@ -314,6 +343,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ExportScmResult export(ScmRepository scmRepository, ScmFileSet scmFileSet) {
         return null; // To change body of implemented methods use File | Settings | File Templates.
     }
@@ -321,6 +351,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ExportScmResult export(ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion) {
         return null; // To change body of implemented methods use File | Settings | File Templates.
     }
@@ -328,6 +359,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ExportScmResult export(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1) {
         return null; // To change body of implemented methods use File | Settings | File Templates.
     }
@@ -335,6 +367,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ExportScmResult export(
             ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, String string) {
         return null; // To change body of implemented methods use File | Settings | File Templates.
@@ -343,6 +376,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ListScmResult list(ScmRepository repository, ScmFileSet fileSet, boolean recursive, String tag) {
         return null;
     }
@@ -350,6 +384,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ListScmResult list(ScmRepository scmRepository, ScmFileSet scmFileSet, boolean b, ScmVersion scmVersion) {
         return null; // To change body of implemented methods use File | Settings | File Templates.
     }
@@ -357,6 +392,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public RemoveScmResult remove(ScmRepository scmRepository, ScmFileSet scmFileSet, String string) {
         return null;
     }
@@ -364,6 +400,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean requiresEditMode() {
         return false;
     }
@@ -371,6 +408,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public StatusScmResult status(ScmRepository scmRepository, ScmFileSet scmFileSet) {
         return null;
     }
@@ -378,6 +416,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public TagScmResult tag(ScmRepository scmRepository, ScmFileSet scmFileSet, String string) {
         return null;
     }
@@ -385,6 +424,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public TagScmResult tag(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1) {
         return null; // To change body of implemented methods use File | Settings | File Templates.
     }
@@ -401,6 +441,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public UnEditScmResult unedit(ScmRepository scmRepository, ScmFileSet scmFileSet) {
         return null;
     }
@@ -408,6 +449,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, String string) {
         return null;
     }
@@ -415,6 +457,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, Date date) {
         return null;
     }
@@ -422,6 +465,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public UpdateScmResult update(
             ScmRepository scmRepository, ScmFileSet scmFileSet, String string, Date date, String string1) {
         return null;
@@ -430,14 +474,17 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, String string1) {
         return null;
     }
 
+    @Override
     public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet) {
         return null;
     }
 
+    @Override
     public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion) {
         return null;
     }
@@ -445,6 +492,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * @deprecated
      */
+    @Override
     public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, String string, boolean b) {
         return null;
     }
@@ -452,6 +500,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public UpdateScmResult update(ScmRepository scmRepository, ScmFileSet scmFileSet, boolean b) {
         return null;
     }
@@ -459,6 +508,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public UpdateScmResult update(
             ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, boolean b) {
         return null;
@@ -467,6 +517,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public UpdateScmResult update(
             ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, String string) {
         return null;
@@ -475,6 +526,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public UpdateScmResult update(
             ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, Date date) {
         return null;
@@ -483,6 +535,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public UpdateScmResult update(
             ScmRepository scmRepository, ScmFileSet scmFileSet, ScmVersion scmVersion, Date date, String string) {
         return null;
@@ -491,6 +544,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public List<String> validateScmUrl(String string, char c) {
         return null;
     }
@@ -498,6 +552,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String sanitizeTagName(String tag) {
         return tag;
     }
@@ -505,6 +560,7 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean validateTagName(String tag) {
         return true;
     }
@@ -512,42 +568,51 @@ public class ScmProviderStub implements ScmProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public TagScmResult tag(ScmRepository arg0, ScmFileSet arg1, String arg2, ScmTagParameters arg3) {
         return null;
     }
 
+    @Override
     public BranchScmResult branch(ScmRepository arg0, ScmFileSet arg1, String arg2, ScmBranchParameters arg3) {
         return null;
     }
 
+    @Override
     public BlameScmResult blame(ScmRepository arg0, ScmFileSet arg1, String arg2) {
 
         return null;
     }
 
+    @Override
     public MkdirScmResult mkdir(ScmRepository arg0, ScmFileSet arg1, String arg2, boolean arg3) {
 
         return null;
     }
 
+    @Override
     public InfoScmResult info(
             ScmProviderRepository scmProviderRepository, ScmFileSet scmFileSet, CommandParameters commandParameters) {
         return null;
     }
 
+    @Override
     public AddScmResult add(ScmRepository scmRepository, ScmFileSet scmFileSet, CommandParameters commandParameters) {
         return null;
     }
 
+    @Override
     public RemoteInfoScmResult remoteInfo(
             ScmProviderRepository scmProviderRepository, ScmFileSet scmFileSet, CommandParameters commandParameters) {
         return null;
     }
 
+    @Override
     public ChangeLogScmResult changeLog(ChangeLogScmRequest scmRequest) {
         return null;
     }
 
+    @Override
     public BlameScmResult blame(BlameScmRequest blameScmRequest) {
         return null;
     }

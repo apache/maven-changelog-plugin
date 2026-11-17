@@ -29,22 +29,27 @@ public class FailedScmManagerStub extends ScmManagerStub {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ScmProvider getProviderByRepository(ScmRepository scmRepository) {
         return new ScmProviderStub() {
             /** {@inheritDoc} */
+            @Override
             protected ChangeLogScmResult getChangeLogScmResult() {
                 return new ChangeLogScmResultStub() {
                     /** {@inheritDoc} */
+                    @Override
                     public String getCommandOutput() {
                         return "Provider Stub Commandline";
                     }
 
                     /** {@inheritDoc} */
+                    @Override
                     public String getProviderMessage() {
                         return "Provider Stub Error Message";
                     }
 
                     /** {@inheritDoc} */
+                    @Override
                     public boolean isSuccess() {
                         return false;
                     }

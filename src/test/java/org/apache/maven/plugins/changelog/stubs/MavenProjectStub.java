@@ -43,6 +43,7 @@ public class MavenProjectStub extends MavenProject {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Scm getScm() {
         Scm scm = new Scm();
 
@@ -55,6 +56,7 @@ public class MavenProjectStub extends MavenProject {
     /**
      * {@inheritDoc}
      */
+    @Override
     public File getBasedir() {
         return new File(MojoExtension.getBasedir(), "target/test-harness/" + testCounter);
     }
