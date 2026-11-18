@@ -19,13 +19,14 @@
 package org.apache.maven.plugins.changelog;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import org.apache.maven.api.di.Provides;
 import org.apache.maven.api.plugin.testing.InjectMojo;
 import org.apache.maven.api.plugin.testing.MojoTest;
 import org.apache.maven.plugins.changelog.stubs.MavenProjectStub;
 import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.util.FileUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.apache.maven.api.plugin.testing.MojoExtension.getBasedir;
@@ -78,7 +79,7 @@ class FileActivityReportTest extends AbstractChangeLogReportTest {
 
         assertTrue(outputXML.exists(), "Test if changelog.xml is created");
 
-        String changelogXml = FileUtils.fileRead(outputXML);
+        String changelogXml = new String(Files.readAllBytes(outputXML.toPath()), StandardCharsets.UTF_8);
 
         assertTrue(
                 changelogXml.startsWith("<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>"),
