@@ -18,45 +18,19 @@
  * under the License.
  */
 
-import java.io.*;
-import java.util.*;
-import java.util.regex.*;
-import org.codehaus.plexus.util.FileUtils;
+File outputXML = new File( basedir, "target/changelog.xml" );
+System.out.println( "Checking for existence of xml file: " + outputXML );
+String content = outputXML.getText( "UTF-8" );
+assert content.indexOf( "encoding=\"UTF-8\"" ) >= 0 : "Wrong encoding attribute in content."
 
-try
+File siteDir = new File( basedir, "target/site" );
+System.out.println( "Checking for existence of site directory: " + siteDir );
+assert siteDir.isDirectory()
+
+String[] reports = [ "changelog", "dev-activity", "file-activity" ];
+for ( String report : reports )
 {
-    File outputXML = new File( basedir, "target/changelog.xml" );
-    System.out.println( "Checking for existence of xml file: " + outputXML );
-    String content = FileUtils.fileRead( outputXML, "UTF-8" );
-    if ( content.indexOf( "encoding=\"UTF-8\"" ) < 0 )
-    {
-        throw new IOException( "Wrong encoding attribute in content." );
-    }
-
-    File siteDir = new File( basedir, "target/site" );
-    System.out.println( "Checking for existence of site directory: " + siteDir );
-    if ( !siteDir.isDirectory() )
-    {
-        System.out.println( "FAILED" );
-        return false;
-    }
-
-    String[] reports = [ "changelog", "dev-activity", "file-activity" ];
-    for ( String report : reports )
-    {
-        File reportFile = new File( siteDir, report + ".html" );
-        System.out.println( "Checking for existence of report: " + reportFile );
-        if ( !reportFile.isFile() )
-        {
-            System.out.println( "FAILED" );
-            return false;
-        }
-    }
+    File reportFile = new File( siteDir, report + ".html" );
+    System.out.println( "Checking for existence of report: " + reportFile );
+    assert reportFile.isFile()
 }
-catch( Throwable t )
-{
-    t.printStackTrace();
-    return false;
-}
-
-return true;
