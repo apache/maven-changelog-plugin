@@ -16,18 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-assert new File( basedir, 'target/site' ).exists();
-assert new File( basedir, 'target/site' ).isDirectory();
+assert new File(basedir, 'target/site').exists()
+assert new File(basedir, 'target/site').isDirectory()
 
-assert new File( basedir, 'target/site/changelog.html' ).exists();
-assert new File( basedir, 'target/site/changelog.html' ).isFile();
-assert new File( basedir, 'target/site/dev-activity.html' ).exists();
-assert new File( basedir, 'target/site/dev-activity.html' ).isFile();
-assert new File( basedir, 'target/site/file-activity.html' ).exists();
-assert new File( basedir, 'target/site/file-activity.html' ).isFile();
+assert new File(basedir, 'target/site/changelog.html').exists()
+assert new File(basedir, 'target/site/changelog.html').isFile()
+assert new File(basedir, 'target/site/dev-activity.html').exists()
+assert new File(basedir, 'target/site/dev-activity.html').isFile()
+assert new File(basedir, 'target/site/file-activity.html').exists()
+assert new File(basedir, 'target/site/file-activity.html').isFile()
 
-content = new File( basedir, 'build.log' ).text;
+content = new File(basedir, 'build.log').text
 
-assert content.contains( 'Change the default \'svn\' provider implementation to \'javasvn\'.' );
+assert content.contains('Change the default \'svn\' provider implementation to \'javasvn\'.')
 
-return true;
+return true
