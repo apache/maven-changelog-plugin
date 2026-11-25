@@ -18,19 +18,18 @@
  * under the License.
  */
 
-File outputXML = new File( basedir, "target/changelog.xml" );
-System.out.println( "Checking for existence of xml file: " + outputXML );
-String content = outputXML.getText( "ISO-8859-1" );
-assert content.indexOf( "encoding=\"ISO-8859-1\"" ) >= 0 : "Wrong encoding attribute in content."
+File outputXML = new File(basedir, "target/changelog.xml")
+System.out.println("Checking for existence of xml file: " + outputXML)
+String content = outputXML.getText("ISO-8859-1")
+assert content.indexOf("encoding=\"ISO-8859-1\"") >= 0 : "Wrong encoding attribute in content."
 
-File siteDir = new File( basedir, "target/site" );
-System.out.println( "Checking for existence of site directory: " + siteDir );
+File siteDir = new File( basedir, "target/site" )
+System.out.println( "Checking for existence of site directory: " + siteDir )
 assert siteDir.isDirectory()
 
-String[] reports = [ "changelog", "dev-activity", "file-activity" ];
-for ( String report : reports )
-{
-    File reportFile = new File( siteDir, report + ".html" );
-    System.out.println( "Checking for existence of report: " + reportFile );
+String[] reports = ["changelog", "dev-activity", "file-activity"]
+for ( String report : reports ) {
+    File reportFile = new File( siteDir, report + ".html" )
+    System.out.println( "Checking for existence of report: " + reportFile )
     assert reportFile.isFile()
 }
