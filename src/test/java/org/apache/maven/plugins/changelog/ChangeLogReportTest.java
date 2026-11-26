@@ -215,6 +215,39 @@ class ChangeLogReportTest extends AbstractChangeLogReportTest {
         assertTrue(html.contains("v 4"));
     }
 
+    @Test
+    @InjectMojo(goal = "changelog", pom = "src/test/plugin-configs/changelog/min-plugin-config.xml")
+    void testOutputEncodingIsWrittenToChangelogXml(ChangeLogReport mojo) throws Exception {
+        setVariableValueToObject(mojo, "outputEncoding", "ISO-8859-1");
+
+        assertChangelogXmlEncoding(mojo, "ISO-8859-1");
+    }
+
+    @Test
+    @InjectMojo(goal = "changelog", pom = "src/test/plugin-configs/changelog/min-plugin-config.xml")
+    void testOutputEncodingDefaultsToUtf8(ChangeLogReport mojo) throws Exception {
+        // what Maven injects when project.reporting.outputEncoding is not set
+        setVariableValueToObject(mojo, "outputEncoding", null);
+
+        assertChangelogXmlEncoding(mojo, "UTF-8");
+    }
+
+    private void assertChangelogXmlEncoding(ChangeLogReport mojo, String expected) throws Exception {
+        // own file, so that the cached changelog.xml of the other tests is left alone
+        File outputXML = new File(getBasedir(), "target/encoding-test/changelog-" + expected + ".xml");
+        Files.deleteIfExists(outputXML.toPath());
+        setVariableValueToObject(mojo, "outputXML", outputXML);
+
+        setVariableValueToObject(mojo, "manager", scmManager);
+        setVariableValueToObject(mojo, "basedir", new File(getBasedir(), "src/main/java"));
+        executeReport(mojo);
+
+        String changelogXml = new String(Files.readAllBytes(outputXML.toPath()), expected);
+        assertTrue(
+                changelogXml.startsWith("<?xml version=\"1.0\" encoding=\"" + expected + "\"?>"),
+                "Wrong encoding attribute in changelog.xml: " + changelogXml);
+    }
+
     private void executeMojo(ChangeLogReport mojo) throws Exception {
         executeMojo(mojo, false);
     }
